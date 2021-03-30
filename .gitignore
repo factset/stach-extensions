@@ -1,0 +1,6 @@
+java/.idea/*
+java/target/*
+python/.idea/*
+python/env/*
+**/__pycache__/*
+java/stachextensions.iml
