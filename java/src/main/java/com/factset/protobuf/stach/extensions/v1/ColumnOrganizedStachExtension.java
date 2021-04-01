@@ -2,7 +2,10 @@ package com.factset.protobuf.stach.extensions.v1;
 
 import com.factset.protobuf.stach.MetadataItemProto.MetadataItem;
 import com.factset.protobuf.stach.NullValues;
+import com.factset.protobuf.stach.PackageProto;
 import com.factset.protobuf.stach.PackageProto.Package;
+import com.factset.protobuf.stach.extensions.StachExtensions;
+import com.factset.protobuf.stach.extensions.StachUtilities;
 import com.factset.protobuf.stach.table.DataTypeProto.DataType;
 import com.factset.protobuf.stach.table.SeriesDataProto.SeriesData;
 import com.factset.protobuf.stach.table.SeriesDefinitionProto;
@@ -11,14 +14,51 @@ import com.factset.protobuf.stach.table.TableProto.Table;
 import com.factset.protobuf.stach.extensions.models.Row;
 import com.factset.protobuf.stach.extensions.models.TableData;
 import com.google.protobuf.Duration;
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Timestamp;
+import com.google.protobuf.util.JsonFormat;
 import org.apache.poi.ss.formula.eval.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ColumnOrganizedStachExtension {
+public class ColumnOrganizedStachExtension extends StachUtilities implements StachExtensions<Package> {
+
+    @Override
+    public Package parseString(String jsonString) {
+
+        Package.Builder builder = PackageProto.Package.newBuilder();
+        try {
+            JsonFormat.parser().ignoringUnknownFields().merge(jsonString, builder);
+        } catch (InvalidProtocolBufferException e) {
+            System.out.println("Error while deserializing the response");
+            e.printStackTrace();
+        }
+
+        return builder.build();
+    }
+
+    /**
+     * The purpose of this function is to convert stach to Tabular format.
+     * @param _package : Stach Data which is represented as a Package object.
+     * @return Returns a list of tables for a given stach data.
+     */
+    @Override
+    public List<TableData> convertToTable(Package _package) {
+        List<TableData> tables = new ArrayList<>();
+        for (String primaryTableId : _package.getPrimaryTableIdsList()) {
+            tables.add(generateTable(_package, primaryTableId));
+        }
+        return tables;
+    }
+
+    @Override
+    public List<TableData> convertToTable(String pkgString) {
+        Package _package = parseString(pkgString);
+        return convertToTable(_package);
+    }
+
     private static class SeriesDataHelper {
         /**
          * The purpose of this function is to return the value from the provided SeriesData object.
@@ -57,20 +97,6 @@ public class ColumnOrganizedStachExtension {
                 throw new NotImplementedException(dataType + " is not implemented");
             }
         }
-    }
-
-
-    /**
-     * The purpose of this function is to convert stach to Tabular format.
-     * @param packageObj : Stach Data which is represented as a Package object.
-     * @return Returns a list of tables for a given stach data.
-     */
-    public static List<TableData> convertToTableFormat(Package packageObj) {
-        List<TableData> tables = new ArrayList<>();
-        for (String primaryTableId : packageObj.getPrimaryTableIdsList()) {
-            tables.add(generateTable(packageObj, primaryTableId));
-        }
-        return tables;
     }
 
     /**
@@ -136,31 +162,8 @@ public class ColumnOrganizedStachExtension {
     }
 
 
-    /**
-     * The purpose of this function is to give the index of the given id in the list of SeriesDefinition.
-     * @param list : List of SeriesDefinition objects.
-     * @param id   : The id that is to be searched.
-     * @return Returns the index of the SeriesDefinition with the given id.
-     */
-    private static int getIndexOf(List<SeriesDefinition> list, String id) {
-        int pos = 0;
 
-        for (SeriesDefinition myObj : list) {
-            if (id.equalsIgnoreCase(myObj.getId()))
-                return pos;
-            pos++;
-        }
 
-        return -1;
-    }
 
-    /**
-     * The purpose of this function is to check if the string is empty or is null.
-     * @param str : The input string object.
-     * @return Returns true if the string object is null or empty string.
-     */
-    private static boolean isNullOrEmpty(String str) {
-        return str == null || str.isEmpty();
-    }
 
 }

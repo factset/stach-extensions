@@ -1,14 +1,12 @@
 package com.factset.protobuf.stach.extensions.tests;
 
-import com.factset.protobuf.stach.PackageProto;
-import com.factset.protobuf.stach.extensions.ExtensionFactory;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.util.JsonFormat;
+import com.factset.protobuf.stach.v2.PackageProto;
+import com.factset.protobuf.stach.extensions.v2.ColumnOrganizedStachExtension;
+import com.factset.protobuf.stach.extensions.ExtensionFactory;
 import com.factset.protobuf.stach.extensions.models.TableData;
-import com.factset.protobuf.stach.extensions.v1.ColumnOrganizedStachExtension;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -18,7 +16,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-public class V1ColumnTests {
+public class V2ColumnTests {
 
     PackageProto.Package _package;
     ColumnOrganizedStachExtension colStachExtension;
@@ -26,24 +24,25 @@ public class V1ColumnTests {
     List<String> row1 = Arrays.asList("total0","group1","group2", "Port.+Weight", "Bench.+Weight", "Difference");
     List<String> row2 = Arrays.asList("Total","","", "100.0", "--", "100.0");
 
-    @BeforeClass
+    @BeforeTest
     public void setup() throws IOException {
         Path workingDirectory = Paths.get("src", "test", "java", "resources");
-        String input = new String(Files.readAllBytes(Paths.get(workingDirectory.toString(), "V1Column.json")));
-
-        colStachExtension = (ColumnOrganizedStachExtension) ExtensionFactory.getStachExtension(StachVersion.V1, "column");
-        _package = colStachExtension.parseString(input);
+        String input = new String(Files.readAllBytes(Paths.get(workingDirectory.toString(), "V2Column.json")));
+        colStachExtension = (ColumnOrganizedStachExtension) ExtensionFactory.getStachExtension(StachVersion.V2, "column");
+        _package = (PackageProto.Package) colStachExtension.parseString(input);
     }
 
     @Test
     public void testConvert(){
-        List<TableData> tableDataList = new ColumnOrganizedStachExtension().convertToTable(_package);
+        System.out.println(_package.getPrimaryTableIdsList().get(0));
+        List<TableData> tableDataList = colStachExtension.convertToTable(_package);
 
-          Assert.assertEquals(row1, tableDataList.get(0).getRows().get(0).getCells());
+        Assert.assertEquals(row1, tableDataList.get(0).getRows().get(0).getCells());
         Assert.assertEquals(true, tableDataList.get(0).getRows().get(0).isHeader());
 
         Assert.assertEquals(row2, tableDataList.get(0).getRows().get(1).getCells());
         Assert.assertEquals(false, tableDataList.get(0).getRows().get(1).isHeader());
 
     }
+
 }
