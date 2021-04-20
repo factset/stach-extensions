@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface StachExtensions<T> {
 
-    public T parseString(String jsonString);
+    public T convertToPackage(String jsonString);
 
     public List<TableData> convertToTable(T _package);
 

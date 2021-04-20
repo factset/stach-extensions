@@ -30,11 +30,16 @@ public class RowOrganizedStachExtension extends StachUtilities implements StachE
     }
 
     public RowOrganizedStachExtension(String jsonString) {
-        this._package = parseString(jsonString);
+        this._package = convertToPackage(jsonString);
     }
 
+    /**
+     * This function processes given string input and returns the RowOrganizedPackage object.
+     * @param jsonString : package object in string format
+     * @return returns the Package object.
+     */
     @Override
-    public RowOrganizedProto.RowOrganizedPackage parseString(String jsonString) {
+    public RowOrganizedProto.RowOrganizedPackage convertToPackage(String jsonString) {
 
         Gson gson = new GsonBuilder().create();
         DataAndMetaModel dataAndMetaModel = gson.fromJson(jsonString, DataAndMetaModel.class);
@@ -56,21 +61,36 @@ public class RowOrganizedStachExtension extends StachUtilities implements StachE
         return builder.build();
     }
 
+    /**
+     * The purpose of this function is to convert row organized stach to Tabular format.
+     * @param pkg : Stach Data which is represented as a Package object.
+     * @return Returns a list of tables for a given stach data.
+     */
     @Override
-    public List<TableData> convertToTable(RowOrganizedProto.RowOrganizedPackage _package) {
+    public List<TableData> convertToTable(RowOrganizedProto.RowOrganizedPackage pkg) {
         List<TableData> tables = new ArrayList<TableData>();
-        for (String tableKey : _package.getTablesMap().keySet()) {
-            tables.add(generateTable(_package.getTablesMap().get(tableKey)));
+        for (String tableKey : pkg.getTablesMap().keySet()) {
+            tables.add(generateTable(pkg.getTablesMap().get(tableKey)));
         }
         return tables;
     }
 
+    /**
+     * The purpose of this function is to convert row organized stach in string form to Tabular format.
+     * @param pkgString : Stach Data which is represented in string format.
+     * @return Returns a list of tables for a given stach data.
+     */
     @Override
     public List<TableData> convertToTable(String pkgString) {
-        RowOrganizedProto.RowOrganizedPackage _package = parseString(pkgString);
+        RowOrganizedProto.RowOrganizedPackage _package = convertToPackage(pkgString);
         return convertToTable(_package);
     }
 
+    /**
+     * The purpose of this function is to generate Table for a given RowOrganized stach table.
+     * @param stachTable     : RowOrganized stach table object.
+     * @return Returns the generated Table from the RowOrganized Table provided.
+     */
     private TableData generateTable(RowOrganizedProto.RowOrganizedPackage.Table stachTable) {
         TableData table = new TableData();
 

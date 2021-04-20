@@ -25,8 +25,13 @@ import java.util.Map;
 
 public class ColumnOrganizedStachExtension extends StachUtilities implements StachExtensions<Package> {
 
+    /**
+     * This function processes given string input and returns the Package object.
+     * @param jsonString : package object in string format
+     * @return returns the Package object.
+     */
     @Override
-    public Package parseString(String jsonString) {
+    public Package convertToPackage(String jsonString) {
 
         Package.Builder builder = PackageProto.Package.newBuilder();
         try {
@@ -41,21 +46,26 @@ public class ColumnOrganizedStachExtension extends StachUtilities implements Sta
 
     /**
      * The purpose of this function is to convert stach to Tabular format.
-     * @param _package : Stach Data which is represented as a Package object.
+     * @param pkg : Stach Data which is represented as a Package object.
      * @return Returns a list of tables for a given stach data.
      */
     @Override
-    public List<TableData> convertToTable(Package _package) {
+    public List<TableData> convertToTable(Package pkg) {
         List<TableData> tables = new ArrayList<>();
-        for (String primaryTableId : _package.getPrimaryTableIdsList()) {
-            tables.add(generateTable(_package, primaryTableId));
+        for (String primaryTableId : pkg.getPrimaryTableIdsList()) {
+            tables.add(generateTable(pkg, primaryTableId));
         }
         return tables;
     }
 
+    /**
+     * The purpose of this function is to convert stach in string form to Tabular format.
+     * @param pkgString : Stach Data which is represented in string format.
+     * @return Returns a list of tables for a given stach data.
+     */
     @Override
     public List<TableData> convertToTable(String pkgString) {
-        Package _package = parseString(pkgString);
+        Package _package = convertToPackage(pkgString);
         return convertToTable(_package);
     }
 
@@ -160,10 +170,5 @@ public class ColumnOrganizedStachExtension extends StachUtilities implements Sta
         }
         return table;
     }
-
-
-
-
-
 
 }

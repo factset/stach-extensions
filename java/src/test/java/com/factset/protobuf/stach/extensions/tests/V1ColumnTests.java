@@ -2,6 +2,7 @@ package com.factset.protobuf.stach.extensions.tests;
 
 import com.factset.protobuf.stach.PackageProto;
 import com.factset.protobuf.stach.extensions.ExtensionFactory;
+import com.factset.protobuf.stach.extensions.models.Stach2Type;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
@@ -31,8 +32,8 @@ public class V1ColumnTests {
         Path workingDirectory = Paths.get("src", "test", "java", "resources");
         String input = new String(Files.readAllBytes(Paths.get(workingDirectory.toString(), "V1Column.json")));
 
-        colStachExtension = (ColumnOrganizedStachExtension) ExtensionFactory.getStachExtension(StachVersion.V1, "column");
-        _package = colStachExtension.parseString(input);
+        colStachExtension = (ColumnOrganizedStachExtension) ExtensionFactory.getStachExtension(StachVersion.V1, Stach2Type.ColumnOrganized);
+        _package = colStachExtension.convertToPackage(input);
     }
 
     @Test

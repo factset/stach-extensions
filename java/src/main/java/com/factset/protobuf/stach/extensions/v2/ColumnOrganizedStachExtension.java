@@ -21,8 +21,13 @@ public class ColumnOrganizedStachExtension extends StachUtilities implements Sta
 
     PackageProto.Package _package;
 
+    /**
+     * This function processes given string input and returns the Package object.
+     * @param jsonString : package object in string format
+     * @return returns the Package object.
+     */
     @Override
-    public PackageProto.Package parseString(String jsonString) {
+    public PackageProto.Package convertToPackage(String jsonString) {
 
         Gson gson = new GsonBuilder().create();
         DataAndMetaModel dataAndMetaModel = gson.fromJson(jsonString, DataAndMetaModel.class);
@@ -44,22 +49,37 @@ public class ColumnOrganizedStachExtension extends StachUtilities implements Sta
         return builder.build();
     }
 
-
+    /**
+     * The purpose of this function is to convert stach to Tabular format.
+     * @param pkg : Stach Data which is represented as a Package object.
+     * @return Returns a list of tables for a given stach data.
+     */
     @Override
-    public List<TableData> convertToTable(PackageProto.Package _package) {
+    public List<TableData> convertToTable(PackageProto.Package pkg) {
         List<TableData> tables = new ArrayList<>();
-        for (String primaryTableId : _package.getPrimaryTableIdsList()) {
-            tables.add(generateTable(_package, primaryTableId));
+        for (String primaryTableId : pkg.getPrimaryTableIdsList()) {
+            tables.add(generateTable(pkg, primaryTableId));
         }
         return tables;
     }
 
+    /**
+     * The purpose of this function is to convert stach in string form to Tabular format.
+     * @param pkgString : Stach Data which is represented in string format.
+     * @return Returns a list of tables for a given stach data.
+     */
     @Override
     public List<TableData> convertToTable(String pkgString) {
-        PackageProto.Package _package = parseString(pkgString);
+        PackageProto.Package _package = convertToPackage(pkgString);
         return convertToTable(_package);
     }
 
+    /**
+     * The purpose of this function is to generate Table for a given table id in the provided stach data through the package.
+     * @param packageObj     : Stach Data which is represented as a Package object.
+     * @param primaryTableId : Refers to the id for a particular table inside a package.
+     * @return Returns the generated Table from the package provided.
+     */
     private  TableData generateTable(PackageProto.Package packageObj, String primaryTableId) {
         Map<String, TableProto.Table> tablesMap = packageObj.getTablesMap();
         TableProto.Table primaryTable = tablesMap.get(primaryTableId);

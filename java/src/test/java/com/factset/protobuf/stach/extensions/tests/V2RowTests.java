@@ -1,5 +1,6 @@
 package com.factset.protobuf.stach.extensions.tests;
 
+import com.factset.protobuf.stach.extensions.models.Stach2Type;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
 import com.factset.protobuf.stach.v2.RowOrganizedProto;
 import com.factset.protobuf.stach.extensions.ExtensionFactory;
@@ -29,8 +30,8 @@ public class V2RowTests {
     public void setup() throws IOException {
         Path workingDirectory = Paths.get("src", "test", "java", "resources");
         String input = new String(Files.readAllBytes(Paths.get(workingDirectory.toString(), "V2Row.json")));
-        rowStachExtension = (RowOrganizedStachExtension) ExtensionFactory.getStachExtension(StachVersion.V2,"row");
-        _package = (RowOrganizedProto.RowOrganizedPackage) rowStachExtension.parseString(input);
+        rowStachExtension = (RowOrganizedStachExtension) ExtensionFactory.getStachExtension(StachVersion.V2, Stach2Type.RowOrganized);
+        _package = (RowOrganizedProto.RowOrganizedPackage) rowStachExtension.convertToPackage(input);
     }
 
     @Test

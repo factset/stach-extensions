@@ -1,5 +1,6 @@
 package com.factset.protobuf.stach.extensions.tests;
 
+import com.factset.protobuf.stach.extensions.models.Stach2Type;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
 import com.factset.protobuf.stach.v2.PackageProto;
 import com.factset.protobuf.stach.extensions.v2.ColumnOrganizedStachExtension;
@@ -28,8 +29,8 @@ public class V2ColumnTests {
     public void setup() throws IOException {
         Path workingDirectory = Paths.get("src", "test", "java", "resources");
         String input = new String(Files.readAllBytes(Paths.get(workingDirectory.toString(), "V2Column.json")));
-        colStachExtension = (ColumnOrganizedStachExtension) ExtensionFactory.getStachExtension(StachVersion.V2, "column");
-        _package = (PackageProto.Package) colStachExtension.parseString(input);
+        colStachExtension = (ColumnOrganizedStachExtension) ExtensionFactory.getStachExtension(StachVersion.V2, Stach2Type.ColumnOrganized);
+        _package = (PackageProto.Package) colStachExtension.convertToPackage(input);
     }
 
     @Test
