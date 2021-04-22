@@ -1,89 +1,37 @@
 package com.factset.protobuf.stach.extensions.v2;
 
 import com.factset.protobuf.stach.extensions.StachExtensions;
-import com.factset.protobuf.stach.extensions.StachUtilities;
-import com.factset.protobuf.stach.v2.PackageProto;
 import com.factset.protobuf.stach.v2.RowOrganizedProto;
 import com.factset.protobuf.stach.v2.table.ColumnDefinitionProto;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.protobuf.InvalidProtocolBufferException;
+import com.factset.protobuf.stach.v2.table.MetadataItemProto;
 import com.google.protobuf.Value;
-import com.google.protobuf.util.JsonFormat;
-import com.factset.protobuf.stach.extensions.models.DataAndMetaModel;
 import com.factset.protobuf.stach.extensions.models.Row;
 import com.factset.protobuf.stach.extensions.models.TableData;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-public class RowOrganizedStachExtension extends StachUtilities implements StachExtensions<RowOrganizedProto.RowOrganizedPackage> {
+public class RowOrganizedStachExtension implements StachExtensions<RowOrganizedProto.RowOrganizedPackage> {
 
-    private RowOrganizedProto.RowOrganizedPackage _package;
+    private RowOrganizedProto.RowOrganizedPackage pkg;
 
-    public RowOrganizedStachExtension() {
-    }
-
-    public RowOrganizedStachExtension(RowOrganizedProto.RowOrganizedPackage _package) {
-        this._package = _package;
-    }
-
-    public RowOrganizedStachExtension(String jsonString) {
-        this._package = convertToPackage(jsonString);
-    }
-
-    /**
-     * This function processes given string input and returns the RowOrganizedPackage object.
-     * @param jsonString : package object in string format
-     * @return returns the Package object.
-     */
-    @Override
-    public RowOrganizedProto.RowOrganizedPackage convertToPackage(String jsonString) {
-
-        Gson gson = new GsonBuilder().create();
-        DataAndMetaModel dataAndMetaModel = gson.fromJson(jsonString, DataAndMetaModel.class);
-
-        if (dataAndMetaModel.data != null) {
-            jsonString = gson.toJson(dataAndMetaModel.data);
-        } else {
-            jsonString = gson.toJson(gson.fromJson(jsonString, Object.class));
-        }
-
-        RowOrganizedProto.RowOrganizedPackage.Builder builder = RowOrganizedProto.RowOrganizedPackage.newBuilder();
-        try {
-            JsonFormat.parser().ignoringUnknownFields().merge(jsonString, builder);
-        } catch (InvalidProtocolBufferException e) {
-            System.out.println("Error while deserializing the response");
-            e.printStackTrace();
-        }
-
-        return builder.build();
+    public RowOrganizedStachExtension(RowOrganizedProto.RowOrganizedPackage pkg) {
+        this.pkg = pkg;
     }
 
     /**
      * The purpose of this function is to convert row organized stach to Tabular format.
-     * @param pkg : Stach Data which is represented as a Package object.
      * @return Returns a list of tables for a given stach data.
      */
     @Override
-    public List<TableData> convertToTable(RowOrganizedProto.RowOrganizedPackage pkg) {
+    public List<TableData> convertToTable() {
         List<TableData> tables = new ArrayList<TableData>();
         for (String tableKey : pkg.getTablesMap().keySet()) {
             tables.add(generateTable(pkg.getTablesMap().get(tableKey)));
         }
         return tables;
-    }
-
-    /**
-     * The purpose of this function is to convert row organized stach in string form to Tabular format.
-     * @param pkgString : Stach Data which is represented in string format.
-     * @return Returns a list of tables for a given stach data.
-     */
-    @Override
-    public List<TableData> convertToTable(String pkgString) {
-        RowOrganizedProto.RowOrganizedPackage _package = convertToPackage(pkgString);
-        return convertToTable(_package);
     }
 
     /**
@@ -121,8 +69,8 @@ public class RowOrganizedStachExtension extends StachUtilities implements StachE
             if (currentRow.getRowType() == RowOrganizedProto.RowOrganizedPackage.Row.RowType.Header) {
 
                 for (Value val : currentRow.getCells().getValuesList()) {
-                    Object valObj = valueToObject(val);
-                    headerRow.getCells().add(valObj == null ? "" : valObj.toString()); //TODO - replace empty string with null format for null case
+                    Object valObj = StachUtilities.valueToObject(val);
+                    headerRow.getCells().add(valObj == null ? "" : valObj.toString());
                 }
 
                 headerRow.setHeader(true);
@@ -143,11 +91,18 @@ public class RowOrganizedStachExtension extends StachUtilities implements StachE
             // Loop for each of column definition and find the key and add it or else null
             for (ColumnDefinitionProto.ColumnDefinition colDefinition : stachTable.getDefinition().getColumnsList()) {
 
-                String value = rowDataMap.get(colDefinition.getId()) == null ? "" : valueToObject(rowDataMap.get(colDefinition.getId())).toString();
+
+                String value = rowDataMap.get(colDefinition.getId()) == null ? colDefinition.getFormat().getNullFormat() : StachUtilities.valueToObject(rowDataMap.get(colDefinition.getId())).toString();
                 dataRow.getCells().add(value);
             }
 
             table.getRows().add(dataRow);
+        }
+
+        //process metadata
+        for (String key :stachTable.getData().getTableMetadataMap().keySet()) {
+            Object metaDataValue = StachUtilities.valueToObject(stachTable.getData().getTableMetadataMap().get(key).getValue());
+            table.getMetadata().put(key, metaDataValue.toString());
         }
 
         return table;

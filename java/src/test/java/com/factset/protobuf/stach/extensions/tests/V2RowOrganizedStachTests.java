@@ -1,10 +1,10 @@
 package com.factset.protobuf.stach.extensions.tests;
 
-import com.factset.protobuf.stach.extensions.models.Stach2Type;
+import com.factset.protobuf.stach.extensions.StachExtensionBuilder;
+import com.factset.protobuf.stach.extensions.StachExtensions;
+import com.factset.protobuf.stach.extensions.models.StachType;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
-import com.factset.protobuf.stach.v2.RowOrganizedProto;
-import com.factset.protobuf.stach.extensions.ExtensionFactory;
-import com.factset.protobuf.stach.extensions.v2.RowOrganizedStachExtension;
+import com.factset.protobuf.stach.extensions.StachExtensionFactory;
 import com.factset.protobuf.stach.extensions.models.TableData;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -17,27 +17,27 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-public class V2RowTests {
+public class V2RowOrganizedStachTests {
 
-    RowOrganizedProto.RowOrganizedPackage _package;
-    RowOrganizedStachExtension rowStachExtension;
+    StachExtensionBuilder stachExtensionBuilder;
+    String input;
 
     List<String> row1 = Arrays.asList("total0","group1","group2", "Difference");
-    List<String> row2 = Arrays.asList("Total","","", "");
+    List<String> row2 = Arrays.asList("Total","","", "--");
     List<String> row3 = Arrays.asList("Commercial Services","","", "0.913395362480243");
 
     @BeforeTest
     public void setup() throws IOException {
         Path workingDirectory = Paths.get("src", "test", "java", "resources");
-        String input = new String(Files.readAllBytes(Paths.get(workingDirectory.toString(), "V2Row.json")));
-        rowStachExtension = (RowOrganizedStachExtension) ExtensionFactory.getStachExtension(StachVersion.V2, Stach2Type.RowOrganized);
-        _package = (RowOrganizedProto.RowOrganizedPackage) rowStachExtension.convertToPackage(input);
+        input = new String(Files.readAllBytes(Paths.get(workingDirectory.toString(), "V2RowOrganizedStachData.json")));
     }
 
     @Test
     public void testConvert(){
 
-        List<TableData> tableDataList = rowStachExtension.convertToTable(_package);
+        stachExtensionBuilder = StachExtensionFactory.getBuilder(StachVersion.V2, StachType.RowOrganized);
+        StachExtensions stachExtension = stachExtensionBuilder.set(input).build();
+        List<TableData> tableDataList = stachExtension.convertToTable();
 
         Assert.assertEquals(row1, tableDataList.get(0).getRows().get(0).getCells());
         Assert.assertEquals(true, tableDataList.get(0).getRows().get(0).isHeader());
@@ -47,6 +47,18 @@ public class V2RowTests {
 
         Assert.assertEquals(row3, tableDataList.get(0).getRows().get(2).getCells());
         Assert.assertEquals(false, tableDataList.get(0).getRows().get(1).isHeader());
+
+    }
+
+    @Test
+    public void testMetaData() {
+
+        stachExtensionBuilder = StachExtensionFactory.getBuilder(StachVersion.V2, StachType.RowOrganized);
+        StachExtensions stachExtension = stachExtensionBuilder.set(input).build();
+        List<TableData> tableDataList = stachExtension.convertToTable();
+
+        Assert.assertEquals(tableDataList.get(0).getMetadata().keySet().toArray().length, 19);
+        Assert.assertEquals(tableDataList.get(0).getMetadata().get("Report Frequency"),"Single");
 
     }
 
