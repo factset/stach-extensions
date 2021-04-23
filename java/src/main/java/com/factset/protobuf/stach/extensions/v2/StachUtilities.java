@@ -1,6 +1,5 @@
 package com.factset.protobuf.stach.extensions.v2;
 
-import com.factset.protobuf.stach.table.SeriesDefinitionProto;
 import com.factset.protobuf.stach.v2.table.RowDefinitionProto;
 import com.google.protobuf.Value;
 
@@ -10,7 +9,8 @@ public class StachUtilities {
 
     /**
      * Returns the respective data type object from the Value object
-     * @param value  : protobuf Value object input
+     *
+     * @param value : protobuf Value object input
      * @return returns the respective data type object from the input
      */
     public static Object valueToObject(Value value) {
@@ -34,6 +34,7 @@ public class StachUtilities {
 
     /**
      * Returns the index of the element with given id in the list of RowDefinition objects
+     *
      * @param list : List of RowDefinition objects.
      * @param id   : The id of the RowDefinition object.
      * @return return the index of the object with the given id.

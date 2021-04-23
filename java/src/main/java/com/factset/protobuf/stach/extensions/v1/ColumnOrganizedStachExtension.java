@@ -4,12 +4,12 @@ import com.factset.protobuf.stach.MetadataItemProto.MetadataItem;
 import com.factset.protobuf.stach.PackageProto.Package;
 import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.extensions.Utilities;
+import com.factset.protobuf.stach.extensions.models.Row;
+import com.factset.protobuf.stach.extensions.models.TableData;
 import com.factset.protobuf.stach.table.SeriesDataProto.SeriesData;
 import com.factset.protobuf.stach.table.SeriesDefinitionProto;
 import com.factset.protobuf.stach.table.SeriesDefinitionProto.SeriesDefinition;
 import com.factset.protobuf.stach.table.TableProto.Table;
-import com.factset.protobuf.stach.extensions.models.Row;
-import com.factset.protobuf.stach.extensions.models.TableData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,27 +17,15 @@ import java.util.Map;
 
 public class ColumnOrganizedStachExtension implements StachExtensions<Package> {
 
-    private Package pkg;
+    private final Package pkg;
 
     public ColumnOrganizedStachExtension(Package pkg) {
         this.pkg = pkg;
     }
 
     /**
-     * The purpose of this function is to convert stach to Tabular format.
-     * @return Returns a list of tables for a given stach data.
-     */
-    @Override
-    public List<TableData> convertToTable() {
-        List<TableData> tables = new ArrayList<>();
-        for (String primaryTableId : pkg.getPrimaryTableIdsList()) {
-            tables.add(generateTable(pkg, primaryTableId));
-        }
-        return tables;
-    }
-
-    /**
      * The purpose of this function is to generate Table for a given table id in the provided stach data through the package.
+     *
      * @param packageObj     : Stach Data which is represented as a Package object.
      * @param primaryTableId : Refers to the id for a particular table inside a package.
      * @return Returns the generated Table from the package provided.
@@ -96,6 +84,20 @@ public class ColumnOrganizedStachExtension implements StachExtensions<Package> {
             table.getMetadata().put(entry.getValue().getName(), entry.getValue().getStringValue());
         }
         return table;
+    }
+
+    /**
+     * The purpose of this function is to convert stach to Tabular format.
+     *
+     * @return Returns a list of tables for a given stach data.
+     */
+    @Override
+    public List<TableData> convertToTable() {
+        List<TableData> tables = new ArrayList<>();
+        for (String primaryTableId : pkg.getPrimaryTableIdsList()) {
+            tables.add(generateTable(pkg, primaryTableId));
+        }
+        return tables;
     }
 
 }

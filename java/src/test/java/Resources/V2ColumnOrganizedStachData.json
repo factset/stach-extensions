@@ -1,27 +1,33 @@
 {
-    "primaryTableIds": ["0ce3f2a6-e285-4bdc-aeee-fb62497fdfed"],
-    "tables": {
-      "0ce3f2a6-e285-4bdc-aeee-fb62497fdfed": {
-        "definition": {
-          "headerTableId": "75b13037-61b5-4fa2-9139-66f91f365e0b",
-          "columns": [{
+  "primaryTableIds": [
+    "0ce3f2a6-e285-4bdc-aeee-fb62497fdfed"
+  ],
+  "tables": {
+    "0ce3f2a6-e285-4bdc-aeee-fb62497fdfed": {
+      "definition": {
+        "headerTableId": "75b13037-61b5-4fa2-9139-66f91f365e0b",
+        "columns": [
+          {
             "id": "f83931fc-bd51-4aea-a8ae-3c516106ee96",
             "name": "total0",
             "type": "string",
             "isDimension": true
-          }, {
+          },
+          {
             "id": "86f17b83-4c81-4ed4-abdf-fd32a35b55a7",
             "name": "group1",
             "type": "string",
             "isDimension": true,
             "parentId": "f83931fc-bd51-4aea-a8ae-3c516106ee96"
-          }, {
+          },
+          {
             "id": "1841970c-41ad-43f1-8d27-57fcfb04970b",
             "name": "group2",
             "type": "string",
             "isDimension": true,
             "parentId": "86f17b83-4c81-4ed4-abdf-fd32a35b55a7"
-          }, {
+          },
+          {
             "id": "cf8bd9a8-ebc6-4422-8a33-ef5473129cae",
             "name": "EndingWeight:FACTSET099:5",
             "description": "Port.+Weight",
@@ -32,7 +38,8 @@
               "nullFormat": "--",
               "halign": "RIGHT"
             }
-          }, {
+          },
+          {
             "id": "920c144f-9c5f-46bf-aafc-553483556058",
             "name": "EndingWeight:FACTSET0111:6",
             "description": "Bench.+Weight",
@@ -43,7 +50,8 @@
               "nullFormat": "--",
               "halign": "RIGHT"
             }
-          }, {
+          },
+          {
             "id": "868a78e4-eda1-4a4d-849d-971ff9e0bac7",
             "name": "EndingWeight:FACTSET149:7",
             "description": "Difference",
@@ -55,246 +63,707 @@
               "halign": "RIGHT"
             }
           }
-          ]
-        },
-        "data": {
-          "rows": [{
+        ]
+      },
+      "data": {
+        "rows": [
+          {
             "id": "203ece28-beea-486c-b919-a8f1777acbde"
-          }, {
+          },
+          {
             "id": "afadb30c-d76e-4566-82e4-2651196ef9d6"
-          }, {
+          },
+          {
             "id": "e1b836ab-9228-4ddf-955c-09e6fa8a25c3"
-          }, {
+          },
+          {
             "id": "3454bcff-8708-451b-84d7-af29adbbae1a"
-          }, {
+          },
+          {
             "id": "7d6fd251-ffa8-451e-94f0-7fa8e43a958f"
-          }, {
+          },
+          {
             "id": "9b0101a4-540e-4d08-ba6b-a0ff6249126c"
-          }, {
+          },
+          {
             "id": "4ab415e7-c358-4cc6-af23-27ae6c7b85ae"
-          }, {
+          },
+          {
             "id": "a55ea916-e95b-4f59-98a4-6bab8abceee0"
-          }, {
+          },
+          {
             "id": "69d06c10-a16e-45f7-97bc-141392966c84"
-          }, {
+          },
+          {
             "id": "a8ff00dd-8aee-45ba-81d9-540e6ce65533"
-          }, {
+          },
+          {
             "id": "1376e908-025e-4fa0-80a8-b6158d9cd3f9"
-          }, {
+          },
+          {
             "id": "8e74d91c-1771-480b-ab5d-f7faa5601873"
-          }, {
+          },
+          {
             "id": "caf491d3-d8f5-4419-9f00-9da2dde42e7f"
-          }, {
+          },
+          {
             "id": "9a3208c4-7a4f-441c-9857-38a52871bf3d"
-          }, {
+          },
+          {
             "id": "2c80190e-6f20-4770-b95a-80579395e7a7"
-          }, {
+          },
+          {
             "id": "85899aed-da7a-40b9-b6d0-d72adbd7abf7"
-          }, {
+          },
+          {
             "id": "da46f02c-f7e6-4bd4-a6f5-c04f39606e63"
-          }, {
+          },
+          {
             "id": "a9c2cb32-1f7a-4b25-923f-6fcae798c5ee"
-          }, {
+          },
+          {
             "id": "0e0aba54-b665-4e7e-9abe-96cf8714457c"
-          }, {
+          },
+          {
             "id": "c7b8aa7f-b54e-4c4a-b402-4db9aa959e0b"
-          }, {
+          },
+          {
             "id": "e3978cc9-8e9a-4462-b1bb-ce0961847621"
-          }, {
+          },
+          {
             "id": "83628a04-ab5f-4652-be0d-9309245d8518"
-          }, {
+          },
+          {
             "id": "aaf9983f-47fc-4541-8112-a83ebba969a0"
-          }, {
+          },
+          {
             "id": "6844872f-de99-4170-86e6-b90e5942a88b"
-          }, {
+          },
+          {
             "id": "4d126159-15de-49e2-83e3-7ea8e9a13dfb"
-          }, {
+          },
+          {
             "id": "f96963b4-b6fa-45f1-ad48-7b6f447ff8f5"
-          }, {
+          },
+          {
             "id": "f49c1b0a-4fdd-43c5-b20f-f05900562190"
-          }, {
+          },
+          {
             "id": "782ad744-f8ad-4e42-b6d3-cdbee5f8dfa1"
-          }, {
+          },
+          {
             "id": "89f00885-8271-4ced-a5fa-abdd76dc9e89"
-          }, {
+          },
+          {
             "id": "63dbf963-f3fb-4f5d-b7d6-e4df3595be4a"
-          }, {
+          },
+          {
             "id": "00f87966-0a9b-4941-8d21-1bc81cd74f30"
-          }, {
+          },
+          {
             "id": "ef77b4a9-1472-4e48-96e4-fe7d151c74c3"
-          }, {
+          },
+          {
             "id": "ef081258-00d7-433b-a106-85f385fa5bfa"
-          }, {
+          },
+          {
             "id": "74e9d96d-0f02-4e50-b2d2-bd70b8fd24e0"
-          }, {
+          },
+          {
             "id": "a6b23e9a-0b71-48ab-b369-e00705450916"
-          }, {
+          },
+          {
             "id": "627e7b58-6aa0-40ee-b47e-631929a66358"
-          }, {
+          },
+          {
             "id": "dfc906ff-e71c-4e25-bfcd-22077d03c9e0"
-          }, {
+          },
+          {
             "id": "ccfcf71e-2e87-47c1-932c-7afe8c1df82f"
-          }, {
+          },
+          {
             "id": "0fae47d9-a9d2-4359-af2c-88f958f5608b"
-          }, {
+          },
+          {
             "id": "f88690b1-e9d8-4751-a3e5-4ef012658aa3"
-          }, {
+          },
+          {
             "id": "f38efcbc-3b2a-4616-a280-fd3fdee50fbd"
-          }, {
+          },
+          {
             "id": "a6516d6d-9b89-48df-ab47-748e5fa97b4b"
-          }, {
+          },
+          {
             "id": "82da0915-e059-42a7-b05b-52436df426dd"
-          }, {
+          },
+          {
             "id": "fb7d96f3-f9dd-425a-82f3-5d15a0a74582"
-          }, {
+          },
+          {
             "id": "8ed39e39-54a9-4712-8cd9-85579988a574"
-          }, {
+          },
+          {
             "id": "b45aabff-edf2-4e17-b545-c2c346908a76"
-          }, {
+          },
+          {
             "id": "db8024cf-dcd0-4338-ac95-f3a9b64e41e5"
-          }, {
+          },
+          {
             "id": "15b46b39-b715-47de-a705-0a421150c1f2"
-          }, {
+          },
+          {
             "id": "f7a520b8-7d2f-4459-8482-afa99e7fc9c4"
-          }, {
+          },
+          {
             "id": "bae5d9fa-b9c0-4b9c-8591-f0f0db20ca32"
-          }, {
+          },
+          {
             "id": "05365ad3-df4b-43e0-b6ed-694091d9bd66"
-          }, {
+          },
+          {
             "id": "522c2331-fb95-48f3-9f5b-7d8e8bb7023d"
-          }, {
+          },
+          {
             "id": "b86faaca-95db-4174-a3b0-e3149571f700"
-          }, {
+          },
+          {
             "id": "4d0720fe-6d0a-40eb-b073-bddd8732cabb"
-          }, {
+          },
+          {
             "id": "341704ee-6ac3-4ebc-9b88-a75b5cd252df"
-          }, {
+          },
+          {
             "id": "e578768d-ee4a-45d8-90d4-3dbc202409dc"
-          }, {
+          },
+          {
             "id": "fde5c8d4-05cc-4027-b552-dca2371b2372"
-          }, {
+          },
+          {
             "id": "4be6216d-f491-4edd-89f9-99f0607c8db5"
-          }, {
+          },
+          {
             "id": "40b5544a-cb39-4825-9e12-a79f0f3bc14f"
-          }, {
+          },
+          {
             "id": "72befd59-87e8-44e9-a945-55cc3aa493b1"
-          }, {
+          },
+          {
             "id": "bcf0f6ea-38e0-4e5c-b47f-6d3117b5b375"
           }
-          ],
-          "columns": {
-            "f83931fc-bd51-4aea-a8ae-3c516106ee96": {
-              "values": ["Total", "Communications", "Communications", "Communications", "Consumer Durables", "Consumer Durables", "Consumer Durables", "Consumer Durables", "Consumer Durables", "Consumer Durables", "Consumer Durables", "Consumer Non-Durables", "Consumer Non-Durables", "Consumer Non-Durables", "Consumer Non-Durables", "Consumer Non-Durables", "Consumer Non-Durables", "Consumer Non-Durables", "Energy Minerals", "Energy Minerals", "Energy Minerals", "Energy Minerals", "Energy Minerals", "Finance", "Finance", "Finance", "Finance", "Finance", "Finance", "Finance", "Finance", "Finance", "Finance", "Finance", "Finance", "Finance", "Finance", "Health Technology", "Health Technology", "Health Technology", "Industrial Services", "Industrial Services", "Industrial Services", "Non-Energy Minerals", "Non-Energy Minerals", "Non-Energy Minerals", "Non-Energy Minerals", "Non-Energy Minerals", "Process Industries", "Process Industries", "Process Industries", "Technology Services", "Technology Services", "Technology Services", "Technology Services", "Technology Services", "Technology Services", "Utilities", "Utilities", "Utilities", "Utilities"]
+        ],
+        "columns": {
+          "f83931fc-bd51-4aea-a8ae-3c516106ee96": {
+            "values": [
+              "Total",
+              "Communications",
+              "Communications",
+              "Communications",
+              "Consumer Durables",
+              "Consumer Durables",
+              "Consumer Durables",
+              "Consumer Durables",
+              "Consumer Durables",
+              "Consumer Durables",
+              "Consumer Durables",
+              "Consumer Non-Durables",
+              "Consumer Non-Durables",
+              "Consumer Non-Durables",
+              "Consumer Non-Durables",
+              "Consumer Non-Durables",
+              "Consumer Non-Durables",
+              "Consumer Non-Durables",
+              "Energy Minerals",
+              "Energy Minerals",
+              "Energy Minerals",
+              "Energy Minerals",
+              "Energy Minerals",
+              "Finance",
+              "Finance",
+              "Finance",
+              "Finance",
+              "Finance",
+              "Finance",
+              "Finance",
+              "Finance",
+              "Finance",
+              "Finance",
+              "Finance",
+              "Finance",
+              "Finance",
+              "Finance",
+              "Health Technology",
+              "Health Technology",
+              "Health Technology",
+              "Industrial Services",
+              "Industrial Services",
+              "Industrial Services",
+              "Non-Energy Minerals",
+              "Non-Energy Minerals",
+              "Non-Energy Minerals",
+              "Non-Energy Minerals",
+              "Non-Energy Minerals",
+              "Process Industries",
+              "Process Industries",
+              "Process Industries",
+              "Technology Services",
+              "Technology Services",
+              "Technology Services",
+              "Technology Services",
+              "Technology Services",
+              "Technology Services",
+              "Utilities",
+              "Utilities",
+              "Utilities",
+              "Utilities"
+            ]
+          },
+          "86f17b83-4c81-4ed4-abdf-fd32a35b55a7": {
+            "values": [
+              null,
+              null,
+              "Wireless Telecommunications",
+              "Wireless Telecommunications",
+              null,
+              "Motor Vehicles",
+              "Motor Vehicles",
+              "Motor Vehicles",
+              "Motor Vehicles",
+              "Other Consumer Specialties",
+              "Other Consumer Specialties",
+              null,
+              "Food: Major Diversified",
+              "Food: Major Diversified",
+              "Household/Personal Care",
+              "Household/Personal Care",
+              "Tobacco",
+              "Tobacco",
+              null,
+              "Integrated Oil",
+              "Integrated Oil",
+              "Oil Refining/Marketing",
+              "Oil Refining/Marketing",
+              null,
+              "Finance/Rental/Leasing",
+              "Finance/Rental/Leasing",
+              "Finance/Rental/Leasing",
+              "Financial Conglomerates",
+              "Financial Conglomerates",
+              "Life/Health Insurance",
+              "Life/Health Insurance",
+              "Regional Banks",
+              "Regional Banks",
+              "Regional Banks",
+              "Regional Banks",
+              "Regional Banks",
+              "Regional Banks",
+              null,
+              "Pharmaceuticals: Major",
+              "Pharmaceuticals: Major",
+              null,
+              "Engineering & Construction",
+              "Engineering & Construction",
+              null,
+              "Construction Materials",
+              "Construction Materials",
+              "Steel",
+              "Steel",
+              null,
+              "Industrial Specialties",
+              "Industrial Specialties",
+              null,
+              "Information Technology Services",
+              "Information Technology Services",
+              "Information Technology Services",
+              "Information Technology Services",
+              "Information Technology Services",
+              null,
+              "Electric Utilities",
+              "Electric Utilities",
+              "Electric Utilities"
+            ]
+          },
+          "1841970c-41ad-43f1-8d27-57fcfb04970b": {
+            "values": [
+              null,
+              null,
+              null,
+              "Bharti Airtel Limited",
+              null,
+              null,
+              "Bajaj Auto Limited.",
+              "Mahindra & Mahindra Ltd.",
+              "Maruti Suzuki India Limited",
+              null,
+              "Titan Company Limited",
+              null,
+              null,
+              "Nestle India Ltd.",
+              null,
+              "Hindustan Unilever Limited",
+              null,
+              "ITC Limited",
+              null,
+              null,
+              "Oil & Natural Gas Corp. Ltd.",
+              null,
+              "Reliance Industries Limited",
+              null,
+              null,
+              "Bajaj Finance Limited",
+              "Housing Development Finance Corporation Limited",
+              null,
+              "Kotak Mahindra Bank Limited",
+              null,
+              "Bajaj Finserv Limited",
+              null,
+              "Axis Bank Limited",
+              "HDFC Bank Limited",
+              "ICICI Bank Limited",
+              "IndusInd Bank Ltd.",
+              "State Bank of India",
+              null,
+              null,
+              "Sun Pharmaceutical Industries Limited",
+              null,
+              null,
+              "Larsen & Toubro Ltd.",
+              null,
+              null,
+              "UltraTech Cement Limited",
+              null,
+              "Tata Steel Limited",
+              null,
+              null,
+              "Asian Paints Ltd.",
+              null,
+              null,
+              "HCL Technologies Limited",
+              "Infosys Limited",
+              "Tata Consultancy Services Limited",
+              "Tech Mahindra Limited",
+              null,
+              null,
+              "NTPC Limited",
+              "Power Grid Corporation of India Limited"
+            ]
+          },
+          "cf8bd9a8-ebc6-4422-8a33-ef5473129cae": {
+            "values": [
+              100,
+              3.28747887030914,
+              3.28747887030914,
+              3.28747887030914,
+              5.3830790428119,
+              4.30347159022374,
+              0.951290009541964,
+              1.4009552303312,
+              1.95122635035057,
+              1.07960745258816,
+              1.07960745258816,
+              10.4940789100954,
+              1.50386801030453,
+              1.50386801030453,
+              4.82612465165038,
+              4.82612465165038,
+              4.16408624814052,
+              4.16408624814052,
+              17.2494161528039,
+              0.623237514634344,
+              0.623237514634344,
+              16.6261786381696,
+              16.6261786381696,
+              37.2910994961461,
+              9.69869471991841,
+              1.96226649281912,
+              7.73642822709929,
+              4.05167281666241,
+              4.05167281666241,
+              0.927512978779411,
+              0.927512978779411,
+              22.6132189807859,
+              2.48894594594584,
+              11.602008045367,
+              5.99235637303858,
+              0.770159511740479,
+              1.75974910469401,
+              1.2821102765047,
+              1.2821102765047,
+              1.2821102765047,
+              2.69641967521909,
+              2.69641967521909,
+              2.69641967521909,
+              1.6810033751539,
+              1.04196762087592,
+              1.04196762087592,
+              0.639035754277985,
+              0.639035754277985,
+              1.88704275075372,
+              1.88704275075372,
+              1.88704275075372,
+              16.7702993922664,
+              16.7702993922664,
+              1.80676312783847,
+              8.43409371498703,
+              5.54452003708269,
+              0.984922512358245,
+              1.97797205793565,
+              1.97797205793565,
+              0.930031660122387,
+              1.04794039781326
+            ]
+          },
+          "920c144f-9c5f-46bf-aafc-553483556058": {
+            "values": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          "868a78e4-eda1-4a4d-849d-971ff9e0bac7": {
+            "values": [
+              100,
+              3.28747887030914,
+              3.28747887030914,
+              3.28747887030914,
+              5.3830790428119,
+              4.30347159022374,
+              0.951290009541964,
+              1.4009552303312,
+              1.95122635035057,
+              1.07960745258816,
+              1.07960745258816,
+              10.4940789100954,
+              1.50386801030453,
+              1.50386801030453,
+              4.82612465165038,
+              4.82612465165038,
+              4.16408624814052,
+              4.16408624814052,
+              17.2494161528039,
+              0.623237514634344,
+              0.623237514634344,
+              16.6261786381696,
+              16.6261786381696,
+              37.2910994961461,
+              9.69869471991841,
+              1.96226649281912,
+              7.73642822709929,
+              4.05167281666241,
+              4.05167281666241,
+              0.927512978779411,
+              0.927512978779411,
+              22.6132189807859,
+              2.48894594594584,
+              11.602008045367,
+              5.99235637303858,
+              0.770159511740479,
+              1.75974910469401,
+              1.2821102765047,
+              1.2821102765047,
+              1.2821102765047,
+              2.69641967521909,
+              2.69641967521909,
+              2.69641967521909,
+              1.6810033751539,
+              1.04196762087592,
+              1.04196762087592,
+              0.639035754277985,
+              0.639035754277985,
+              1.88704275075372,
+              1.88704275075372,
+              1.88704275075372,
+              16.7702993922664,
+              16.7702993922664,
+              1.80676312783847,
+              8.43409371498703,
+              5.54452003708269,
+              0.984922512358245,
+              1.97797205793565,
+              1.97797205793565,
+              0.930031660122387,
+              1.04794039781326
+            ]
+          }
+        },
+        "metadata": {
+          "items": {
+            "Portfolio Holdings As Of Date": {
+              "value": "S&P BSE Sensex 24-JUL-2020"
             },
-            "86f17b83-4c81-4ed4-abdf-fd32a35b55a7": {
-              "values": [null, null, "Wireless Telecommunications", "Wireless Telecommunications", null, "Motor Vehicles", "Motor Vehicles", "Motor Vehicles", "Motor Vehicles", "Other Consumer Specialties", "Other Consumer Specialties", null, "Food: Major Diversified", "Food: Major Diversified", "Household/Personal Care", "Household/Personal Care", "Tobacco", "Tobacco", null, "Integrated Oil", "Integrated Oil", "Oil Refining/Marketing", "Oil Refining/Marketing", null, "Finance/Rental/Leasing", "Finance/Rental/Leasing", "Finance/Rental/Leasing", "Financial Conglomerates", "Financial Conglomerates", "Life/Health Insurance", "Life/Health Insurance", "Regional Banks", "Regional Banks", "Regional Banks", "Regional Banks", "Regional Banks", "Regional Banks", null, "Pharmaceuticals: Major", "Pharmaceuticals: Major", null, "Engineering & Construction", "Engineering & Construction", null, "Construction Materials", "Construction Materials", "Steel", "Steel", null, "Industrial Specialties", "Industrial Specialties", null, "Information Technology Services", "Information Technology Services", "Information Technology Services", "Information Technology Services", "Information Technology Services", null, "Electric Utilities", "Electric Utilities", "Electric Utilities"]
+            "Benchmark Holdings As Of Date": {
+              "value": " "
             },
-            "1841970c-41ad-43f1-8d27-57fcfb04970b": {
-              "values": [null, null, null, "Bharti Airtel Limited", null, null, "Bajaj Auto Limited.", "Mahindra & Mahindra Ltd.", "Maruti Suzuki India Limited", null, "Titan Company Limited", null, null, "Nestle India Ltd.", null, "Hindustan Unilever Limited", null, "ITC Limited", null, null, "Oil & Natural Gas Corp. Ltd.", null, "Reliance Industries Limited", null, null, "Bajaj Finance Limited", "Housing Development Finance Corporation Limited", null, "Kotak Mahindra Bank Limited", null, "Bajaj Finserv Limited", null, "Axis Bank Limited", "HDFC Bank Limited", "ICICI Bank Limited", "IndusInd Bank Ltd.", "State Bank of India", null, null, "Sun Pharmaceutical Industries Limited", null, null, "Larsen & Toubro Ltd.", null, null, "UltraTech Cement Limited", null, "Tata Steel Limited", null, null, "Asian Paints Ltd.", null, null, "HCL Technologies Limited", "Infosys Limited", "Tata Consultancy Services Limited", "Tech Mahindra Limited", null, null, "NTPC Limited", "Power Grid Corporation of India Limited"]
+            "Grouping Frequency": {
+              "value": "Economic Sector - Beginning of Period|Industry - Beginning of Period"
             },
-            "cf8bd9a8-ebc6-4422-8a33-ef5473129cae": {
-              "values": [100, 3.28747887030914, 3.28747887030914, 3.28747887030914, 5.3830790428119, 4.30347159022374, 0.951290009541964, 1.4009552303312, 1.95122635035057, 1.07960745258816, 1.07960745258816, 10.4940789100954, 1.50386801030453, 1.50386801030453, 4.82612465165038, 4.82612465165038, 4.16408624814052, 4.16408624814052, 17.2494161528039, 0.623237514634344, 0.623237514634344, 16.6261786381696, 16.6261786381696, 37.2910994961461, 9.69869471991841, 1.96226649281912, 7.73642822709929, 4.05167281666241, 4.05167281666241, 0.927512978779411, 0.927512978779411, 22.6132189807859, 2.48894594594584, 11.602008045367, 5.99235637303858, 0.770159511740479, 1.75974910469401, 1.2821102765047, 1.2821102765047, 1.2821102765047, 2.69641967521909, 2.69641967521909, 2.69641967521909, 1.6810033751539, 1.04196762087592, 1.04196762087592, 0.639035754277985, 0.639035754277985, 1.88704275075372, 1.88704275075372, 1.88704275075372, 16.7702993922664, 16.7702993922664, 1.80676312783847, 8.43409371498703, 5.54452003708269, 0.984922512358245, 1.97797205793565, 1.97797205793565, 0.930031660122387, 1.04794039781326]
+            "Portfolio Pricing Sources": {
+              "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
             },
-            "920c144f-9c5f-46bf-aafc-553483556058": {
-              "values": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+            "Benchmark Pricing Sources": {
+              "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
             },
-            "868a78e4-eda1-4a4d-849d-971ff9e0bac7": {
-              "values": [100, 3.28747887030914, 3.28747887030914, 3.28747887030914, 5.3830790428119, 4.30347159022374, 0.951290009541964, 1.4009552303312, 1.95122635035057, 1.07960745258816, 1.07960745258816, 10.4940789100954, 1.50386801030453, 1.50386801030453, 4.82612465165038, 4.82612465165038, 4.16408624814052, 4.16408624814052, 17.2494161528039, 0.623237514634344, 0.623237514634344, 16.6261786381696, 16.6261786381696, 37.2910994961461, 9.69869471991841, 1.96226649281912, 7.73642822709929, 4.05167281666241, 4.05167281666241, 0.927512978779411, 0.927512978779411, 22.6132189807859, 2.48894594594584, 11.602008045367, 5.99235637303858, 0.770159511740479, 1.75974910469401, 1.2821102765047, 1.2821102765047, 1.2821102765047, 2.69641967521909, 2.69641967521909, 2.69641967521909, 1.6810033751539, 1.04196762087592, 1.04196762087592, 0.639035754277985, 0.639035754277985, 1.88704275075372, 1.88704275075372, 1.88704275075372, 16.7702993922664, 16.7702993922664, 1.80676312783847, 8.43409371498703, 5.54452003708269, 0.984922512358245, 1.97797205793565, 1.97797205793565, 0.930031660122387, 1.04794039781326]
+            "Portfolio Analytics Sources": {
+              "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+            },
+            "Benchmark Analytics Sources": {
+              "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+            },
+            "Additional Pricing Options": {
+              "value": "Calculate Returns with Missing Accrued Interest"
+            },
+            "Composite Assets": {
+              "value": "None"
+            },
+            "Currency ISO Code": {
+              "value": "USD"
+            },
+            "Absolute Start Date": {
+              "value": "20200724"
+            },
+            "Absolute End Date": {
+              "value": "20200724"
+            },
+            "Document Name": {
+              "value": "pa3_documents:/default"
+            },
+            "Calendar": {
+              "value": "FIVEDAY"
+            },
+            "Report Frequency": {
+              "value": "Single"
+            },
+            "Accounts": {
+              "value": "BENCH:180353"
+            },
+            "Benchmark": {
+              "value": ""
+            },
+            "Component Name": {
+              "value": "Weights"
+            },
+            "CalculationId": {
+              "value": "E741D6EFE0BFBFCF34F30350C5682E4856A110A4DD7E48FB1C012A49ECEABDA8:PA1"
             }
           },
-          "metadata": {
-            "items": {
-              "Portfolio Holdings As Of Date": {
-                "value": "S&P BSE Sensex 24-JUL-2020"
-              },
-              "Benchmark Holdings As Of Date": {
-                "value": " "
-              },
-              "Grouping Frequency": {
-                "value": "Economic Sector - Beginning of Period|Industry - Beginning of Period"
-              },
-              "Portfolio Pricing Sources": {
-                "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
-              },
-              "Benchmark Pricing Sources": {
-                "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
-              },
-              "Portfolio Analytics Sources": {
-                "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
-              },
-              "Benchmark Analytics Sources": {
-                "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
-              },
-              "Additional Pricing Options": {
-                "value": "Calculate Returns with Missing Accrued Interest"
-              },
-              "Composite Assets": {
-                "value": "None"
-              },
-              "Currency ISO Code": {
-                "value": "USD"
-              },
-              "Absolute Start Date": {
-                "value": "20200724"
-              },
-              "Absolute End Date": {
-                "value": "20200724"
-              },
-              "Document Name": {
-                "value": "pa3_documents:/default"
-              },
-              "Calendar": {
-                "value": "FIVEDAY"
-              },
-              "Report Frequency": {
-                "value": "Single"
-              },
-              "Accounts": {
-                "value": "BENCH:180353"
-              },
-              "Benchmark": {
-                "value": ""
-              },
-              "Component Name": {
-                "value": "Weights"
-              },
-              "CalculationId": {
-                "value": "E741D6EFE0BFBFCF34F30350C5682E4856A110A4DD7E48FB1C012A49ECEABDA8:PA1"
-              }
-            },
-            "locations": {
-              "table": ["Portfolio Holdings As Of Date", "Benchmark Holdings As Of Date", "Grouping Frequency", "Portfolio Pricing Sources", "Benchmark Pricing Sources", "Portfolio Analytics Sources", "Benchmark Analytics Sources", "Additional Pricing Options", "Composite Assets", "Currency ISO Code", "Absolute Start Date", "Absolute End Date", "Document Name", "Calendar", "Report Frequency", "Accounts", "Benchmark", "Component Name", "CalculationId"]
-            }
+          "locations": {
+            "table": [
+              "Portfolio Holdings As Of Date",
+              "Benchmark Holdings As Of Date",
+              "Grouping Frequency",
+              "Portfolio Pricing Sources",
+              "Benchmark Pricing Sources",
+              "Portfolio Analytics Sources",
+              "Benchmark Analytics Sources",
+              "Additional Pricing Options",
+              "Composite Assets",
+              "Currency ISO Code",
+              "Absolute Start Date",
+              "Absolute End Date",
+              "Document Name",
+              "Calendar",
+              "Report Frequency",
+              "Accounts",
+              "Benchmark",
+              "Component Name",
+              "CalculationId"
+            ]
           }
         }
-      },
-      "75b13037-61b5-4fa2-9139-66f91f365e0b": {
-        "definition": {
-          "columns": [{
+      }
+    },
+    "75b13037-61b5-4fa2-9139-66f91f365e0b": {
+      "definition": {
+        "columns": [
+          {
             "id": "83022e07-d196-4efa-b954-4da00465a610",
             "name": "EndingWeight:FACTSET099:5",
             "type": "string"
           }
-          ]
-        },
-        "data": {
-          "rows": [{
+        ]
+      },
+      "data": {
+        "rows": [
+          {
             "id": "889ecc0c-fa7c-4469-8a8a-a24b74b212a3"
-          }, {
+          },
+          {
             "id": "015d8e47-c34e-457a-bdb1-ff119e3e7165"
-          }, {
+          },
+          {
             "id": "ea3f1aa7-4b67-4263-ab2b-42a75f73d162"
           }
-          ],
-          "columns": {
-            "83022e07-d196-4efa-b954-4da00465a610": {
-              "values": ["Port.+Weight", "Bench.+Weight", "Difference"]
-            }
-          },
-          "metadata": {
-            "locations": {}
+        ],
+        "columns": {
+          "83022e07-d196-4efa-b954-4da00465a610": {
+            "values": [
+              "Port.+Weight",
+              "Bench.+Weight",
+              "Difference"
+            ]
           }
+        },
+        "metadata": {
+          "locations": {}
         }
       }
     }
   }
+}

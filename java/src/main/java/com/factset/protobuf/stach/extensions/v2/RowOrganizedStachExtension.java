@@ -1,21 +1,19 @@
 package com.factset.protobuf.stach.extensions.v2;
 
 import com.factset.protobuf.stach.extensions.StachExtensions;
-import com.factset.protobuf.stach.v2.RowOrganizedProto;
-import com.factset.protobuf.stach.v2.table.ColumnDefinitionProto;
-import com.factset.protobuf.stach.v2.table.MetadataItemProto;
-import com.google.protobuf.Value;
 import com.factset.protobuf.stach.extensions.models.Row;
 import com.factset.protobuf.stach.extensions.models.TableData;
+import com.factset.protobuf.stach.v2.RowOrganizedProto;
+import com.factset.protobuf.stach.v2.table.ColumnDefinitionProto;
+import com.google.protobuf.Value;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class RowOrganizedStachExtension implements StachExtensions<RowOrganizedProto.RowOrganizedPackage> {
 
-    private RowOrganizedProto.RowOrganizedPackage pkg;
+    private final RowOrganizedProto.RowOrganizedPackage pkg;
 
     public RowOrganizedStachExtension(RowOrganizedProto.RowOrganizedPackage pkg) {
         this.pkg = pkg;
@@ -23,6 +21,7 @@ public class RowOrganizedStachExtension implements StachExtensions<RowOrganizedP
 
     /**
      * The purpose of this function is to convert row organized stach to Tabular format.
+     *
      * @return Returns a list of tables for a given stach data.
      */
     @Override
@@ -36,7 +35,8 @@ public class RowOrganizedStachExtension implements StachExtensions<RowOrganizedP
 
     /**
      * The purpose of this function is to generate Table for a given RowOrganized stach table.
-     * @param stachTable     : RowOrganized stach table object.
+     *
+     * @param stachTable : RowOrganized stach table object.
      * @return Returns the generated Table from the RowOrganized Table provided.
      */
     private TableData generateTable(RowOrganizedProto.RowOrganizedPackage.Table stachTable) {
@@ -91,16 +91,16 @@ public class RowOrganizedStachExtension implements StachExtensions<RowOrganizedP
             // Loop for each of column definition and find the key and add it or else null
             for (ColumnDefinitionProto.ColumnDefinition colDefinition : stachTable.getDefinition().getColumnsList()) {
 
-
-                String value = rowDataMap.get(colDefinition.getId()) == null ? colDefinition.getFormat().getNullFormat() : StachUtilities.valueToObject(rowDataMap.get(colDefinition.getId())).toString();
-                dataRow.getCells().add(value);
+                Object value = StachUtilities.valueToObject(rowDataMap.get(colDefinition.getId()));
+                String valString = value == null ? colDefinition.getFormat().getNullFormat() : value.toString();
+                dataRow.getCells().add(valString);
             }
 
             table.getRows().add(dataRow);
         }
 
         //process metadata
-        for (String key :stachTable.getData().getTableMetadataMap().keySet()) {
+        for (String key : stachTable.getData().getTableMetadataMap().keySet()) {
             Object metaDataValue = StachUtilities.valueToObject(stachTable.getData().getTableMetadataMap().get(key).getValue());
             table.getMetadata().put(key, metaDataValue.toString());
         }

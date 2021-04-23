@@ -2,11 +2,14 @@ package com.factset.protobuf.stach.extensions.v2;
 
 import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.extensions.Utilities;
-import com.factset.protobuf.stach.v2.PackageProto;
-import com.factset.protobuf.stach.v2.table.*;
-import com.google.protobuf.Value;
 import com.factset.protobuf.stach.extensions.models.Row;
 import com.factset.protobuf.stach.extensions.models.TableData;
+import com.factset.protobuf.stach.v2.PackageProto;
+import com.factset.protobuf.stach.v2.table.ColumnDataProto;
+import com.factset.protobuf.stach.v2.table.ColumnDefinitionProto;
+import com.factset.protobuf.stach.v2.table.MetadataItemProto;
+import com.factset.protobuf.stach.v2.table.TableProto;
+import com.google.protobuf.Value;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,7 @@ public class ColumnOrganizedStachExtension implements StachExtensions<PackagePro
 
     /**
      * The purpose of this function is to convert stach to Tabular format.
+     *
      * @return Returns a list of tables for a given stach data.
      */
     @Override
@@ -35,11 +39,12 @@ public class ColumnOrganizedStachExtension implements StachExtensions<PackagePro
 
     /**
      * The purpose of this function is to generate Table for a given table id in the provided stach data through the package.
+     *
      * @param packageObj     : Stach Data which is represented as a Package object.
      * @param primaryTableId : Refers to the id for a particular table inside a package.
      * @return Returns the generated Table from the package provided.
      */
-    private  TableData generateTable(PackageProto.Package packageObj, String primaryTableId) {
+    private TableData generateTable(PackageProto.Package packageObj, String primaryTableId) {
         Map<String, TableProto.Table> tablesMap = packageObj.getTablesMap();
         TableProto.Table primaryTable = tablesMap.get(primaryTableId);
         String headerId = primaryTable.getDefinition().getHeaderTableId();

@@ -4,8 +4,9 @@ import com.factset.protobuf.stach.extensions.StachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.extensions.models.DataAndMetaModel;
 import com.factset.protobuf.stach.v2.PackageProto;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 
@@ -21,13 +22,18 @@ public class ColumnOrganizedStachBuilder implements StachExtensionBuilder<Packag
 
     @Override
     public StachExtensionBuilder set(String pkgString) {
-        Gson gson = new GsonBuilder().create();
-        DataAndMetaModel dataAndMetaModel = gson.fromJson(pkgString, DataAndMetaModel.class);
+        DataAndMetaModel dataAndMetaModel = null;
+        ObjectMapper mapper = new ObjectMapper();
 
-        if (dataAndMetaModel.data != null) {
-            pkgString = gson.toJson(dataAndMetaModel.data);//dataAndMetaModel.data.toString();
-        } else {
-            pkgString = gson.toJson(gson.fromJson(pkgString, Object.class));
+        try {
+            dataAndMetaModel = mapper.readValue(pkgString, DataAndMetaModel.class);
+            if (dataAndMetaModel != null && dataAndMetaModel.data != null) {
+                pkgString = mapper.writeValueAsString(dataAndMetaModel.data);
+            }
+        } catch (JsonMappingException e) {
+
+        } catch (JsonProcessingException e) {
+
         }
 
         PackageProto.Package.Builder builder = PackageProto.Package.newBuilder();

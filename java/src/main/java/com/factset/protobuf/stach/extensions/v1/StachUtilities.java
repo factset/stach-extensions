@@ -4,7 +4,6 @@ import com.factset.protobuf.stach.NullValues;
 import com.factset.protobuf.stach.table.DataTypeProto;
 import com.factset.protobuf.stach.table.SeriesDataProto;
 import com.factset.protobuf.stach.table.SeriesDefinitionProto;
-import com.factset.protobuf.stach.v2.table.RowDefinitionProto;
 import com.google.protobuf.Duration;
 import com.google.protobuf.Timestamp;
 import org.apache.poi.ss.formula.eval.NotImplementedException;
@@ -15,6 +14,7 @@ public class StachUtilities {
 
     /**
      * Returns the index of the element with given id in the list  or SeriesDefinition objects
+     *
      * @param list : List of SeriesDefinition objects.
      * @param id   : The id of SeriesDefinition object.
      * @return return the index of the object with the given id.
@@ -31,6 +31,7 @@ public class StachUtilities {
 
     /**
      * The purpose of this function is to return the value from the provided SeriesData object.
+     *
      * @param seriesData : The data of a series. A series is how a column of data is represented.
      * @param dataType   : The type of data in a series.
      * @param index      : index can be referred as a key which is used to access the value inside list.
@@ -38,7 +39,7 @@ public class StachUtilities {
      * @return Returns data object from the SeriesData.
      */
     public static Object getValueHelper(SeriesDataProto.SeriesData seriesData, DataTypeProto.DataType dataType, int index,
-                                         String nullFormat) {
+                                        String nullFormat) {
         if (dataType == DataTypeProto.DataType.STRING) {
             String value = seriesData.getStringArray().getValues(index);
             return NullValues.STRING.equals(value) ? nullFormat : value;

@@ -2,6 +2,10 @@ package com.factset.protobuf.stach.extensions.v1;
 
 import com.factset.protobuf.stach.PackageProto;
 import com.factset.protobuf.stach.extensions.StachExtensionBuilder;
+import com.factset.protobuf.stach.extensions.models.DataAndMetaModel;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 
@@ -9,12 +13,26 @@ public class ColumnOrganizedStachBuilder implements StachExtensionBuilder<Packag
 
     private PackageProto.Package pkg;
 
-    public ColumnOrganizedStachBuilder set(PackageProto.Package pkg){
+    public ColumnOrganizedStachBuilder set(PackageProto.Package pkg) {
         this.pkg = pkg;
         return this;
     }
 
-    public ColumnOrganizedStachBuilder set(String pkgString){
+    public ColumnOrganizedStachBuilder set(String pkgString) {
+        DataAndMetaModel dataAndMetaModel = null;
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            dataAndMetaModel = mapper.readValue(pkgString, DataAndMetaModel.class);
+            if (dataAndMetaModel != null && dataAndMetaModel.data != null) {
+                pkgString = mapper.writeValueAsString(dataAndMetaModel.data);
+            }
+        } catch (JsonMappingException e) {
+
+        } catch (JsonProcessingException e) {
+
+        }
+
         PackageProto.Package.Builder builder = PackageProto.Package.newBuilder();
         try {
             JsonFormat.parser().ignoringUnknownFields().merge(pkgString, builder);
@@ -26,7 +44,7 @@ public class ColumnOrganizedStachBuilder implements StachExtensionBuilder<Packag
         return this;
     }
 
-    public ColumnOrganizedStachExtension build(){
+    public ColumnOrganizedStachExtension build() {
         return new ColumnOrganizedStachExtension(pkg);
     }
 }
