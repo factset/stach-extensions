@@ -1,40 +1,29 @@
 package com.factset.protobuf.stach.extensions.v2;
 
-import com.factset.protobuf.stach.extensions.StachExtensionBuilder;
+import com.factset.protobuf.stach.extensions.StachExtensionBuilderRow;
 import com.factset.protobuf.stach.extensions.StachExtensions;
-import com.factset.protobuf.stach.extensions.models.DataAndMetaModel;
 import com.factset.protobuf.stach.v2.RowOrganizedProto;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 
-public class RowOrganizedStachBuilder implements StachExtensionBuilder<RowOrganizedProto.RowOrganizedPackage> {
+import java.util.HashMap;
+import java.util.Map;
+
+public class RowOrganizedStachBuilder implements StachExtensionBuilderRow {
 
     private RowOrganizedProto.RowOrganizedPackage rowOrgPackage;
+    private Map<String, RowOrganizedProto.RowOrganizedPackage.Table> tableList = new HashMap<String, RowOrganizedProto.RowOrganizedPackage.Table>();
 
     @Override
-    public StachExtensionBuilder set(RowOrganizedProto.RowOrganizedPackage pkg) {
+    public StachExtensionBuilderRow setPackage(RowOrganizedProto.RowOrganizedPackage pkg) {
         this.rowOrgPackage = pkg;
         return this;
     }
 
     @Override
-    public StachExtensionBuilder set(String pkgString) {
-        DataAndMetaModel dataAndMetaModel = null;
-        ObjectMapper mapper = new ObjectMapper();
-
-        try {
-            dataAndMetaModel = mapper.readValue(pkgString, DataAndMetaModel.class);
-            if (dataAndMetaModel != null && dataAndMetaModel.data != null) {
-                pkgString = mapper.writeValueAsString(dataAndMetaModel.data);
-            }
-        } catch (JsonMappingException e) {
-
-        } catch (JsonProcessingException e) {
-
-        }
+    public StachExtensionBuilderRow setPackage(String pkgString) {
 
         RowOrganizedProto.RowOrganizedPackage.Builder builder = RowOrganizedProto.RowOrganizedPackage.newBuilder();
         try {
@@ -49,7 +38,58 @@ public class RowOrganizedStachBuilder implements StachExtensionBuilder<RowOrgani
     }
 
     @Override
+    public StachExtensionBuilderRow setPackage(Object pkgObject) throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        String pkgString = mapper.writeValueAsString(pkgObject);
+        return setPackage(pkgString);
+    }
+
+    @Override
+    public StachExtensionBuilderRow addTable(String tableId, RowOrganizedProto.RowOrganizedPackage.Table table) {
+        tableList.put(tableId, table);
+        return this;
+    }
+
+    @Override
+    public StachExtensionBuilderRow addTable(String tableId, String tableString) {
+        RowOrganizedProto.RowOrganizedPackage.Table.Builder builder = RowOrganizedProto.RowOrganizedPackage.Table.newBuilder();
+        try {
+            JsonFormat.parser().ignoringUnknownFields().merge(tableString, builder);
+        } catch (InvalidProtocolBufferException e) {
+            System.out.println("Error while deserializing the response");
+            e.printStackTrace();
+        }
+
+        tableList.put(tableId, builder.build());
+        return this;
+    }
+
+    @Override
+    public StachExtensionBuilderRow addTable(String tableId, Object tableObject) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        String tableString = mapper.writeValueAsString(tableObject);
+        return addTable(tableId, tableString);
+    }
+
+    @Override
     public StachExtensions build() {
+
+        if(tableList != null && !tableList.isEmpty()){
+
+            RowOrganizedProto.RowOrganizedPackage.Builder rowOrgPackageBuilder = RowOrganizedProto.RowOrganizedPackage.newBuilder();
+
+            if(rowOrgPackage == null){
+                for (Map.Entry<String, RowOrganizedProto.RowOrganizedPackage.Table> entry : tableList.entrySet())
+                    rowOrgPackageBuilder.putTables(entry.getKey(), entry.getValue());
+            }else{
+                for (String key:rowOrgPackage.getTablesMap().keySet()) {
+                    rowOrgPackageBuilder.putTables(key, rowOrgPackage.getTablesMap().get(key));
+                }
+            }
+
+            rowOrgPackage = rowOrgPackageBuilder.build();
+        }
         return new RowOrganizedStachExtension(rowOrgPackage);
     }
 }

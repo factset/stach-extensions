@@ -21,7 +21,6 @@ public class V1ColumnOrganizedStachTests {
     Path workingDirectory;
     StachExtensionBuilder stachExtensionBuilder;
     String fileV1ColumnOrganizedStach = "V1ColumnOrganizedStachData.json";
-    String fileV1ColumnOrganizedStachInDataMetaForm = "V1ColumnOrganizedStachInDataMetaForm.json";
     String input;
 
     List<String> row1 = Arrays.asList("total0", "group1", "group2", "Port.+Weight", "Bench.+Weight", "Difference");
@@ -43,8 +42,9 @@ public class V1ColumnOrganizedStachTests {
     @Test
     public void testConvert() {
         readFile(fileV1ColumnOrganizedStach);
-        stachExtensionBuilder = StachExtensionFactory.getBuilder(StachVersion.V1, null);
-        StachExtensions stachExtension = stachExtensionBuilder.set(input).build();
+
+        stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V1);
+        StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
         List<TableData> tableDataList = stachExtension.convertToTable();
 
         Assert.assertEquals(row1, tableDataList.get(0).getRows().get(0).getCells());
@@ -58,8 +58,8 @@ public class V1ColumnOrganizedStachTests {
     @Test
     public void testMetaData() {
         readFile(fileV1ColumnOrganizedStach);
-        stachExtensionBuilder = StachExtensionFactory.getBuilder(StachVersion.V1, null);
-        StachExtensions stachExtension = stachExtensionBuilder.set(input).build();
+        stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V1);
+        StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
         List<TableData> tableDataList = stachExtension.convertToTable();
 
         Assert.assertEquals(tableDataList.get(0).getMetadata().keySet().toArray().length, 18);
@@ -67,30 +67,4 @@ public class V1ColumnOrganizedStachTests {
 
     }
 
-    @Test
-    public void testConvertWithDataMetaFormat() {
-        readFile(fileV1ColumnOrganizedStachInDataMetaForm);
-        stachExtensionBuilder = StachExtensionFactory.getBuilder(StachVersion.V1, null);
-        StachExtensions stachExtension = stachExtensionBuilder.set(input).build();
-        List<TableData> tableDataList = stachExtension.convertToTable();
-
-        Assert.assertEquals(row1, tableDataList.get(0).getRows().get(0).getCells());
-        Assert.assertEquals(true, tableDataList.get(0).getRows().get(0).isHeader());
-
-        Assert.assertEquals(row2, tableDataList.get(0).getRows().get(1).getCells());
-        Assert.assertEquals(false, tableDataList.get(0).getRows().get(1).isHeader());
-
-    }
-
-    @Test
-    public void testMetaDataWithDataMetaFormat() {
-        readFile(fileV1ColumnOrganizedStachInDataMetaForm);
-        stachExtensionBuilder = StachExtensionFactory.getBuilder(StachVersion.V1, null);
-        StachExtensions stachExtension = stachExtensionBuilder.set(input).build();
-        List<TableData> tableDataList = stachExtension.convertToTable();
-
-        Assert.assertEquals(tableDataList.get(0).getMetadata().keySet().toArray().length, 18);
-        Assert.assertEquals(tableDataList.get(0).getMetadata().get("Report Frequency"), "Single");
-
-    }
 }
