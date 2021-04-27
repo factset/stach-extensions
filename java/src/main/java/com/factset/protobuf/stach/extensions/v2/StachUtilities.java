@@ -35,14 +35,14 @@ public class StachUtilities {
     /**
      * Returns the index of the element with given id in the list of RowDefinition objects
      *
-     * @param list : List of RowDefinition objects.
+     * @param rowDefinitionsList : List of RowDefinition objects.
      * @param id   : The id of the RowDefinition object.
      * @return return the index of the object with the given id.
      */
-    public static int getIndexOf(List<RowDefinitionProto.RowDefinition> list, String id) {
+    public static int getIndexOf(List<RowDefinitionProto.RowDefinition> rowDefinitionsList, String id) {
         int pos = 0;
-        for (RowDefinitionProto.RowDefinition myObj : list) {
-            if (id.equalsIgnoreCase(myObj.getId()))
+        for (RowDefinitionProto.RowDefinition rowDefinition : rowDefinitionsList) {
+            if (id.equalsIgnoreCase(rowDefinition.getId()))
                 return pos;
             pos++;
         }

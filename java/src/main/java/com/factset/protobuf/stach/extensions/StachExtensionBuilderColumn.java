@@ -2,6 +2,7 @@ package com.factset.protobuf.stach.extensions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 public interface StachExtensionBuilderColumn<T extends GeneratedMessageV3> {
 
@@ -17,14 +18,14 @@ public interface StachExtensionBuilderColumn<T extends GeneratedMessageV3> {
      * @param pkg package object
      * @return builder instance
      */
-    StachExtensionBuilderColumn setPackage(Object pkg) throws JsonProcessingException;
+    StachExtensionBuilderColumn setPackage(Object pkg) throws JsonProcessingException, InvalidProtocolBufferException;
 
     /**
      * Set the Package object by parsing the input in string format.
      * @param pkgString string form of package object
      * @return builder instance
      */
-    StachExtensionBuilderColumn setPackage(String pkgString);
+    StachExtensionBuilderColumn setPackage(String pkgString) throws InvalidProtocolBufferException;
 
     /**
      * Builds the stach extension and returns the instance.

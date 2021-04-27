@@ -18,22 +18,17 @@ public class ColumnOrganizedStachBuilder implements StachExtensionBuilderColumn<
     }
 
     @Override
-    public StachExtensionBuilderColumn setPackage(Object pkgObject) throws JsonProcessingException {
+    public StachExtensionBuilderColumn setPackage(Object pkgObject) throws JsonProcessingException, InvalidProtocolBufferException {
         ObjectMapper mapper = new ObjectMapper();
         String pkgString = mapper.writeValueAsString(pkgObject);
         return setPackage(pkgString);
     }
 
     @Override
-    public StachExtensionBuilderColumn setPackage(String pkgString) {
+    public StachExtensionBuilderColumn setPackage(String pkgString) throws InvalidProtocolBufferException {
 
         PackageProto.Package.Builder builder = PackageProto.Package.newBuilder();
-        try {
-            JsonFormat.parser().ignoringUnknownFields().merge(pkgString, builder);
-        } catch (InvalidProtocolBufferException e) {
-            System.out.println("Error while deserializing the response");
-            e.printStackTrace();
-        }
+        JsonFormat.parser().ignoringUnknownFields().merge(pkgString, builder);
         this.pkg = builder.build();
         return this;
     }

@@ -26,12 +26,12 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
     /**
      * The purpose of this function is to generate Table for a given table id in the provided stach data through the package.
      *
-     * @param packageObj     : Stach Data which is represented as a Package object.
+     * @param pkg     : Stach Data which is represented as a Package object.
      * @param primaryTableId : Refers to the id for a particular table inside a package.
      * @return Returns the generated Table from the package provided.
      */
-    private static TableData generateTable(Package packageObj, String primaryTableId) {
-        Map<String, Table> tablesMap = packageObj.getTablesMap();
+    private static TableData generateTable(Package pkg, String primaryTableId) {
+        Map<String, Table> tablesMap = pkg.getTablesMap();
         Table primaryTable = tablesMap.get(primaryTableId);
         String headerId = primaryTable.getDefinition().getHeaderTableId();
         Table headerTable = tablesMap.get(headerId);

@@ -7,6 +7,11 @@ import com.factset.protobuf.stach.extensions.v2.RowOrganizedStachBuilder;
 
 public class StachExtensionFactory {
 
+    /**
+     * Returns the appropriate column organized builder based on the stach version provided.
+     * @param version The stach version.
+     * @return version specific column organized stach builder.
+     */
     public static StachExtensionBuilderColumn getColumnOrganizedBuilder(StachVersion version) {
 
         switch (version) {
@@ -19,6 +24,10 @@ public class StachExtensionFactory {
         }
     }
 
+    /**
+     * Returns the row organized stach builder.
+     * @return row organized stach builder.
+     */
     public static StachExtensionBuilderRow getRowOrganizedBuilder() {
         return new RowOrganizedStachBuilder();
     }

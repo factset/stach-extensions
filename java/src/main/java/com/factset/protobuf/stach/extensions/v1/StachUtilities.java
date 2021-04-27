@@ -13,16 +13,16 @@ import java.util.List;
 public class StachUtilities {
 
     /**
-     * Returns the index of the element with given id in the list  or SeriesDefinition objects
+     * Returns the index of the element with given id in the list of SeriesDefinition objects
      *
-     * @param list : List of SeriesDefinition objects.
+     * @param seriesDefinitionList : List of SeriesDefinition objects.
      * @param id   : The id of SeriesDefinition object.
      * @return return the index of the object with the given id.
      */
-    public static int getIndexOf(List<SeriesDefinitionProto.SeriesDefinition> list, String id) {
+    public static int getIndexOf(List<SeriesDefinitionProto.SeriesDefinition> seriesDefinitionList, String id) {
         int pos = 0;
-        for (SeriesDefinitionProto.SeriesDefinition myObj : list) {
-            if (id.equalsIgnoreCase(myObj.getId()))
+        for (SeriesDefinitionProto.SeriesDefinition seriesDefinition : seriesDefinitionList) {
+            if (id.equalsIgnoreCase(seriesDefinition.getId()))
                 return pos;
             pos++;
         }

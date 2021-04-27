@@ -23,22 +23,16 @@ public class RowOrganizedStachBuilder implements StachExtensionBuilderRow {
     }
 
     @Override
-    public StachExtensionBuilderRow setPackage(String pkgString) {
+    public StachExtensionBuilderRow setPackage(String pkgString) throws InvalidProtocolBufferException {
 
         RowOrganizedProto.RowOrganizedPackage.Builder builder = RowOrganizedProto.RowOrganizedPackage.newBuilder();
-        try {
-            JsonFormat.parser().ignoringUnknownFields().merge(pkgString, builder);
-        } catch (InvalidProtocolBufferException e) {
-            System.out.println("Error while deserializing the response");
-            e.printStackTrace();
-        }
-
+        JsonFormat.parser().ignoringUnknownFields().merge(pkgString, builder);
         this.rowOrgPackage = builder.build();
         return this;
     }
 
     @Override
-    public StachExtensionBuilderRow setPackage(Object pkgObject) throws JsonProcessingException {
+    public StachExtensionBuilderRow setPackage(Object pkgObject) throws JsonProcessingException, InvalidProtocolBufferException {
 
         ObjectMapper mapper = new ObjectMapper();
         String pkgString = mapper.writeValueAsString(pkgObject);

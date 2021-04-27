@@ -2,6 +2,7 @@ package com.factset.protobuf.stach.extensions;
 
 import com.factset.protobuf.stach.v2.RowOrganizedProto;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 
 public interface StachExtensionBuilderRow {
@@ -18,14 +19,14 @@ public interface StachExtensionBuilderRow {
      * @param pkg package object
      * @return builder instance
      */
-    StachExtensionBuilderRow setPackage(Object pkg) throws JsonProcessingException;
+    StachExtensionBuilderRow setPackage(Object pkg) throws JsonProcessingException, InvalidProtocolBufferException;
 
     /**
      * Set the RowOrganizedPackage object by parsing the input in string format.
      * @param pkgString string form of package object
      * @return builder instance
      */
-    StachExtensionBuilderRow setPackage(String pkgString);
+    StachExtensionBuilderRow setPackage(String pkgString) throws InvalidProtocolBufferException;
 
     /**
      * Add the Row Organized Table to the package
