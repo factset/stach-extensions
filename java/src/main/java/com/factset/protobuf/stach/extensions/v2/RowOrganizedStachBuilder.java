@@ -14,7 +14,7 @@ import java.util.Map;
 public class RowOrganizedStachBuilder implements StachExtensionBuilderRow {
 
     private RowOrganizedProto.RowOrganizedPackage rowOrgPackage;
-    private Map<String, RowOrganizedProto.RowOrganizedPackage.Table> tableList = new HashMap<String, RowOrganizedProto.RowOrganizedPackage.Table>();
+    private Map<String, RowOrganizedProto.RowOrganizedPackage.Table> tableList = new HashMap<>();
 
     @Override
     public StachExtensionBuilderRow setPackage(RowOrganizedProto.RowOrganizedPackage pkg) {
@@ -79,13 +79,14 @@ public class RowOrganizedStachBuilder implements StachExtensionBuilderRow {
 
             RowOrganizedProto.RowOrganizedPackage.Builder rowOrgPackageBuilder = RowOrganizedProto.RowOrganizedPackage.newBuilder();
 
-            if(rowOrgPackage == null){
-                for (Map.Entry<String, RowOrganizedProto.RowOrganizedPackage.Table> entry : tableList.entrySet())
-                    rowOrgPackageBuilder.putTables(entry.getKey(), entry.getValue());
-            }else{
-                for (String key:rowOrgPackage.getTablesMap().keySet()) {
+            if(rowOrgPackage != null){
+                for (String key:rowOrgPackage.getTablesMap().keySet()){
                     rowOrgPackageBuilder.putTables(key, rowOrgPackage.getTablesMap().get(key));
                 }
+            }
+
+            for (Map.Entry<String, RowOrganizedProto.RowOrganizedPackage.Table> entry : tableList.entrySet()){
+                rowOrgPackageBuilder.putTables(entry.getKey(), entry.getValue());
             }
 
             rowOrgPackage = rowOrgPackageBuilder.build();

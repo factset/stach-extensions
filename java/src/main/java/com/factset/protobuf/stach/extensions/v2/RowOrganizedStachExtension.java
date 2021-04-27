@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class RowOrganizedStachExtension implements StachExtensions<RowOrganizedProto.RowOrganizedPackage> {
+public class RowOrganizedStachExtension implements StachExtensions {
 
     private final RowOrganizedProto.RowOrganizedPackage pkg;
 

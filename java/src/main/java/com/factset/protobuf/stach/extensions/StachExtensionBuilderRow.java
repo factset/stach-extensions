@@ -4,7 +4,28 @@ import com.factset.protobuf.stach.v2.RowOrganizedProto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 
-public interface StachExtensionBuilderRow extends StachExtensionBuilder<RowOrganizedProto.RowOrganizedPackage> {
+public interface StachExtensionBuilderRow {
+
+    /**
+     * Sets the RowOrganizedPackage object.
+     * @param pkg package object of type RowOrganizedPackage
+     * @return builder instance
+     */
+    StachExtensionBuilderRow setPackage(RowOrganizedProto.RowOrganizedPackage pkg);
+
+    /**
+     * Sets the RowOrganizedPackage object by parsing raw object input.
+     * @param pkg package object
+     * @return builder instance
+     */
+    StachExtensionBuilderRow setPackage(Object pkg) throws JsonProcessingException;
+
+    /**
+     * Set the RowOrganizedPackage object by parsing the input in string format.
+     * @param pkgString string form of package object
+     * @return builder instance
+     */
+    StachExtensionBuilderRow setPackage(String pkgString);
 
     /**
      * Add the Row Organized Table to the package
@@ -30,4 +51,9 @@ public interface StachExtensionBuilderRow extends StachExtensionBuilder<RowOrgan
      */
     StachExtensionBuilderRow addTable(String tableId, Object tableObject) throws JsonProcessingException;
 
+    /**
+     * Builds the stach extension and returns the instance.
+     * @return instance of Column or Row organized stach extension class.
+     */
+    StachExtensions build();
 }

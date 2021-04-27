@@ -3,28 +3,28 @@ package com.factset.protobuf.stach.extensions;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.protobuf.GeneratedMessageV3;
 
-public interface StachExtensionBuilder<T extends GeneratedMessageV3> {
+public interface StachExtensionBuilderColumn<T extends GeneratedMessageV3> {
 
     /**
-     * Sets the Package/RowOrganizedPackage object.
+     * Sets the Package object.
      * @param pkg package object of type Package/RowOrganizedPackage
      * @return builder instance
      */
-    StachExtensionBuilder setPackage(T pkg);
+    StachExtensionBuilderColumn setPackage(T pkg);
 
     /**
-     * Sets the Package/RowOrganizedPackage object by parsing raw object input.
+     * Sets the Package object by parsing raw object input.
      * @param pkg package object
      * @return builder instance
      */
-    StachExtensionBuilder setPackage(Object pkg) throws JsonProcessingException;
+    StachExtensionBuilderColumn setPackage(Object pkg) throws JsonProcessingException;
 
     /**
-     * Set the Package/RowOrganizedPackage object by parsing the input in string format.
+     * Set the Package object by parsing the input in string format.
      * @param pkgString string form of package object
      * @return builder instance
      */
-    StachExtensionBuilder setPackage(String pkgString);
+    StachExtensionBuilderColumn setPackage(String pkgString);
 
     /**
      * Builds the stach extension and returns the instance.

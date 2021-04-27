@@ -4,7 +4,7 @@ import com.factset.protobuf.stach.extensions.models.TableData;
 
 import java.util.List;
 
-public interface StachExtensions<T> {
+public interface StachExtensions {
 
     List<TableData> convertToTable();
 

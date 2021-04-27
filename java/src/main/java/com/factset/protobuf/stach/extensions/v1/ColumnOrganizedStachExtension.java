@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ColumnOrganizedStachExtension implements StachExtensions<Package> {
+public class ColumnOrganizedStachExtension implements StachExtensions {
 
     private final Package pkg;
 

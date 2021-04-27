@@ -1,6 +1,6 @@
 package com.factset.protobuf.stach.extensions.tests;
 
-import com.factset.protobuf.stach.extensions.StachExtensionBuilder;
+import com.factset.protobuf.stach.extensions.StachExtensionBuilderRow;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
 import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.extensions.models.TableData;
@@ -18,7 +18,7 @@ import java.util.List;
 public class V2SimplifiedRowOrganizedStachTests {
 
     Path workingDirectory;
-    StachExtensionBuilder stachExtensionBuilder;
+    StachExtensionBuilderRow stachExtensionBuilder;
     String fileV2SimplifiedRowOrganizedStach = "V2SimplifiedRowOrganizedStachData.json";
     String input;
 

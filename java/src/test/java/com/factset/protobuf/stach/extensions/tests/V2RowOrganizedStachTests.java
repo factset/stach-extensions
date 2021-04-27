@@ -1,6 +1,5 @@
 package com.factset.protobuf.stach.extensions.tests;
 
-import com.factset.protobuf.stach.extensions.StachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensionBuilderRow;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
 import com.factset.protobuf.stach.extensions.StachExtensions;
@@ -19,7 +18,7 @@ import java.util.List;
 public class V2RowOrganizedStachTests {
 
     Path workingDirectory;
-    StachExtensionBuilder stachExtensionBuilder;
+    StachExtensionBuilderRow stachExtensionBuilder;
     String fileV2RowOrganizedStach = "V2RowOrganizedStachData.json";
     String fileV2RowOrganizedStachTable = "V2RowOrganizedStachTable.json";
     String input;
@@ -28,12 +27,13 @@ public class V2RowOrganizedStachTests {
     List<String> row2 = Arrays.asList("Total", "", "", "--");
     List<String> row3 = Arrays.asList("Commercial Services", "", "", "0.913395362480243");
 
-    private void readFile(String fileName){
+    private String readFile(String fileName){
         try{
-            input = new String(Files.readAllBytes(Paths.get(workingDirectory.toString(), fileName)));
+            return new String(Files.readAllBytes(Paths.get(workingDirectory.toString(), fileName)));
         }catch(Exception e){
             e.printStackTrace();
         }
+        return null;
     }
 
     @BeforeTest
@@ -44,44 +44,48 @@ public class V2RowOrganizedStachTests {
 
     @Test
     public void testConvert() {
-        readFile(fileV2RowOrganizedStach);
+        input = readFile(fileV2RowOrganizedStach);
         stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder();
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
         List<TableData> tableDataList = stachExtension.convertToTable();
 
         Assert.assertEquals(row1, tableDataList.get(0).getRows().get(0).getCells());
-        Assert.assertEquals(true, tableDataList.get(0).getRows().get(0).isHeader());
+        Assert.assertTrue(tableDataList.get(0).getRows().get(0).isHeader());
 
         Assert.assertEquals(row2, tableDataList.get(0).getRows().get(1).getCells());
-        Assert.assertEquals(false, tableDataList.get(0).getRows().get(1).isHeader());
+        Assert.assertFalse(tableDataList.get(0).getRows().get(1).isHeader());
 
         Assert.assertEquals(row3, tableDataList.get(0).getRows().get(2).getCells());
-        Assert.assertEquals(false, tableDataList.get(0).getRows().get(1).isHeader());
+        Assert.assertFalse(tableDataList.get(0).getRows().get(1).isHeader());
 
     }
 
     @Test
     public void testConvertAddTable() {
-        readFile(fileV2RowOrganizedStachTable);
-        StachExtensionBuilderRow stachExtensionBuilderRow = StachExtensionFactory.getRowOrganizedBuilder();
-        StachExtensions stachExtension = stachExtensionBuilderRow.addTable("tableid0", input).
+        input = readFile(fileV2RowOrganizedStachTable);
+        String stachInput = readFile(fileV2RowOrganizedStach);
+
+        stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder();
+        StachExtensions stachExtension = stachExtensionBuilder.setPackage(stachInput).addTable("tableid0", input).
                 addTable("tableId1", input).build();
         List<TableData> tableDataList = stachExtension.convertToTable();
 
+        Assert.assertEquals(3, tableDataList.size());
+
         Assert.assertEquals(row1, tableDataList.get(0).getRows().get(0).getCells());
-        Assert.assertEquals(true, tableDataList.get(0).getRows().get(0).isHeader());
+        Assert.assertTrue(tableDataList.get(0).getRows().get(0).isHeader());
 
         Assert.assertEquals(row2, tableDataList.get(0).getRows().get(1).getCells());
-        Assert.assertEquals(false, tableDataList.get(0).getRows().get(1).isHeader());
+        Assert.assertFalse(tableDataList.get(0).getRows().get(1).isHeader());
 
         Assert.assertEquals(row3, tableDataList.get(0).getRows().get(2).getCells());
-        Assert.assertEquals(false, tableDataList.get(0).getRows().get(1).isHeader());
+        Assert.assertFalse(tableDataList.get(0).getRows().get(1).isHeader());
 
     }
 
     @Test
     public void testMetaData() {
-        readFile(fileV2RowOrganizedStach);
+        input = readFile(fileV2RowOrganizedStach);
         stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder();
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
         List<TableData> tableDataList = stachExtension.convertToTable();

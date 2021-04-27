@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ColumnOrganizedStachExtension implements StachExtensions<PackageProto.Package> {
+public class ColumnOrganizedStachExtension implements StachExtensions {
 
     PackageProto.Package pkg;
 
