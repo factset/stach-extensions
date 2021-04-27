@@ -1,14 +1,13 @@
-package com.factset.protobuf.stach.extensions.v2;
+package com.factset.protobuf.stach.extensions.v1;
 
+import com.factset.protobuf.stach.PackageProto;
 import com.factset.protobuf.stach.extensions.StachExtensionBuilderColumn;
-import com.factset.protobuf.stach.extensions.StachExtensions;
-import com.factset.protobuf.stach.v2.PackageProto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 
-public class ColumnOrganizedStachBuilderColumn implements StachExtensionBuilderColumn<PackageProto.Package> {
+public class ColumnOrganizedStachBuilder implements StachExtensionBuilderColumn<PackageProto.Package> {
 
     private PackageProto.Package pkg;
 
@@ -35,14 +34,11 @@ public class ColumnOrganizedStachBuilderColumn implements StachExtensionBuilderC
             System.out.println("Error while deserializing the response");
             e.printStackTrace();
         }
-
         this.pkg = builder.build();
         return this;
     }
 
-
-    @Override
-    public StachExtensions build() {
+    public ColumnOrganizedStachExtension build() {
         return new ColumnOrganizedStachExtension(pkg);
     }
 }

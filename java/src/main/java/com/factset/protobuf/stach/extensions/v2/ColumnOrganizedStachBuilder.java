@@ -1,17 +1,19 @@
-package com.factset.protobuf.stach.extensions.v1;
+package com.factset.protobuf.stach.extensions.v2;
 
-import com.factset.protobuf.stach.PackageProto;
 import com.factset.protobuf.stach.extensions.StachExtensionBuilderColumn;
+import com.factset.protobuf.stach.extensions.StachExtensions;
+import com.factset.protobuf.stach.v2.PackageProto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 
-public class ColumnOrganizedStachBuilderColumn implements StachExtensionBuilderColumn<PackageProto.Package> {
+public class ColumnOrganizedStachBuilder implements StachExtensionBuilderColumn<PackageProto.Package> {
 
     private PackageProto.Package pkg;
 
-    public ColumnOrganizedStachBuilderColumn setPackage(PackageProto.Package pkg) {
+    @Override
+    public StachExtensionBuilderColumn setPackage(PackageProto.Package pkg) {
         this.pkg = pkg;
         return this;
     }
@@ -23,7 +25,8 @@ public class ColumnOrganizedStachBuilderColumn implements StachExtensionBuilderC
         return setPackage(pkgString);
     }
 
-    public ColumnOrganizedStachBuilderColumn setPackage(String pkgString) {
+    @Override
+    public StachExtensionBuilderColumn setPackage(String pkgString) {
 
         PackageProto.Package.Builder builder = PackageProto.Package.newBuilder();
         try {
@@ -32,11 +35,14 @@ public class ColumnOrganizedStachBuilderColumn implements StachExtensionBuilderC
             System.out.println("Error while deserializing the response");
             e.printStackTrace();
         }
+
         this.pkg = builder.build();
         return this;
     }
 
-    public ColumnOrganizedStachExtension build() {
+
+    @Override
+    public StachExtensions build() {
         return new ColumnOrganizedStachExtension(pkg);
     }
 }

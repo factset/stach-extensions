@@ -7,7 +7,7 @@ public interface StachExtensionBuilderColumn<T extends GeneratedMessageV3> {
 
     /**
      * Sets the Package object.
-     * @param pkg package object of type Package/RowOrganizedPackage
+     * @param pkg package object of type Package
      * @return builder instance
      */
     StachExtensionBuilderColumn setPackage(T pkg);
@@ -28,7 +28,7 @@ public interface StachExtensionBuilderColumn<T extends GeneratedMessageV3> {
 
     /**
      * Builds the stach extension and returns the instance.
-     * @return instance of Column or Row organized stach extension class.
+     * @return instance of column organized stach extension class.
      */
     StachExtensions build();
 }

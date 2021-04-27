@@ -53,7 +53,7 @@ public interface StachExtensionBuilderRow {
 
     /**
      * Builds the stach extension and returns the instance.
-     * @return instance of Column or Row organized stach extension class.
+     * @return instance of row organized stach extension class.
      */
     StachExtensions build();
 }

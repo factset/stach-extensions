@@ -1,7 +1,7 @@
 package com.factset.protobuf.stach.extensions;
 
 import com.factset.protobuf.stach.extensions.models.StachVersion;
-import com.factset.protobuf.stach.extensions.v2.ColumnOrganizedStachBuilderColumn;
+import com.factset.protobuf.stach.extensions.v1.ColumnOrganizedStachBuilder;
 import com.factset.protobuf.stach.extensions.v2.RowOrganizedStachBuilder;
 
 
@@ -11,9 +11,9 @@ public class StachExtensionFactory {
 
         switch (version) {
             case V1:
-                return new com.factset.protobuf.stach.extensions.v1.ColumnOrganizedStachBuilderColumn();
+                return new ColumnOrganizedStachBuilder();
             case V2:
-                return new ColumnOrganizedStachBuilderColumn();
+                return new com.factset.protobuf.stach.extensions.v2.ColumnOrganizedStachBuilder();
             default:
                 return null;
         }
