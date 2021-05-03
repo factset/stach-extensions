@@ -1,6 +1,6 @@
 package com.factset.protobuf.stach.extensions.v2;
 
-import com.factset.protobuf.stach.extensions.StachExtensionBuilderRow;
+import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.v2.RowOrganizedProto;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -11,19 +11,19 @@ import com.google.protobuf.util.JsonFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RowOrganizedStachBuilder implements StachExtensionBuilderRow {
+public class RowOrganizedStachBuilder implements RowStachExtensionBuilder {
 
     private RowOrganizedProto.RowOrganizedPackage rowOrgPackage;
     private Map<String, RowOrganizedProto.RowOrganizedPackage.Table> tableList = new HashMap<>();
 
     @Override
-    public StachExtensionBuilderRow setPackage(RowOrganizedProto.RowOrganizedPackage pkg) {
+    public RowStachExtensionBuilder setPackage(RowOrganizedProto.RowOrganizedPackage pkg) {
         this.rowOrgPackage = pkg;
         return this;
     }
 
     @Override
-    public StachExtensionBuilderRow setPackage(String pkgString) throws InvalidProtocolBufferException {
+    public RowStachExtensionBuilder setPackage(String pkgString) throws InvalidProtocolBufferException {
 
         RowOrganizedProto.RowOrganizedPackage.Builder builder = RowOrganizedProto.RowOrganizedPackage.newBuilder();
         JsonFormat.parser().ignoringUnknownFields().merge(pkgString, builder);
@@ -32,7 +32,7 @@ public class RowOrganizedStachBuilder implements StachExtensionBuilderRow {
     }
 
     @Override
-    public StachExtensionBuilderRow setPackage(Object pkgObject) throws JsonProcessingException, InvalidProtocolBufferException {
+    public RowStachExtensionBuilder setPackage(Object pkgObject) throws JsonProcessingException, InvalidProtocolBufferException {
 
         ObjectMapper mapper = new ObjectMapper();
         String pkgString = mapper.writeValueAsString(pkgObject);
@@ -40,13 +40,13 @@ public class RowOrganizedStachBuilder implements StachExtensionBuilderRow {
     }
 
     @Override
-    public StachExtensionBuilderRow addTable(String tableId, RowOrganizedProto.RowOrganizedPackage.Table table) {
+    public RowStachExtensionBuilder addTable(String tableId, RowOrganizedProto.RowOrganizedPackage.Table table) {
         tableList.put(tableId, table);
         return this;
     }
 
     @Override
-    public StachExtensionBuilderRow addTable(String tableId, String tableString) {
+    public RowStachExtensionBuilder addTable(String tableId, String tableString) {
         RowOrganizedProto.RowOrganizedPackage.Table.Builder builder = RowOrganizedProto.RowOrganizedPackage.Table.newBuilder();
         try {
             JsonFormat.parser().ignoringUnknownFields().merge(tableString, builder);
@@ -60,7 +60,7 @@ public class RowOrganizedStachBuilder implements StachExtensionBuilderRow {
     }
 
     @Override
-    public StachExtensionBuilderRow addTable(String tableId, Object tableObject) throws JsonProcessingException {
+    public RowStachExtensionBuilder addTable(String tableId, Object tableObject) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         String tableString = mapper.writeValueAsString(tableObject);
         return addTable(tableId, tableString);

@@ -5,28 +5,28 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 
-public interface StachExtensionBuilderRow {
+public interface RowStachExtensionBuilder {
 
     /**
      * Sets the RowOrganizedPackage object.
      * @param pkg package object of type RowOrganizedPackage
      * @return builder instance
      */
-    StachExtensionBuilderRow setPackage(RowOrganizedProto.RowOrganizedPackage pkg);
+    RowStachExtensionBuilder setPackage(RowOrganizedProto.RowOrganizedPackage pkg);
 
     /**
      * Sets the RowOrganizedPackage object by parsing raw object input.
      * @param pkg package object
      * @return builder instance
      */
-    StachExtensionBuilderRow setPackage(Object pkg) throws JsonProcessingException, InvalidProtocolBufferException;
+    RowStachExtensionBuilder setPackage(Object pkg) throws JsonProcessingException, InvalidProtocolBufferException;
 
     /**
      * Set the RowOrganizedPackage object by parsing the input in string format.
      * @param pkgString string form of package object
      * @return builder instance
      */
-    StachExtensionBuilderRow setPackage(String pkgString) throws InvalidProtocolBufferException;
+    RowStachExtensionBuilder setPackage(String pkgString) throws InvalidProtocolBufferException;
 
     /**
      * Add the Row Organized Table to the package
@@ -34,7 +34,7 @@ public interface StachExtensionBuilderRow {
      * @param table Row Organized Table object
      * @return Builder instance
      */
-    StachExtensionBuilderRow addTable(String tableId, RowOrganizedProto.RowOrganizedPackage.Table table);
+    RowStachExtensionBuilder addTable(String tableId, RowOrganizedProto.RowOrganizedPackage.Table table);
 
     /**
      * Add the Row Organized Table to the package
@@ -42,7 +42,7 @@ public interface StachExtensionBuilderRow {
      * @param tableString Row Organized Table in string format
      * @return Builder instance
      */
-    StachExtensionBuilderRow addTable(String tableId, String tableString);
+    RowStachExtensionBuilder addTable(String tableId, String tableString);
 
     /**
      * Add the Row Organized Table to the package
@@ -50,7 +50,7 @@ public interface StachExtensionBuilderRow {
      * @param tableObject Row organized table object
      * @return Builder instance
      */
-    StachExtensionBuilderRow addTable(String tableId, Object tableObject) throws JsonProcessingException;
+    RowStachExtensionBuilder addTable(String tableId, Object tableObject) throws JsonProcessingException;
 
     /**
      * Builds the stach extension and returns the instance.

@@ -12,7 +12,7 @@ public class StachExtensionFactory {
      * @param version The stach version.
      * @return version specific column organized stach builder.
      */
-    public static StachExtensionBuilderColumn getColumnOrganizedBuilder(StachVersion version) {
+    public static ColumnStachExtensionBuilder getColumnOrganizedBuilder(StachVersion version) {
 
         switch (version) {
             case V1:
@@ -28,7 +28,7 @@ public class StachExtensionFactory {
      * Returns the row organized stach builder.
      * @return row organized stach builder.
      */
-    public static StachExtensionBuilderRow getRowOrganizedBuilder() {
+    public static RowStachExtensionBuilder getRowOrganizedBuilder() {
         return new RowOrganizedStachBuilder();
     }
 }

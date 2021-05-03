@@ -4,28 +4,28 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.protobuf.GeneratedMessageV3;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-public interface StachExtensionBuilderColumn<T extends GeneratedMessageV3> {
+public interface ColumnStachExtensionBuilder<T extends GeneratedMessageV3> {
 
     /**
      * Sets the Package object.
      * @param pkg package object of type Package
      * @return builder instance
      */
-    StachExtensionBuilderColumn setPackage(T pkg);
+    ColumnStachExtensionBuilder setPackage(T pkg);
 
     /**
      * Sets the Package object by parsing raw object input.
      * @param pkg package object
      * @return builder instance
      */
-    StachExtensionBuilderColumn setPackage(Object pkg) throws JsonProcessingException, InvalidProtocolBufferException;
+    ColumnStachExtensionBuilder setPackage(Object pkg) throws JsonProcessingException, InvalidProtocolBufferException;
 
     /**
      * Set the Package object by parsing the input in string format.
      * @param pkgString string form of package object
      * @return builder instance
      */
-    StachExtensionBuilderColumn setPackage(String pkgString) throws InvalidProtocolBufferException;
+    ColumnStachExtensionBuilder setPackage(String pkgString) throws InvalidProtocolBufferException;
 
     /**
      * Builds the stach extension and returns the instance.
