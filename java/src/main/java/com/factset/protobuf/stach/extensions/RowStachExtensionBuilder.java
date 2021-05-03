@@ -42,7 +42,7 @@ public interface RowStachExtensionBuilder {
      * @param tableString Row Organized Table in string format
      * @return Builder instance
      */
-    RowStachExtensionBuilder addTable(String tableId, String tableString);
+    RowStachExtensionBuilder addTable(String tableId, String tableString) throws InvalidProtocolBufferException;
 
     /**
      * Add the Row Organized Table to the package
@@ -50,7 +50,7 @@ public interface RowStachExtensionBuilder {
      * @param tableObject Row organized table object
      * @return Builder instance
      */
-    RowStachExtensionBuilder addTable(String tableId, Object tableObject) throws JsonProcessingException;
+    RowStachExtensionBuilder addTable(String tableId, Object tableObject) throws JsonProcessingException, InvalidProtocolBufferException;
 
     /**
      * Builds the stach extension and returns the instance.

@@ -46,21 +46,15 @@ public class RowOrganizedStachBuilder implements RowStachExtensionBuilder {
     }
 
     @Override
-    public RowStachExtensionBuilder addTable(String tableId, String tableString) {
+    public RowStachExtensionBuilder addTable(String tableId, String tableString) throws InvalidProtocolBufferException {
         RowOrganizedProto.RowOrganizedPackage.Table.Builder builder = RowOrganizedProto.RowOrganizedPackage.Table.newBuilder();
-        try {
-            JsonFormat.parser().ignoringUnknownFields().merge(tableString, builder);
-        } catch (InvalidProtocolBufferException e) {
-            System.out.println("Error while deserializing the response");
-            e.printStackTrace();
-        }
-
+        JsonFormat.parser().ignoringUnknownFields().merge(tableString, builder);
         tableList.put(tableId, builder.build());
         return this;
     }
 
     @Override
-    public RowStachExtensionBuilder addTable(String tableId, Object tableObject) throws JsonProcessingException {
+    public RowStachExtensionBuilder addTable(String tableId, Object tableObject) throws JsonProcessingException, InvalidProtocolBufferException {
         ObjectMapper mapper = new ObjectMapper();
         String tableString = mapper.writeValueAsString(tableObject);
         return addTable(tableId, tableString);
