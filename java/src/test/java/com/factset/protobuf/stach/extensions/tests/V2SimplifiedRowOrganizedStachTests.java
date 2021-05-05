@@ -3,6 +3,7 @@ package com.factset.protobuf.stach.extensions.tests;
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
 import com.factset.protobuf.stach.extensions.StachExtensions;
+import com.factset.protobuf.stach.extensions.models.StachVersion;
 import com.factset.protobuf.stach.extensions.models.TableData;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.testng.Assert;
@@ -44,7 +45,7 @@ public class V2SimplifiedRowOrganizedStachTests {
     public void testConvert() throws InvalidProtocolBufferException {
 
         readFile(fileV2SimplifiedRowOrganizedStach);
-        stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder();
+        stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
         List<TableData> tableDataList = stachExtension.convertToTable();
 
@@ -60,7 +61,7 @@ public class V2SimplifiedRowOrganizedStachTests {
     public void testMetaData() throws InvalidProtocolBufferException {
 
         readFile(fileV2SimplifiedRowOrganizedStach);
-        stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder();
+        stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
         List<TableData> tableDataList = stachExtension.convertToTable();
 

@@ -28,7 +28,15 @@ public class StachExtensionFactory {
      * Returns the row organized stach builder.
      * @return row organized stach builder.
      */
-    public static RowStachExtensionBuilder getRowOrganizedBuilder() {
-        return new RowOrganizedStachBuilder();
+    public static RowStachExtensionBuilder getRowOrganizedBuilder(StachVersion version) {
+
+        switch (version) {
+            case V1:
+                throw new UnsupportedOperationException("v1 version is not supported for row organized stach input");
+            case V2:
+                return new RowOrganizedStachBuilder();
+            default:
+                return null;
+        }
     }
 }
