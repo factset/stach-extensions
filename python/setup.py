@@ -1,6 +1,6 @@
 import setuptools
 
-REQUIRES = ["fds.protobuf.stach", "pandas", "numpy"]
+REQUIRES = ["fds.protobuf.stach<2.0.0", "fds.protobuf.stach.v2<2.0.0", "pandas<2.0.0", "numpy<2.0.0"]
 
 setuptools.setup(
     name="fds.protobuf.stach.extensions",

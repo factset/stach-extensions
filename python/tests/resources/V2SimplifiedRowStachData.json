@@ -1,0 +1,722 @@
+{
+  "tables": {
+    "2CC96DEE879009133AF0DD14DEDA3F9502E1FC4182ACDEBD12681428DE8F90DF:PA1": {
+      "definition": {
+        "columns": [
+          {
+            "id": "col_0",
+            "name": "total0",
+            "description": "total0",
+            "type": "string",
+            "isDimension": true
+          },
+          {
+            "id": "col_1",
+            "name": "group1",
+            "description": "group1",
+            "type": "string",
+            "isDimension": true
+          },
+          {
+            "id": "col_2",
+            "name": "group2",
+            "description": "group2",
+            "type": "string",
+            "isDimension": true
+          },
+          {
+            "id": "col_3",
+            "name": "EndingWeight:FACTSET099:5",
+            "description": "Port.+Weight",
+            "type": "real"
+          },
+          {
+            "id": "col_4",
+            "name": "EndingWeight:FACTSET0111:6",
+            "description": "Bench.+Weight",
+            "type": "real"
+          },
+          {
+            "id": "col_5",
+            "name": "EndingWeight:FACTSET149:7",
+            "description": "Difference",
+            "type": "real"
+          }
+        ]
+      },
+      "data": {
+        "rows": [
+          {
+            "values": {
+              "col_0": "Total",
+              "col_1": null,
+              "col_2": null,
+              "col_3": 100,
+              "col_4": null,
+              "col_5": 100
+            }
+          },
+          {
+            "values": {
+              "col_0": "Communications",
+              "col_1": null,
+              "col_2": null,
+              "col_3": 3.28747887030914,
+              "col_4": null,
+              "col_5": 3.28747887030914
+            }
+          },
+          {
+            "values": {
+              "col_0": "Communications",
+              "col_1": "Wireless Telecommunications",
+              "col_2": null,
+              "col_3": 3.28747887030914,
+              "col_4": null,
+              "col_5": 3.28747887030914
+            }
+          },
+          {
+            "values": {
+              "col_0": "Communications",
+              "col_1": "Wireless Telecommunications",
+              "col_2": "Bharti Airtel Limited",
+              "col_3": 3.28747887030914,
+              "col_4": null,
+              "col_5": 3.28747887030914
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Durables",
+              "col_1": null,
+              "col_2": null,
+              "col_3": 5.3830790428119,
+              "col_4": null,
+              "col_5": 5.3830790428119
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Durables",
+              "col_1": "Motor Vehicles",
+              "col_2": null,
+              "col_3": 4.30347159022374,
+              "col_4": null,
+              "col_5": 4.30347159022374
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Durables",
+              "col_1": "Motor Vehicles",
+              "col_2": "Bajaj Auto Limited.",
+              "col_3": 0.951290009541964,
+              "col_4": null,
+              "col_5": 0.951290009541964
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Durables",
+              "col_1": "Motor Vehicles",
+              "col_2": "Mahindra & Mahindra Ltd.",
+              "col_3": 1.4009552303312,
+              "col_4": null,
+              "col_5": 1.4009552303312
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Durables",
+              "col_1": "Motor Vehicles",
+              "col_2": "Maruti Suzuki India Limited",
+              "col_3": 1.95122635035057,
+              "col_4": null,
+              "col_5": 1.95122635035057
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Durables",
+              "col_1": "Other Consumer Specialties",
+              "col_2": null,
+              "col_3": 1.07960745258816,
+              "col_4": null,
+              "col_5": 1.07960745258816
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Durables",
+              "col_1": "Other Consumer Specialties",
+              "col_2": "Titan Company Limited",
+              "col_3": 1.07960745258816,
+              "col_4": null,
+              "col_5": 1.07960745258816
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Non-Durables",
+              "col_1": null,
+              "col_2": null,
+              "col_3": 10.4940789100954,
+              "col_4": null,
+              "col_5": 10.4940789100954
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Non-Durables",
+              "col_1": "Food: Major Diversified",
+              "col_2": null,
+              "col_3": 1.50386801030453,
+              "col_4": null,
+              "col_5": 1.50386801030453
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Non-Durables",
+              "col_1": "Food: Major Diversified",
+              "col_2": "Nestle India Ltd.",
+              "col_3": 1.50386801030453,
+              "col_4": null,
+              "col_5": 1.50386801030453
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Non-Durables",
+              "col_1": "Household/Personal Care",
+              "col_2": null,
+              "col_3": 4.82612465165038,
+              "col_4": null,
+              "col_5": 4.82612465165038
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Non-Durables",
+              "col_1": "Household/Personal Care",
+              "col_2": "Hindustan Unilever Limited",
+              "col_3": 4.82612465165038,
+              "col_4": null,
+              "col_5": 4.82612465165038
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Non-Durables",
+              "col_1": "Tobacco",
+              "col_2": null,
+              "col_3": 4.16408624814052,
+              "col_4": null,
+              "col_5": 4.16408624814052
+            }
+          },
+          {
+            "values": {
+              "col_0": "Consumer Non-Durables",
+              "col_1": "Tobacco",
+              "col_2": "ITC Limited",
+              "col_3": 4.16408624814052,
+              "col_4": null,
+              "col_5": 4.16408624814052
+            }
+          },
+          {
+            "values": {
+              "col_0": "Energy Minerals",
+              "col_1": null,
+              "col_2": null,
+              "col_3": 17.2494161528039,
+              "col_4": null,
+              "col_5": 17.2494161528039
+            }
+          },
+          {
+            "values": {
+              "col_0": "Energy Minerals",
+              "col_1": "Integrated Oil",
+              "col_2": null,
+              "col_3": 0.623237514634344,
+              "col_4": null,
+              "col_5": 0.623237514634344
+            }
+          },
+          {
+            "values": {
+              "col_0": "Energy Minerals",
+              "col_1": "Integrated Oil",
+              "col_2": "Oil & Natural Gas Corp. Ltd.",
+              "col_3": 0.623237514634344,
+              "col_4": null,
+              "col_5": 0.623237514634344
+            }
+          },
+          {
+            "values": {
+              "col_0": "Energy Minerals",
+              "col_1": "Oil Refining/Marketing",
+              "col_2": null,
+              "col_3": 16.6261786381696,
+              "col_4": null,
+              "col_5": 16.6261786381696
+            }
+          },
+          {
+            "values": {
+              "col_0": "Energy Minerals",
+              "col_1": "Oil Refining/Marketing",
+              "col_2": "Reliance Industries Limited",
+              "col_3": 16.6261786381696,
+              "col_4": null,
+              "col_5": 16.6261786381696
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": null,
+              "col_2": null,
+              "col_3": 37.2910994961461,
+              "col_4": null,
+              "col_5": 37.2910994961461
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Finance/Rental/Leasing",
+              "col_2": null,
+              "col_3": 9.69869471991841,
+              "col_4": null,
+              "col_5": 9.69869471991841
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Finance/Rental/Leasing",
+              "col_2": "Bajaj Finance Limited",
+              "col_3": 1.96226649281912,
+              "col_4": null,
+              "col_5": 1.96226649281912
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Finance/Rental/Leasing",
+              "col_2": "Housing Development Finance Corporation Limited",
+              "col_3": 7.73642822709929,
+              "col_4": null,
+              "col_5": 7.73642822709929
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Financial Conglomerates",
+              "col_2": null,
+              "col_3": 4.05167281666241,
+              "col_4": null,
+              "col_5": 4.05167281666241
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Financial Conglomerates",
+              "col_2": "Kotak Mahindra Bank Limited",
+              "col_3": 4.05167281666241,
+              "col_4": null,
+              "col_5": 4.05167281666241
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Life/Health Insurance",
+              "col_2": null,
+              "col_3": 0.927512978779411,
+              "col_4": null,
+              "col_5": 0.927512978779411
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Life/Health Insurance",
+              "col_2": "Bajaj Finserv Limited",
+              "col_3": 0.927512978779411,
+              "col_4": null,
+              "col_5": 0.927512978779411
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Regional Banks",
+              "col_2": null,
+              "col_3": 22.6132189807859,
+              "col_4": null,
+              "col_5": 22.6132189807859
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Regional Banks",
+              "col_2": "Axis Bank Limited",
+              "col_3": 2.48894594594584,
+              "col_4": null,
+              "col_5": 2.48894594594584
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Regional Banks",
+              "col_2": "HDFC Bank Limited",
+              "col_3": 11.602008045367,
+              "col_4": null,
+              "col_5": 11.602008045367
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Regional Banks",
+              "col_2": "ICICI Bank Limited",
+              "col_3": 5.99235637303858,
+              "col_4": null,
+              "col_5": 5.99235637303858
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Regional Banks",
+              "col_2": "IndusInd Bank Ltd.",
+              "col_3": 0.770159511740479,
+              "col_4": null,
+              "col_5": 0.770159511740479
+            }
+          },
+          {
+            "values": {
+              "col_0": "Finance",
+              "col_1": "Regional Banks",
+              "col_2": "State Bank of India",
+              "col_3": 1.75974910469401,
+              "col_4": null,
+              "col_5": 1.75974910469401
+            }
+          },
+          {
+            "values": {
+              "col_0": "Health Technology",
+              "col_1": null,
+              "col_2": null,
+              "col_3": 1.2821102765047,
+              "col_4": null,
+              "col_5": 1.2821102765047
+            }
+          },
+          {
+            "values": {
+              "col_0": "Health Technology",
+              "col_1": "Pharmaceuticals: Major",
+              "col_2": null,
+              "col_3": 1.2821102765047,
+              "col_4": null,
+              "col_5": 1.2821102765047
+            }
+          },
+          {
+            "values": {
+              "col_0": "Health Technology",
+              "col_1": "Pharmaceuticals: Major",
+              "col_2": "Sun Pharmaceutical Industries Limited",
+              "col_3": 1.2821102765047,
+              "col_4": null,
+              "col_5": 1.2821102765047
+            }
+          },
+          {
+            "values": {
+              "col_0": "Industrial Services",
+              "col_1": null,
+              "col_2": null,
+              "col_3": 2.69641967521909,
+              "col_4": null,
+              "col_5": 2.69641967521909
+            }
+          },
+          {
+            "values": {
+              "col_0": "Industrial Services",
+              "col_1": "Engineering & Construction",
+              "col_2": null,
+              "col_3": 2.69641967521909,
+              "col_4": null,
+              "col_5": 2.69641967521909
+            }
+          },
+          {
+            "values": {
+              "col_0": "Industrial Services",
+              "col_1": "Engineering & Construction",
+              "col_2": "Larsen & Toubro Ltd.",
+              "col_3": 2.69641967521909,
+              "col_4": null,
+              "col_5": 2.69641967521909
+            }
+          },
+          {
+            "values": {
+              "col_0": "Non-Energy Minerals",
+              "col_1": null,
+              "col_2": null,
+              "col_3": 1.6810033751539,
+              "col_4": null,
+              "col_5": 1.6810033751539
+            }
+          },
+          {
+            "values": {
+              "col_0": "Non-Energy Minerals",
+              "col_1": "Construction Materials",
+              "col_2": null,
+              "col_3": 1.04196762087592,
+              "col_4": null,
+              "col_5": 1.04196762087592
+            }
+          },
+          {
+            "values": {
+              "col_0": "Non-Energy Minerals",
+              "col_1": "Construction Materials",
+              "col_2": "UltraTech Cement Limited",
+              "col_3": 1.04196762087592,
+              "col_4": null,
+              "col_5": 1.04196762087592
+            }
+          },
+          {
+            "values": {
+              "col_0": "Non-Energy Minerals",
+              "col_1": "Steel",
+              "col_2": null,
+              "col_3": 0.639035754277985,
+              "col_4": null,
+              "col_5": 0.639035754277985
+            }
+          },
+          {
+            "values": {
+              "col_0": "Non-Energy Minerals",
+              "col_1": "Steel",
+              "col_2": "Tata Steel Limited",
+              "col_3": 0.639035754277985,
+              "col_4": null,
+              "col_5": 0.639035754277985
+            }
+          },
+          {
+            "values": {
+              "col_0": "Process Industries",
+              "col_1": null,
+              "col_2": null,
+              "col_3": 1.88704275075372,
+              "col_4": null,
+              "col_5": 1.88704275075372
+            }
+          },
+          {
+            "values": {
+              "col_0": "Process Industries",
+              "col_1": "Industrial Specialties",
+              "col_2": null,
+              "col_3": 1.88704275075372,
+              "col_4": null,
+              "col_5": 1.88704275075372
+            }
+          },
+          {
+            "values": {
+              "col_0": "Process Industries",
+              "col_1": "Industrial Specialties",
+              "col_2": "Asian Paints Ltd.",
+              "col_3": 1.88704275075372,
+              "col_4": null,
+              "col_5": 1.88704275075372
+            }
+          },
+          {
+            "values": {
+              "col_0": "Technology Services",
+              "col_1": null,
+              "col_2": null,
+              "col_3": 16.7702993922664,
+              "col_4": null,
+              "col_5": 16.7702993922664
+            }
+          },
+          {
+            "values": {
+              "col_0": "Technology Services",
+              "col_1": "Information Technology Services",
+              "col_2": null,
+              "col_3": 16.7702993922664,
+              "col_4": null,
+              "col_5": 16.7702993922664
+            }
+          },
+          {
+            "values": {
+              "col_0": "Technology Services",
+              "col_1": "Information Technology Services",
+              "col_2": "HCL Technologies Limited",
+              "col_3": 1.80676312783847,
+              "col_4": null,
+              "col_5": 1.80676312783847
+            }
+          },
+          {
+            "values": {
+              "col_0": "Technology Services",
+              "col_1": "Information Technology Services",
+              "col_2": "Infosys Limited",
+              "col_3": 8.43409371498703,
+              "col_4": null,
+              "col_5": 8.43409371498703
+            }
+          },
+          {
+            "values": {
+              "col_0": "Technology Services",
+              "col_1": "Information Technology Services",
+              "col_2": "Tata Consultancy Services Limited",
+              "col_3": 5.54452003708269,
+              "col_4": null,
+              "col_5": 5.54452003708269
+            }
+          },
+          {
+            "values": {
+              "col_0": "Technology Services",
+              "col_1": "Information Technology Services",
+              "col_2": "Tech Mahindra Limited",
+              "col_3": 0.984922512358245,
+              "col_4": null,
+              "col_5": 0.984922512358245
+            }
+          },
+          {
+            "values": {
+              "col_0": "Utilities",
+              "col_1": null,
+              "col_2": null,
+              "col_3": 1.97797205793565,
+              "col_4": null,
+              "col_5": 1.97797205793565
+            }
+          },
+          {
+            "values": {
+              "col_0": "Utilities",
+              "col_1": "Electric Utilities",
+              "col_2": null,
+              "col_3": 1.97797205793565,
+              "col_4": null,
+              "col_5": 1.97797205793565
+            }
+          },
+          {
+            "values": {
+              "col_0": "Utilities",
+              "col_1": "Electric Utilities",
+              "col_2": "NTPC Limited",
+              "col_3": 0.930031660122387,
+              "col_4": null,
+              "col_5": 0.930031660122387
+            }
+          },
+          {
+            "values": {
+              "col_0": "Utilities",
+              "col_1": "Electric Utilities",
+              "col_2": "Power Grid Corporation of India Limited",
+              "col_3": 1.04794039781326,
+              "col_4": null,
+              "col_5": 1.04794039781326
+            }
+          }
+        ],
+        "tableMetadata": {
+          "Portfolio Holdings As Of Date": {
+            "value": "S&P BSE Sensex 24-JUL-2020"
+          },
+          "Benchmark Holdings As Of Date": {
+            "value": " "
+          },
+          "Grouping Frequency": {
+            "value": "Economic Sector - Beginning of Period|Industry - Beginning of Period"
+          },
+          "Portfolio Pricing Sources": {
+            "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+          },
+          "Benchmark Pricing Sources": {
+            "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+          },
+          "Portfolio Analytics Sources": {
+            "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+          },
+          "Benchmark Analytics Sources": {
+            "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+          },
+          "Additional Pricing Options": {
+            "value": "Calculate Returns with Missing Accrued Interest"
+          },
+          "Composite Assets": {
+            "value": "None"
+          },
+          "Currency ISO Code": {
+            "value": "USD"
+          },
+          "Absolute Start Date": {
+            "value": "20200724"
+          },
+          "Absolute End Date": {
+            "value": "20200724"
+          },
+          "Document Name": {
+            "value": "pa3_documents:/default"
+          },
+          "Calendar": {
+            "value": "FIVEDAY"
+          },
+          "Report Frequency": {
+            "value": "Single"
+          },
+          "Accounts": {
+            "value": "BENCH:180353"
+          },
+          "Benchmark": {
+            "value": ""
+          },
+          "Component Name": {
+            "value": "Weights"
+          },
+          "CalculationId": {
+            "value": "2CC96DEE879009133AF0DD14DEDA3F9502E1FC4182ACDEBD12681428DE8F90DF:PA1"
+          }
+        }
+      }
+    }
+  }
+}
