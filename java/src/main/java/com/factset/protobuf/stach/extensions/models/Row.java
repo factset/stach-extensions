@@ -11,15 +11,15 @@ public class Row {
         return isHeader;
     }
 
+    public void setHeader(boolean isHeader) {
+        this.isHeader = isHeader;
+    }
+
     public List<String> getCells() {
         return Cells;
     }
 
     public void setCells(List<String> cells) {
         this.Cells = cells;
-    }
-
-    public void setHeader(boolean isHeader) {
-        this.isHeader = isHeader;
     }
 }
