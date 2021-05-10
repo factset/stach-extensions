@@ -18,6 +18,8 @@ public interface RowStachExtensionBuilder {
      * Sets the RowOrganizedPackage object by parsing raw object input.
      * @param pkg package object
      * @return builder instance
+     * @throws JsonProcessingException
+     * @throws InvalidProtocolBufferException
      */
     RowStachExtensionBuilder setPackage(Object pkg) throws JsonProcessingException, InvalidProtocolBufferException;
 
@@ -25,6 +27,7 @@ public interface RowStachExtensionBuilder {
      * Set the RowOrganizedPackage object by parsing the input in string format.
      * @param pkgString string form of package object
      * @return builder instance
+     * @throws InvalidProtocolBufferException
      */
     RowStachExtensionBuilder setPackage(String pkgString) throws InvalidProtocolBufferException;
 
@@ -41,6 +44,7 @@ public interface RowStachExtensionBuilder {
      * @param tableId id of the table
      * @param tableString Row Organized Table in string format
      * @return Builder instance
+     * @throws InvalidProtocolBufferException
      */
     RowStachExtensionBuilder addTable(String tableId, String tableString) throws InvalidProtocolBufferException;
 
@@ -49,6 +53,8 @@ public interface RowStachExtensionBuilder {
      * @param tableId id of the table
      * @param tableObject Row organized table object
      * @return Builder instance
+     * @throws JsonProcessingException
+     * @throws InvalidProtocolBufferException
      */
     RowStachExtensionBuilder addTable(String tableId, Object tableObject) throws JsonProcessingException, InvalidProtocolBufferException;
 
