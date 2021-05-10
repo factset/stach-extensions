@@ -47,7 +47,7 @@ jobs:
         twine upload dist/* --verbose
   java:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' 
+    if: (github.event_name == 'workflow_dispatch' 
       && (github.event.inputs.SDKs == 'java' || github.event.inputs.SDKs == 'all'))
       
     steps:
