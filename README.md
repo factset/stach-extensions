@@ -34,13 +34,46 @@ There are methods for converting the stach format to the tabular formats in the 
 
 ## python
 
-```
-tables = ColumnOrganizedStachExtension().convert_to_table_format(package) 
+``` python
+# Stach v2 Row Organized format
+stachBuilder = StachExtensionFactory.get_row_organized_builder(StachVersion.V2)
+stachExtension = stachBuilder.set_package(data).build()  # data is the stach input in string or object format
+dataFramesList = stachExtension.convert_to_dataframe()
+
+
+# Stach v2 Column Organized format
+stachBuilder = StachExtensionFactory.get_column_organized_builder(StachVersion.V2)
+stachExtension = stachBuilder.set_package(data).build()  # data is the stach input in string or object format
+dataFramesList = stachExtension.convert_to_dataframe()
+
+
+# Stach v1 Column Organized format
+stachBuilder = StachExtensionFactory.get_column_organized_builder(StachVersion.V1)
+stachExtension = stachBuilder.set_package(data).build()  # data is the stach input in string or object format
+dataFramesList = stachExtension.convert_to_dataframe()
+
 ```
 
 ## java
-```
-List<TableData> tables = ColumnOrganizedStachExtension.convertToTableFormat(_package);
+``` java
+
+// Stach v2 Row Organized format
+ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+StachExtensions stachExtension = stachExtensionBuilder.setPackage(data).build();  // data is the stach input in string or object format
+List<TableData> tableDataList = stachExtension.convertToTable();
+
+
+// Stach v2 Column Organized format
+ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
+StachExtensions stachExtension = stachExtensionBuilder.setPackage(data).build();  // data is the stach input in string or object format
+List<TableData> tableDataList = stachExtension.convertToTable();
+
+
+// Stach v1 Column Organized format
+ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V1);
+StachExtensions stachExtension = stachExtensionBuilder.setPackage(data).build(); // data is the stach input in string or object format
+List<TableData> tableDataList = stachExtension.convertToTable();
+
 ```
 
 # Contributing
