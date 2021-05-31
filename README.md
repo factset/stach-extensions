@@ -3,8 +3,8 @@
 # stach-extensions
 
 ![build](https://img.shields.io/badge/Build-Todo-blue)
-![Maven](https://img.shields.io/badge/Maven-Todo-blue)
-![PyPi](https://img.shields.io/badge/PyPi-Todo-blue)
+[![Maven](https://img.shields.io/maven-central/v/com.factset.protobuf/stachextensions)](https://mvnrepository.com/artifact/com.factset.protobuf/stachextensions)
+[![PyPi](https://img.shields.io/pypi/v/fds.protobuf.stach.extensions)](https://pypi.org/project/fds.protobuf.stach.extensions/)
 [![Apache-2 license](https://img.shields.io/badge/license-Apache2-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 
