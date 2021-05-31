@@ -3,7 +3,7 @@ import json
 import google.protobuf.json_format
 from fds.protobuf.stach.v2.Package_pb2 import Package
 
-from src.fds.protobuf.stach.extensions.v2.ColumnOrganizedStachExtension import ColumnOrganizedStachExtension
+from fds.protobuf.stach.extensions.v2.ColumnOrganizedStachExtension import ColumnOrganizedStachExtension
 
 
 class ColumnStachExtensionBuilder:
