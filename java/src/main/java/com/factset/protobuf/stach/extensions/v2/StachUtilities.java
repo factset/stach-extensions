@@ -27,7 +27,7 @@ public class StachUtilities {
             case BOOL_VALUE:
                 return Boolean.toString(value.getBoolValue());
             case STRUCT_VALUE:
-            	return JsonFormat.printer().omittingInsignificantWhitespace().print(value.getStructValue());
+                return JsonFormat.printer().omittingInsignificantWhitespace().print(value.getStructValue());
             case LIST_VALUE:
                 return value.getListValue().getValuesList().toString();
             default:
