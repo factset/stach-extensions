@@ -1,7 +1,9 @@
 package com.factset.protobuf.stach.extensions.v2;
 
 import com.factset.protobuf.stach.v2.table.RowDefinitionProto;
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Value;
+import com.google.protobuf.util.JsonFormat;
 
 import java.util.List;
 
@@ -12,8 +14,9 @@ public class StachUtilities {
      *
      * @param value : protobuf Value object input
      * @return returns the respective data type object from the input
+     * @throws InvalidProtocolBufferException 
      */
-    public static Object valueToObject(Value value) {
+    public static Object valueToObject(Value value) throws InvalidProtocolBufferException {
         switch (value.getKindCase()) {
             case NULL_VALUE:
                 return null;
@@ -24,7 +27,8 @@ public class StachUtilities {
             case BOOL_VALUE:
                 return Boolean.toString(value.getBoolValue());
             case STRUCT_VALUE:
-                return value.getStructValue().toString();
+                //return value.getStructValue().toString();
+            	return JsonFormat.printer().omittingInsignificantWhitespace().print(value.getStructValue());
             case LIST_VALUE:
                 return value.getListValue().getValuesList().toString();
             default:

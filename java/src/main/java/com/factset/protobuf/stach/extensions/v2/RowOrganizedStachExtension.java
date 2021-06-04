@@ -5,6 +5,7 @@ import com.factset.protobuf.stach.extensions.models.Row;
 import com.factset.protobuf.stach.extensions.models.TableData;
 import com.factset.protobuf.stach.v2.RowOrganizedProto;
 import com.factset.protobuf.stach.v2.table.ColumnDefinitionProto;
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Value;
 
 import java.util.ArrayList;
@@ -23,9 +24,10 @@ public class RowOrganizedStachExtension implements StachExtensions {
      * The purpose of this function is to convert row organized stach to Tabular format.
      *
      * @return Returns a list of tables for a given stach data.
+     * @throws InvalidProtocolBufferException 
      */
     @Override
-    public List<TableData> convertToTable() {
+    public List<TableData> convertToTable() throws InvalidProtocolBufferException {
         List<TableData> tables = new ArrayList<TableData>();
         for (String tableKey : pkg.getTablesMap().keySet()) {
             tables.add(generateTable(pkg.getTablesMap().get(tableKey)));
@@ -38,8 +40,9 @@ public class RowOrganizedStachExtension implements StachExtensions {
      *
      * @param stachTable : RowOrganized stach table object.
      * @return Returns the generated Table from the RowOrganized Table provided.
+     * @throws InvalidProtocolBufferException 
      */
-    private TableData generateTable(RowOrganizedProto.RowOrganizedPackage.Table stachTable) {
+    private TableData generateTable(RowOrganizedProto.RowOrganizedPackage.Table stachTable) throws InvalidProtocolBufferException {
         TableData table = new TableData();
 
         int rowIndex = 0;
