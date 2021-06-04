@@ -1,6 +1,7 @@
 package com.factset.protobuf.stach.extensions.v2;
 
 import com.factset.protobuf.stach.extensions.StachExtensions;
+import com.factset.protobuf.stach.extensions.Utilities;
 import com.factset.protobuf.stach.extensions.models.Row;
 import com.factset.protobuf.stach.extensions.models.TableData;
 import com.factset.protobuf.stach.v2.RowOrganizedProto;
@@ -52,7 +53,7 @@ public class RowOrganizedStachExtension implements StachExtensions {
             Row headerRow = new Row();
 
             for (ColumnDefinitionProto.ColumnDefinition columnDefinition : stachTable.getDefinition().getColumnsList()) {
-                String description = columnDefinition.getDescription() == null ? columnDefinition.getName() : columnDefinition.getDescription();
+                String description = Utilities.isNullOrEmpty(columnDefinition.getDescription()) ? columnDefinition.getName() : columnDefinition.getDescription();
                 headerRow.getCells().add(description);
             }
             headerRow.setHeader(true);
