@@ -9,6 +9,7 @@ import com.factset.protobuf.stach.v2.table.ColumnDataProto;
 import com.factset.protobuf.stach.v2.table.ColumnDefinitionProto;
 import com.factset.protobuf.stach.v2.table.MetadataItemProto;
 import com.factset.protobuf.stach.v2.table.TableProto;
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Value;
 
 import java.util.ArrayList;
@@ -27,9 +28,10 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
      * The purpose of this function is to convert stach to Tabular format.
      *
      * @return Returns a list of tables for a given stach data.
+     * @throws InvalidProtocolBufferException 
      */
     @Override
-    public List<TableData> convertToTable() {
+    public List<TableData> convertToTable() throws InvalidProtocolBufferException {
         List<TableData> tables = new ArrayList<>();
         for (String primaryTableId : pkg.getPrimaryTableIdsList()) {
             tables.add(generateTable(pkg, primaryTableId));
@@ -43,8 +45,9 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
      * @param packageObj     : Stach Data which is represented as a Package object.
      * @param primaryTableId : Refers to the id for a particular table inside a package.
      * @return Returns the generated Table from the package provided.
+     * @throws InvalidProtocolBufferException 
      */
-    private TableData generateTable(PackageProto.Package packageObj, String primaryTableId) {
+    private TableData generateTable(PackageProto.Package packageObj, String primaryTableId) throws InvalidProtocolBufferException {
         Map<String, TableProto.Table> tablesMap = packageObj.getTablesMap();
         TableProto.Table primaryTable = tablesMap.get(primaryTableId);
         String headerId = primaryTable.getDefinition().getHeaderTableId();
