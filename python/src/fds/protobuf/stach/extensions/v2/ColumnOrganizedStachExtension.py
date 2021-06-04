@@ -1,7 +1,7 @@
 import pandas as pd
 from fds.protobuf.stach.v2.Package_pb2 import Package
 
-from src.fds.protobuf.stach.extensions.IStachExtension import IStachExtension
+from fds.protobuf.stach.extensions.IStachExtension import IStachExtension
 
 
 class ColumnOrganizedStachExtension(IStachExtension):

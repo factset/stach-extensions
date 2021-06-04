@@ -1,9 +1,9 @@
-from src.fds.protobuf.stach.extensions.v1.ColumnStachExtensionBuilder import \
+from fds.protobuf.stach.extensions.v1.ColumnStachExtensionBuilder import \
     ColumnStachExtensionBuilder as V1ColumnStachExtensionBuilder
-from src.fds.protobuf.stach.extensions.v2.ColumnStachExtensionBuilder import \
+from fds.protobuf.stach.extensions.v2.ColumnStachExtensionBuilder import \
     ColumnStachExtensionBuilder as V2ColumnStachExtensionBuilder
-from src.fds.protobuf.stach.extensions.StachVersion import StachVersion
-from src.fds.protobuf.stach.extensions.v2.RowStachExtensionBuilder import RowStachExtensionBuilder
+from fds.protobuf.stach.extensions.StachVersion import StachVersion
+from fds.protobuf.stach.extensions.v2.RowStachExtensionBuilder import RowStachExtensionBuilder
 
 class StachExtensionFactory:
 

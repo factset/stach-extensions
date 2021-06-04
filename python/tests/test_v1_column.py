@@ -2,8 +2,8 @@ import json
 import os
 import unittest
 
-from src.fds.protobuf.stach.extensions.StachExtensionFactory import StachExtensionFactory
-from src.fds.protobuf.stach.extensions.StachVersion import StachVersion
+from fds.protobuf.stach.extensions.StachExtensionFactory import StachExtensionFactory
+from fds.protobuf.stach.extensions.StachVersion import StachVersion
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 

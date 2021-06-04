@@ -3,7 +3,7 @@ import json
 import google.protobuf.json_format
 from fds.protobuf.stach.v2.RowOrganized_pb2 import RowOrganizedPackage
 
-from src.fds.protobuf.stach.extensions.v2.RowOrganizedStachExtension import RowOrganizedStachExtension
+from fds.protobuf.stach.extensions.v2.RowOrganizedStachExtension import RowOrganizedStachExtension
 
 
 class RowStachExtensionBuilder:
@@ -43,7 +43,8 @@ class RowStachExtensionBuilder:
             # if self.package is not available, we do create a package and add table to it.
             if (not hasattr(self, "package")):
                 self.package = RowOrganizedPackage()
-            self.package.tables._values[id] = table
+            empty_table = self.package.tables.get_or_create(id)
+            empty_table.CopyFrom(table)
             return self
         elif (type(table) is str):
             pass
@@ -57,7 +58,8 @@ class RowStachExtensionBuilder:
         # if self.package is not available, we do create a package and add table to it.
         if (not hasattr(self, "package")):
             self.package = RowOrganizedPackage()
-        self.package.tables._values[id] = tableInstance
+        empty_table = self.package.tables.get_or_create(id)
+        empty_table.CopyFrom(tableInstance)
 
         return self
 

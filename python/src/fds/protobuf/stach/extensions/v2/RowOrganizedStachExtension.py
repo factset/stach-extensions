@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from fds.protobuf.stach.v2.RowOrganized_pb2 import RowOrganizedPackage
 
-from src.fds.protobuf.stach.extensions.IStachExtension import IStachExtension
+from fds.protobuf.stach.extensions.IStachExtension import IStachExtension
 
 
 class RowOrganizedStachExtension(IStachExtension):
