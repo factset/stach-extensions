@@ -34,10 +34,7 @@ class RowOrganizedStachExtension(IStachExtension):
             if (RowOrganizedPackage.Row.RowType.Name(rowType) != "Header"):
                 header = list()
                 for column_definition in table.definition.columns:
-                    if column_definition.description is None:
-                        header.append(column_definition.name)
-                    else:
-                        header.append(column_definition.description)
+                    header.append(column_definition.description or column_definition.name)
                 headers.append(header)
 
             for i in range(rowIndex, len(table.data.rows), 1):

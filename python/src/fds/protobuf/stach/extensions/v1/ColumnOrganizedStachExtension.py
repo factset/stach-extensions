@@ -38,7 +38,7 @@ class ColumnOrganizedStachExtension(IStachExtension):
                 header_row = list()
                 for primary_table_definition in primary_table.definition.columns:
                     if (primary_table_definition.is_dimension == True):
-                        header_row.append(primary_table_definition.name or primary_table_definition.description)
+                        header_row.append(primary_table_definition.description or primary_table_definition.name)
                         continue
                     headerColumnId = primary_table_definition.header_id
                     indexOfHeaderColumnId = [index for index in range(len(header_table.data.rows)) if
