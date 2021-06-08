@@ -8,3 +8,6 @@ python/venv/*
 **/*.egg-info
 **/__pycache__/*
 java/stachextensions.iml
+python/src/.idea/*
+python/src/dist/*
+python/tests/.idea/*
