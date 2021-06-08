@@ -11,6 +11,9 @@ class RowOrganizedStachExtension(IStachExtension):
     def __init__(self, package: RowOrganizedPackage):
         self.package = package
 
+    def get_package(self):
+        return self.package
+
     def convert_to_dataframe(self):
         tables = list()
         for tableId in self.package.tables:

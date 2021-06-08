@@ -63,6 +63,16 @@ class RowStachExtensionBuilder:
 
         return self
 
+    def get_package(self):
+        """
+        Returns the RowOrganizedPackage object set for the builder
+
+        :return: RowOrganizedPackage instance
+        """
+        if (not hasattr(self, "package")):
+            return None
+        return self.package
+
     def build(self):
         """
         Builds and returns the instance of ColumnOrganizedStachExtension class

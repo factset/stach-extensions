@@ -31,6 +31,12 @@ public interface ColumnStachExtensionBuilder<T extends GeneratedMessageV3> {
     ColumnStachExtensionBuilder setPackage(String pkgString) throws InvalidProtocolBufferException;
 
     /**
+     * Get the Package object set for the builder.
+     * @return Package instance
+     */
+    T getPackage();
+
+    /**
      * Builds the stach extension and returns the instance.
      * @return instance of column organized stach extension class.
      */
