@@ -34,6 +34,11 @@ public class ColumnOrganizedStachBuilder implements ColumnStachExtensionBuilder<
         return this;
     }
 
+    @Override
+    public PackageProto.Package getPackage() {
+        return this.pkg;
+    }
+
 
     @Override
     public StachExtensions build() {

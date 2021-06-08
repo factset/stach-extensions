@@ -9,6 +9,9 @@ class ColumnOrganizedStachExtension(IStachExtension):
     def __init__(self, package: Package):
         self.package = package
 
+    def get_package(self):
+        return self.package
+    
     def convert_to_dataframe(self):
         tables = list()
         for primary_table_id in self.package.primary_table_ids:

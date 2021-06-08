@@ -59,6 +59,13 @@ public interface RowStachExtensionBuilder {
     RowStachExtensionBuilder addTable(String tableId, Object tableObject) throws JsonProcessingException, InvalidProtocolBufferException;
 
     /**
+     * Get the Row Organized Package set for the builder.
+     * @return RowOrganizedPackage instance
+     */
+    RowOrganizedProto.RowOrganizedPackage getPackage();
+
+
+    /**
      * Builds the stach extension and returns the instance.
      * @return instance of row organized stach extension class.
      */

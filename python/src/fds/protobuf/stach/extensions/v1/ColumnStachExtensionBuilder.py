@@ -29,6 +29,17 @@ class ColumnStachExtensionBuilder:
             self.package = package
         return self;
 
+    def get_package(self):
+        """
+        Returns the Package object set for the builder
+
+        :return: Package instance
+        """
+        if (not hasattr(self, "package")):
+            return None
+        return self.package
+
+
     def build(self):
         """
         Builds and returns the instance of ColumnOrganizedStachExtension class

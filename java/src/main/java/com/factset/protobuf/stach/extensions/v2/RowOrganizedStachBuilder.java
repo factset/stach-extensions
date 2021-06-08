@@ -61,6 +61,11 @@ public class RowOrganizedStachBuilder implements RowStachExtensionBuilder {
     }
 
     @Override
+    public RowOrganizedProto.RowOrganizedPackage getPackage() {
+        return this.rowOrgPackage;
+    }
+
+    @Override
     public StachExtensions build() {
 
         if(tableList != null && !tableList.isEmpty()){
