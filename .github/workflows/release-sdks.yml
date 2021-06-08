@@ -42,7 +42,7 @@ jobs:
         TWINE_USERNAME: ${{ env.PYPI_USERNAME }}
         TWINE_PASSWORD: ${{ env.PYPI_PASSWORD }}
       run: |
-        cd ${{ env.PYTHON_SDK_LOCATION }}
+        cd ${{ env.PYTHON_SDK_LOCATION }}/src
         python setup.py sdist bdist_wheel
         twine upload dist/* --verbose
   java:
