@@ -3,6 +3,7 @@ import pandas as pd
 from fds.protobuf.stach.v2.RowOrganized_pb2 import RowOrganizedPackage
 
 from fds.protobuf.stach.extensions.IStachExtension import IStachExtension
+from fds.protobuf.stach.extensions.v2.StachUtilities import StachUtilities
 
 
 class RowOrganizedStachExtension(IStachExtension):
@@ -52,6 +53,7 @@ class RowOrganizedStachExtension(IStachExtension):
                 else:
                     for column_definition in table.definition.columns:
                         val = table.data.rows[i].values[column_definition.id]
+                        val = StachUtilities.get_value(val)
                         data_row.append(val if val is not None else column_definition.format.null_format)
                 data.append(data_row)
 

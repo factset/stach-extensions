@@ -2,6 +2,7 @@ import pandas as pd
 from fds.protobuf.stach.v2.Package_pb2 import Package
 
 from fds.protobuf.stach.extensions.IStachExtension import IStachExtension
+from fds.protobuf.stach.extensions.v2.StachUtilities import StachUtilities
 
 
 class ColumnOrganizedStachExtension(IStachExtension):
@@ -50,10 +51,18 @@ class ColumnOrganizedStachExtension(IStachExtension):
             # Construct data rows
             data = list(list())
             rowCount = len(primary_table.data.rows)
+
+            # Handling when the stach output doesnt have primarytable.data.rows
+            if(rowCount == 0):
+                iterator = iter(primary_table.data.columns._values.values())
+                first_value = next(iterator)
+                rowCount = first_value.values.values._values.__len__()
+
             for i in range(0, rowCount, 1):
                 data_row = list()
                 for primary_table_definition in primary_table.definition.columns:
                     val = primary_table.data.columns[primary_table_definition.id].values[i]
+                    val = StachUtilities.get_value(val)
                     data_row.append(val if val is not None else primary_table_definition.format.null_format)
                 data.append(data_row)
 
