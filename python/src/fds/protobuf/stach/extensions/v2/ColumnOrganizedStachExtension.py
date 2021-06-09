@@ -57,9 +57,10 @@ class ColumnOrganizedStachExtension(IStachExtension):
 
             # Handling when the stach output doesnt have primarytable.data.rows
             if(rowCount == 0):
-                iterator = iter(primary_table.data.columns._values.values())
-                first_value = next(iterator)
-                rowCount = first_value.values.values._values.__len__()
+                iterator = iter(primary_table.data.columns)
+                first_key = next(iterator)
+                first_value = primary_table.data.columns.get(first_key)
+                rowCount = len(first_value.values.values)
 
             for i in range(0, rowCount, 1):
                 data_row = list()
