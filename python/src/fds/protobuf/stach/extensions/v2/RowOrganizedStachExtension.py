@@ -41,18 +41,62 @@ class RowOrganizedStachExtension(IStachExtension):
                     header.append(column_definition.description or column_definition.name)
                 headers.append(header)
 
-            for i in range(rowIndex, len(table.data.rows), 1):
-                currentRow = table.data.rows[i]
+            # The row_spread_tuple_list contains list of tuples and each tuple has the information about
+            # the items that has to be spread using the rowspan value.
+            # Each tuple should contain 4 values as mentioned below
+            #   postion - position at which the item needs to be added
+            #   rowspan - the number of rows across which the value has to be spread
+            #   colspan - the number of columns across which the value has to be spread
+            #   val     - value
+            row_spread_tuple_list = list(tuple())
+
+            for iRowIndex in range(rowIndex, len(table.data.rows), 1):
+                currentRow = table.data.rows[iRowIndex]
                 data_row = list()
+
                 if (RowOrganizedPackage.Row.RowType.Name(currentRow.row_type) == "Header"):
                     header = list()
+                    index = 0       # The index of values in the the header row cells list.
+                    position = 0    # The actual column position (by considering the rowspan, colspan spreading).
+
+                    # Checking and adding values at the start of row based on rowspan spread details from previously processed rows.
+                    # Once processed, we get the values to be added and the updated position.
+                    rowSpannedHeader, position = StachUtilities.check_add_rowspan_items(position, iRowIndex, row_spread_tuple_list)
+
+                    if rowSpannedHeader is not None:
+                        header.extend(rowSpannedHeader)
                     for val in currentRow.cells:
-                        header.append(val)
+
+                        headerCellDetail = list(currentRow.header_cell_details._values.values())[index]
+                        colspan = headerCellDetail.colspan
+                        colspan = 1 if colspan <= 1 else colspan
+                        rowspan = headerCellDetail.rowspan
+                        rowspan = 1 if rowspan <= 1 else rowspan
+
+                        # if rowspan > 1, ie., the value has to be spanned across multiple rows.
+                        # Storing the info about the position at which the item has to be added, how many rows
+                        # it has to be spanned, number of columns it has to be spanned and the actual value that needs
+                        # to be spanned.
+                        if (rowspan > 1):
+                            row_spread_tuple_list.append((position, rowspan, colspan, val))
+
+                        for i in range(0, colspan):
+                            header.append(val)
+                            position = position + 1     # incrementing column position after adding item to header row
+
+                            # After incrementing column position, checking if any value has to be added at the new
+                            # column position based on the row spread list.
+                            rowSpannedHeader, position = StachUtilities.check_add_rowspan_items(position, iRowIndex, row_spread_tuple_list)
+                            if rowSpannedHeader is not None:
+                                header.extend(rowSpannedHeader)
+
+                        index = index + 1
+
                     headers.append(header)
                     continue
                 else:
                     for column_definition in table.definition.columns:
-                        val = table.data.rows[i].values[column_definition.id]
+                        val = table.data.rows[iRowIndex].values[column_definition.id]
                         val = StachUtilities.get_value(val)
                         data_row.append(val if val is not None else column_definition.format.null_format)
                 data.append(data_row)
