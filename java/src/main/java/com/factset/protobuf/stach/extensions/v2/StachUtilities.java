@@ -1,10 +1,12 @@
 package com.factset.protobuf.stach.extensions.v2;
 
+import com.factset.protobuf.stach.extensions.models.RowSpanSpread;
 import com.factset.protobuf.stach.v2.table.RowDefinitionProto;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StachUtilities {
@@ -50,5 +52,40 @@ public class StachUtilities {
             pos++;
         }
         return -1;
+    }
+
+    public static List<Value> checkAddRowSpannedItem(int position, int rowIndex, List<RowSpanSpread> rowSpanSpreadList) {
+
+        final int pos = position;
+        List<Value> spannedHeaderList = new ArrayList<>();
+        if (rowSpanSpreadList.size() == 0) {
+            return null;
+        }
+
+        RowSpanSpread rowSpanSpreadOption = filterRowSpanItems(rowSpanSpreadList, position, rowIndex);
+
+        if (rowSpanSpreadOption != null) {
+            for (int i = 0; i < rowSpanSpreadOption.getColspan(); i++) {
+                spannedHeaderList.add(rowSpanSpreadOption.getValue());
+                position++;
+            }
+
+            List<Value> recursiveSpannedHeaderList = StachUtilities.checkAddRowSpannedItem(position, rowIndex, rowSpanSpreadList);
+
+            if (recursiveSpannedHeaderList != null) {
+                spannedHeaderList.addAll(recursiveSpannedHeaderList);
+            }
+            return spannedHeaderList;
+        }
+        return null;
+    }
+
+    private static RowSpanSpread filterRowSpanItems(List<RowSpanSpread> rowSpanSpreadList, int position, int rowIndex){
+        for (RowSpanSpread rowSpanSpread: rowSpanSpreadList) {
+            if(rowSpanSpread.getPosition() == position && rowIndex < rowSpanSpread.getRowspan()){
+                return rowSpanSpread;
+            }
+        }
+        return null;
     }
 }
