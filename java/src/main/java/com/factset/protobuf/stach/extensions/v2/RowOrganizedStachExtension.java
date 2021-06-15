@@ -66,26 +66,27 @@ public class RowOrganizedStachExtension implements StachExtensions {
         }
 
 
+        // Stores the info about the values that needs to be spread based on rowspan.
         List<RowSpanSpread> rowSpanSpreadList = new ArrayList<>();
 
         // process header rows
         for (; rowIndex < stachTable.getData().getRowsCount(); rowIndex++) {
 
-
             RowOrganizedProto.RowOrganizedPackage.Row currentRow = stachTable.getData().getRows(rowIndex);
-
 
             if (currentRow.getRowType() == RowOrganizedProto.RowOrganizedPackage.Row.RowType.Header) {
 
                 Row headerRow = new Row();
-                int index = 0;
-                int position = 0;
+                int index = 0;         // index pointing to the items in the current header row cells list.
+                int position = 0;      // index pointing to the current column position (considering the rowspan and colspan)
 
                 ArrayList<Value> headerRowValues =   new ArrayList<>(currentRow.getCells().getValuesList());
                 ArrayList<RowOrganizedProto.RowOrganizedPackage.HeaderCellDetail>headerCellDetailsArray =
                         new ArrayList<>( currentRow.getHeaderCellDetailsMap().values());
 
-                // TODO Add the items at the start of header row based on if any
+
+                // Checking if any values needs to be added at the start of a header row, based on the
+                // rowspread info from previous filled rows
                 List<Value> values = StachUtilities.checkAddRowSpannedItem(position, rowIndex, rowSpanSpreadList);
                 if(values != null){
                     position = position + values.size();
@@ -108,7 +109,9 @@ public class RowOrganizedStachExtension implements StachExtensions {
                     for(int i=0;i<colspan;i++){
                         headerRow.getCells().add(valObj == null ? "" : valObj.toString());
                         position ++;
-                        // TODO Add the items at the start of header row based on if any
+
+                        // After incrementing the position, checking and adding if any value needs to be inserted
+                        // at the updated position based on the info in the rowspread list
                         values = StachUtilities.checkAddRowSpannedItem(position, rowIndex, rowSpanSpreadList);
                         if(values != null){
                             position = position + values.size();
@@ -120,7 +123,6 @@ public class RowOrganizedStachExtension implements StachExtensions {
                     }
 
                     headerRow.setHeader(true);
-
                     index ++;
                 }
                 table.getRows().add(headerRow);
