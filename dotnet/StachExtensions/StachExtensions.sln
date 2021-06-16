@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactSet.Protobuf.Stach.Extensions", "FactSet.Protobuf.Stach.Extensions\FactSet.Protobuf.Stach.Extensions.csproj", "{6A78BFFD-AEB3-4EE9-B748-A8B0D73C6A9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactSet.Protobuf.Stach.Extensions.Tests", "FactSet.Protobuf.Stach.Extensions.Tests\FactSet.Protobuf.Stach.Extensions.Tests.csproj", "{621C2328-CEC9-41BC-BE35-03B55C7A266B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A78BFFD-AEB3-4EE9-B748-A8B0D73C6A9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A78BFFD-AEB3-4EE9-B748-A8B0D73C6A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A78BFFD-AEB3-4EE9-B748-A8B0D73C6A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A78BFFD-AEB3-4EE9-B748-A8B0D73C6A9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{621C2328-CEC9-41BC-BE35-03B55C7A266B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{621C2328-CEC9-41BC-BE35-03B55C7A266B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{621C2328-CEC9-41BC-BE35-03B55C7A266B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{621C2328-CEC9-41BC-BE35-03B55C7A266B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

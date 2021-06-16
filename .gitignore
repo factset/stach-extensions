@@ -11,3 +11,9 @@ java/stachextensions.iml
 python/src/.idea/*
 python/src/dist/*
 python/tests/.idea/*
+dotnet/StachExtensions/.idea/.idea.StachExtensions/.idea/*
+dotnet/StachExtensions/.idea/*
+dotnet/StachExtensions/FactSet.Protobuf.Stach.Extensions.Tests/bin/*
+dotnet/StachExtensions/FactSet.Protobuf.Stach.Extensions/obj/*
+dotnet/StachExtensions/FactSet.Protobuf.Stach.Extensions.Tests/obj/*
+dotnet/StachExtensions/FactSet.Protobuf.Stach.Extensions/bin/*
