@@ -32,7 +32,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                     return JsonFormatter.Default.Format(value.StructValue);
                 
                 case Value.KindOneofCase.None:
-                    return string.Empty;
+                    return null;
                 default:
                     return null;
             }
