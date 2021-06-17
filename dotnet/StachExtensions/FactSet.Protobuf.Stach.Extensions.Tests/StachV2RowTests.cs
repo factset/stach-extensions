@@ -12,7 +12,7 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
         private string inputTable;
         private string inputWithRowColSpan;
         private List<string> firstRow = new List<string>{"total0","group1", "group2","Difference"};
-        private List<string> secondRow = new List<string>{"Total", null, null, "--",};
+        private List<string> secondRow = new List<string>{"Total", "", "", "--",};
 
         [TestInitialize]
         public async Task Init()
@@ -59,7 +59,7 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
                 "Bench"
             };
             var fourthRow = new List<string>
-                {"Max", null, null, null, "88.3", "89.62", null, "17.17", "15.67", "86.07", "89.18"};
+                {"Max", "", "", "", "88.3", "89.62", "", "17.17", "15.67", "86.07", "89.18"};
             
             var rowStachBuilder = StachExtensionFactory.GetRowOrganizedBuilder();
             var stachExtension = rowStachBuilder.SetPackage(inputWithRowColSpan).Build();

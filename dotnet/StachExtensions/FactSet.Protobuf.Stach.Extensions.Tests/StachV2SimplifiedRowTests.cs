@@ -10,7 +10,7 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
     {
         private string input;
         private List<string> firstRow = new List<string>{"total0","group1", "group2", "Port.+Weight","Bench.+Weight","Difference"};
-        private List<string> secondRow = new List<string>{"Total", null, null, "100", null, "100"};
+        private List<string> secondRow = new List<string>{"Total", "", "", "100", "", "100"};
 
         [TestInitialize]
         public async Task Init()

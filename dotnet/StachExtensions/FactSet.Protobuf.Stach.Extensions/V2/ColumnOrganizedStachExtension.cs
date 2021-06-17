@@ -80,7 +80,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                 foreach (var columnId in columnIds)
                 {
                     dataRow.Cells.Add(
-                        StachUtilities.ValueToString(primaryTable.Data.Columns[columnId].Values.Values[i]));
+                        StachUtilities.ValueToString(primaryTable.Data.Columns[columnId].Values.Values[i]) ?? string.Empty);
                 }
 
                 table.Rows.Add(dataRow);

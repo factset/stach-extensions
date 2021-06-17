@@ -121,7 +121,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                     foreach (var columnDefinition in table.Definition.Columns)
                     {
                        var value =  StachUtilities.ValueToString(rowDataMap[columnDefinition.Id]) ?? columnDefinition.Format?.NullFormat;
-                       dataRow.Cells.Add(value);
+                       dataRow.Cells.Add(value ?? string.Empty);
                     }
                     
                     finalTable.Rows.Add(dataRow);

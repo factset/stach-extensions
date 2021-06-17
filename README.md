@@ -27,7 +27,24 @@ Add the below dependency to the project
     <version>ARTIFACT_VERSION</version>
   </dependency>
   ```
+## dotnet
 
+* Install with Package Manager Console:
+
+  ```sh
+  Install-Package FactSet.Protobuf.Stach.Extensions
+  ```
+
+* Install with NuGet:
+
+  ```sh
+  nuget install FactSet.Protobuf.Stach.Extensions
+  ```
+
+* Install with .NET Core:
+
+  ```sh
+  dotnet add package FactSet.Protobuf.Stach.Extensions
 # Usage
 
 There are methods for converting the stach format to the tabular formats in the respective stach extensions classes as shown below and also refer to the tests folder inside each language for detailed usage
@@ -73,6 +90,28 @@ List<TableData> tableDataList = stachExtension.convertToTable();
 ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V1);
 StachExtensions stachExtension = stachExtensionBuilder.setPackage(data).build(); // data is the stach input in string or object format
 List<TableData> tableDataList = stachExtension.convertToTable();
+
+```
+
+## dotnet
+``` c#
+
+// Stach v2 Row Organized format
+  var rowStachBuilder = StachExtensionFactory.GetRowOrganizedBuilder();
+  var stachExtension = rowStachBuilder.SetPackage(data).Build();   // data is the stach input in string or object format
+  var table = stachExtension.ConvertToTable();
+
+
+// Stach v2 Column Organized format
+  var columnStachBuilder = StachExtensionFactory.GetColumnOrganizedBuilder<Stach.V2.Package>();
+  var stachExtension = columnStachBuilder.SetPackage(data).Build();    // data is the stach input in string or object format
+  var table = stachExtension.ConvertToTable();
+
+
+// Stach v1 Column Organized format
+  var columnStachBuilder = StachExtensionFactory.GetColumnOrganizedBuilder<Package>();
+  var stachExtension = columnStachBuilder.SetPackage(data).Build();     // data is the stach input in string or object format
+  var table = stachExtension.ConvertToTable();
 
 ```
 
