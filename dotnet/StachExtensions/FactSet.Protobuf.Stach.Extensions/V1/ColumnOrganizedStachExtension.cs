@@ -85,14 +85,17 @@ namespace FactSet.Protobuf.Stach.Extensions.V1
                 table.Rows.Add(dataRow);
             }
 
-            var metadataItems = primaryTable.Data.Metadata.Items;
-            var tableMetadataLocations = primaryTable.Data.Metadata.Locations.Table;
-
-            foreach (var location in tableMetadataLocations)
+            if (primaryTable.Data.Metadata != null)
             {
-                table.Metadata.Add(metadataItems[location].Name, metadataItems[location].StringValue);
-            }
+                var metadataItems = primaryTable.Data.Metadata.Items;
+                var tableMetadataLocations = primaryTable.Data.Metadata.Locations.Table;
 
+                foreach (var location in tableMetadataLocations)
+                {
+                    table.Metadata.Add(metadataItems[location].Name, metadataItems[location].StringValue);
+                }  
+            }
+            
             return table;
         }
     }

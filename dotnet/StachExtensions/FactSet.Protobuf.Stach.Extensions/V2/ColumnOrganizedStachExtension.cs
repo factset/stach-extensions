@@ -41,6 +41,11 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             var columnIds = primaryTable.Definition.Columns.Select(c => c.Id).ToList();
             var rowCount = primaryTable.Data.Rows.Count;
 
+            if (rowCount == 0)
+            {
+                rowCount = primaryTable.Data.Columns.FirstOrDefault().Value.Values.Values.Count;
+            }
+
             var table = new Models.Table
             {
                 Rows = new List<Row>(),
@@ -86,16 +91,19 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                 table.Rows.Add(dataRow);
             }
 
-            var metadataItems = primaryTable.Data.Metadata.Items;
-            var tableMetadataLocations = primaryTable.Data.Metadata.Locations.Table;
-
-            foreach (var location in tableMetadataLocations)
+            if (primaryTable.Data.Metadata != null)
             {
-                metadataItems.TryGetValue(location, out var metadataItem);
-                if (metadataItem != null)
+                var metadataItems = primaryTable.Data.Metadata.Items;
+                var tableMetadataLocations = primaryTable.Data.Metadata.Locations.Table;
+
+                foreach (var location in tableMetadataLocations)
                 {
-                    table.Metadata.Add(location, metadataItem.Value.StringValue);
-                }
+                    metadataItems.TryGetValue(location, out var metadataItem);
+                    if (metadataItem != null)
+                    {
+                        table.Metadata.Add(location, metadataItem.Value.StringValue);
+                    }
+                } 
             }
 
             return table;

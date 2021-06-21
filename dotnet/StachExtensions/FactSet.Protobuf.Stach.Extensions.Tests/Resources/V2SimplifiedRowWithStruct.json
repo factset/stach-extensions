@@ -1,0 +1,63 @@
+﻿{
+    "tables": {
+      "78647885fa4f4594b775a1431e62090c:": {
+        "definition": {
+          "columns": [
+            {
+              "id": "col_0",
+              "name": "InputSecurity",
+              "description": "InputSecurity",
+              "type": "string"
+            },
+            {
+              "id": "col_1",
+              "name": "Scenario",
+              "description": "Scenario",
+              "type": "string"
+            },
+            {
+              "id": "col_2",
+              "name": "Horizon",
+              "description": "Horizon",
+              "type": "string"
+            },
+            {
+              "id": "col_3",
+              "name": "Run Status",
+              "description": "Run Status",
+              "type": "string"
+            },
+            {
+              "id": "col_4",
+              "name": "CF Coupon",
+              "description": "CF Coupon",
+              "type": "object"
+            }
+          ]
+        },
+        "data": {
+          "rows": [
+            {
+              "values": {
+                "col_0": "3140JQHD",
+                "col_1": "Base",
+                "col_2": "Base",
+                "col_3": "",
+                "col_4": {
+                  "20210625": "3.5",
+                  "20210725": "3.5",
+                  "20210825": "3.5",
+                  "20210925": "3.5"
+                }
+              }
+            }
+          ],
+          "tableMetadata": {
+            "CalculationId": {
+              "value": "78647885fa4f4594b775a1431e62090c:"
+            }
+          }
+        }
+      }
+    }
+  }
