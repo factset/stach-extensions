@@ -4,21 +4,21 @@ namespace FactSet.Protobuf.Stach.Extensions
 {
     public interface IRowOrganizedStachBuilder
     {
-        public IRowOrganizedStachBuilder SetPackage(RowOrganizedPackage package);
+        IRowOrganizedStachBuilder SetPackage(RowOrganizedPackage package);
 
-        public IRowOrganizedStachBuilder SetPackage(string package);
+        IRowOrganizedStachBuilder SetPackage(string package);
 
-        public IRowOrganizedStachBuilder SetPackage(object package);
+        IRowOrganizedStachBuilder SetPackage(object package);
 
-        public IRowOrganizedStachBuilder AddTable(string tableId, RowOrganizedPackage.Types.Table rowOrganizedTable);
+        IRowOrganizedStachBuilder AddTable(string tableId, RowOrganizedPackage.Types.Table rowOrganizedTable);
 
-        public IRowOrganizedStachBuilder AddTable(string tableId, string rowOrganizedTableString);
+        IRowOrganizedStachBuilder AddTable(string tableId, string rowOrganizedTableString);
+        
+        IRowOrganizedStachBuilder AddTable(string tableId, object rowOrganizedTableObject);
 
-        public IRowOrganizedStachBuilder AddTable(string tableId, object rowOrganizedTableObject);
+        RowOrganizedPackage GetPackage();
 
-        public RowOrganizedPackage GetPackage();
-
-        public IStachExtension Build();
+        IStachExtension Build();
 
     }
 }

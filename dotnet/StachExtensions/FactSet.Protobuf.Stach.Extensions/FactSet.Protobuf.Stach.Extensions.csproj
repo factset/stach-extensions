@@ -1,13 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+    
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>netstandard1.0</TargetFramework>
+        <AssemblyName>FactSet.Protobuf.Stach.Extensions</AssemblyName>
+        <RootNamespace>FactSet.Protobuf.Stach.Extensions</RootNamespace>
+        <Description>Package for parsing STACH data into simpler and easy to consume data structures</Description>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>FactSet.Protobuf.Stach.Extensions</PackageId>
+        <Authors>FactSet Research Systems, Inc.</Authors>
+        <Company>FactSet Research Systems, Inc</Company>
+        <Product>FactSet.Protobuf.Stach.Extensions</Product>
+        <Version>1.0.0</Version>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/factset/stach-extensions.git</RepositoryUrl>
+        <PackageTags>STACH;Protobuf;FactSet;FDS;Analytics;Analytics API</PackageTags>
+        <RepositoryType>git</RepositoryType>
+        <PackageProjectUrl>https://github.com/factset/stach-extensions</PackageProjectUrl>
+        <PackageReleaseNotes>Initial version of stach extensions package</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FactSet.Protobuf.Stach" Version="1.0.1"/>
-        <PackageReference Include="FactSet.Protobuf.Stach.V2" Version="1.0.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="12.0.2"/>
+        <PackageReference Include="FactSet.Protobuf.Stach" Version="1.0.1" />
+        <PackageReference Include="FactSet.Protobuf.Stach.V2" Version="1.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     </ItemGroup>
 
 </Project>

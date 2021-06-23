@@ -1,7 +1,6 @@
 ﻿using FactSet.Protobuf.Stach.V2;
 using Google.Protobuf;
 using Newtonsoft.Json;
-using JsonConverter = System.Text.Json.Serialization.JsonConverter;
 
 namespace FactSet.Protobuf.Stach.Extensions.V2
 {

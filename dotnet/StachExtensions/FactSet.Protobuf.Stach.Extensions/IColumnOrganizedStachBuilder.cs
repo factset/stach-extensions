@@ -5,14 +5,14 @@ namespace FactSet.Protobuf.Stach.Extensions
     public interface IColumnOrganizedStachBuilder<T>
     {
         
-        public IColumnOrganizedStachBuilder<T> SetPackage(T package);
+        IColumnOrganizedStachBuilder<T> SetPackage(T package);
 
-        public IColumnOrganizedStachBuilder<T> SetPackage(string package);
+        IColumnOrganizedStachBuilder<T> SetPackage(string package);
 
-        public IColumnOrganizedStachBuilder<T> SetPackage(object package);
+        IColumnOrganizedStachBuilder<T> SetPackage(object package);
 
-        public T GetPackage();
+        T GetPackage();
 
-        public IStachExtension Build();
+        IStachExtension Build();
     }
 }

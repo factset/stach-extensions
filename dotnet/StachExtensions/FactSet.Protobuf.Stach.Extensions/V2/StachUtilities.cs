@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using FactSet.Protobuf.Stach.Extensions.Models;
 using Google.Protobuf;

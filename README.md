@@ -75,7 +75,7 @@ dataFramesList = stachExtension.convert_to_dataframe()
 ``` java
 
 // Stach v2 Row Organized format
-ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
 StachExtensions stachExtension = stachExtensionBuilder.setPackage(data).build();  // data is the stach input in string or object format
 List<TableData> tableDataList = stachExtension.convertToTable();
 
