@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using FactSet.Protobuf.Stach.Extensions.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactSet.Protobuf.Stach.Extensions.Tests

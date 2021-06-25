@@ -17,10 +17,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                 
                 case Value.KindOneofCase.ListValue:
                     return value.ListValue.ToString();
-                
-                case Value.KindOneofCase.NullValue:
-                    return null;
-                
+
                 case Value.KindOneofCase.NumberValue:
                     return value.NumberValue.ToString();
                 
@@ -30,13 +27,21 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                 case Value.KindOneofCase.StructValue:
                     return JsonFormatter.Default.Format(value.StructValue);
                 
+                case Value.KindOneofCase.NullValue:
                 case Value.KindOneofCase.None:
-                    return null;
                 default:
                     return null;
             }
         }
 
+        /// <summary>
+        /// Checks if values needs to be added at the given row and given position based on rowspan information. If values needs to be added,
+        /// builds the list of values to be added at the position and returns it.
+        /// </summary>
+        /// <param name="position">Position at which the values should be added.</param>
+        /// <param name="rowIndex">The current row index</param>
+        /// <param name="rowSpanSpreadList">List containing the items that needs to be spread or added along with the position and count.</param>
+        /// <returns>List of values to be added at the given position if any</returns>
         public static List<Value> CheckAddRowSpanItems(int position, int rowIndex,
             List<RowSpanSpread> rowSpanSpreadList)
         {
@@ -53,10 +58,12 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             {
                 for (int i = 0; i < rowSpanSpreadItem.ColSpan; i++)
                 {
+                    // Appending the value to be spread and updating the column position by 1.
                     spreadValuesList.Add(rowSpanSpreadItem.Value);
                     position++;
                 }
 
+                // Checking and adding if value has to be added at the updated column position recursively.
                 var recursiveSpreadValuesList =
                     StachUtilities.CheckAddRowSpanItems(position, rowIndex, rowSpanSpreadList);
 

@@ -8,7 +8,7 @@ env:
   MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
   MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
   MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-  PYTHON_SDK_LOCATION: "python"
+  PYTHON_SDK_LOCATION: "python/src"
   JAVA_SDK_LOCATION: "java"
   DOTNET_SDK_LOCATION: "dotnet/StachExtensions/FactSet.Protobuf.Stach.Extensions"
 
@@ -70,7 +70,7 @@ jobs:
         TWINE_USERNAME: ${{ env.PYPI_USERNAME }}
         TWINE_PASSWORD: ${{ env.PYPI_PASSWORD }}
       run: |
-        cd ${{ env.PYTHON_SDK_LOCATION }}/src
+        cd ${{ env.PYTHON_SDK_LOCATION }}
         python setup.py sdist bdist_wheel
         twine upload dist/* --verbose
   java:

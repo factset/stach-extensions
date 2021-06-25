@@ -61,12 +61,14 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                 if (currentRow.RowType == RowOrganizedPackage.Types.Row.Types.RowType.Header)
                 {
                     var headerRow = new Row {Cells = new List<string>()};
-                    var index = 0;
-                    var position = 0;
+                    var index = 0;    // The index of values in the header row cells list.
+                    var position = 0;    // The actual column position (by considering the rowspan, colspan spread).
 
                     var headerRowValues = currentRow.Cells.Values.ToList();
                     var headerCellDetailsArray = currentRow.HeaderCellDetails.Values.ToList();
 
+                    // Checking and adding values at the start of the row if any based on the rowspan info
+                    // available from the previously processed rows.
                     var spreadValuesList = StachUtilities.CheckAddRowSpanItems(position, rowIndex, rowSpanSpreadList);
                     if (spreadValuesList != null)
                     {
@@ -86,6 +88,8 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                             ? 1
                             : headerCellDetailsArray[index].Colspan;
 
+                        // If rowspan > 1, the value needs to be spread across multiple rows at the current position.
+                        // storing the position, rowspan number and the actual value to the rowSpanSpreadList.
                         if (rowSpan > 1)
                         {
                             rowSpanSpreadList.Add(new RowSpanSpread(position, rowSpan, colSpan, cellValue));
@@ -96,6 +100,8 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                             headerRow.Cells.Add(StachUtilities.ValueToString(cellValue));
                             position++;
                             
+                            // After incrementing column position from above line, checking if any value has to be
+                            // added at the new column position based on row spread list
                             spreadValuesList = StachUtilities.CheckAddRowSpanItems(position, rowIndex, rowSpanSpreadList);
                             if (spreadValuesList != null)
                             {
