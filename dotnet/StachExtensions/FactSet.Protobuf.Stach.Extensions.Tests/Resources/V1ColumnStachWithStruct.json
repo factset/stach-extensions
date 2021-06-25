@@ -1,0 +1,119 @@
+﻿{
+  "version": "1.0",
+  "primaryTableIds": [
+    "2990803d-9ab2-4f9b-b9be-d80716f07783"
+  ],
+  "tables": {
+    "2990803d-9ab2-4f9b-b9be-d80716f07783": {
+      "definition": {
+        "headerTableId": "d8baffa6-80fe-47a2-86fc-b7bd721e999f",
+        "columns": [
+          {
+            "id": "9f1f5410-9f59-429b-a889-64ee80a1e4b4",
+            "name": "InputSecurity",
+            "description": "InputSecurity",
+            "type": "STRING",
+            "headerId": "5c33334f-85c7-48ed-b640-db00d91e9896"
+          },
+          {
+            "id": "7c665266-6655-4c3e-b29c-2ad98b25f5dc",
+            "name": "Scenario",
+            "description": "Scenario",
+            "type": "STRING",
+            "headerId": "a2f202a3-93f2-4503-b019-e82dd84a356c"
+          },
+          {
+            "id": "fea05e4c-bdf2-406c-b1cf-ae084a3098d2",
+            "name": "Horizon",
+            "description": "Horizon",
+            "type": "STRING",
+            "headerId": "04f9ecfc-a577-4ba9-8746-d4d579623cc6"
+          },
+          {
+            "id": "c034aff5-b57c-47d1-94bb-5b9e4e3025d1",
+            "name": "CF Coupon",
+            "description": "CF Coupon",
+            "type": "STRING",
+            "headerId": "e6d77536-66e5-40ce-812f-ca929a685e57"
+          }
+        ]
+      },
+      "data": {
+        "rows": [
+          {
+            "id": "45cec66f-6df6-4520-97df-1c75556940cb"
+          }
+        ],
+        "columns": {
+          "9f1f5410-9f59-429b-a889-64ee80a1e4b4": {
+            "stringArray": {
+              "values": [
+                "3140JQHD"
+              ]
+            }
+          },
+          "7c665266-6655-4c3e-b29c-2ad98b25f5dc": {
+            "stringArray": {
+              "values": [
+                "Base"
+              ]
+            }
+          },
+          "fea05e4c-bdf2-406c-b1cf-ae084a3098d2": {
+            "stringArray": {
+              "values": [
+                "Base"
+              ]
+            }
+          },
+          "c034aff5-b57c-47d1-94bb-5b9e4e3025d1": {
+            "stringArray": {
+              "values": [
+                "{\"20210625\":3.5,\"20210725\":3.5,\"20210825\":3.5,\"20210925\":3.5}"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "d8baffa6-80fe-47a2-86fc-b7bd721e999f": {
+      "definition": {
+        "columns": [
+          {
+            "id": "41072fa1-a40e-4850-9d48-ff733e8623f6",
+            "type": "STRING",
+            "isDimension": true
+          }
+        ]
+      },
+      "data": {
+        "rows": [
+          {
+            "id": "5c33334f-85c7-48ed-b640-db00d91e9896"
+          },
+          {
+            "id": "a2f202a3-93f2-4503-b019-e82dd84a356c"
+          },
+          {
+            "id": "04f9ecfc-a577-4ba9-8746-d4d579623cc6"
+          },
+          {
+            "id": "e6d77536-66e5-40ce-812f-ca929a685e57"
+          }
+        ],
+        "columns": {
+          "41072fa1-a40e-4850-9d48-ff733e8623f6": {
+            "stringArray": {
+              "values": [
+                "InputSecurity",
+                "Scenario",
+                "Horizon",
+                "CF Coupon"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

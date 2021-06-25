@@ -1,0 +1,139 @@
+﻿{
+    "primaryTableIds": [
+      "a649ec50-7e58-443d-b791-1340e9eebf24"
+    ],
+    "tables": {
+      "a649ec50-7e58-443d-b791-1340e9eebf24": {
+        "definition": {
+          "headerTableId": "fe772289-2812-4b0e-9b1c-dbafc77f427d",
+          "columns": [
+            {
+              "id": "7e60f682-a34f-4148-b468-5ebe9c7ab00f",
+              "name": "InputSecurity",
+              "description": "InputSecurity",
+              "type": "string",
+              "headerId": "f68302c1-3fb9-4193-aaca-2f12a14ad1b9"
+            },
+            {
+              "id": "294eac77-1673-4c27-954c-cca4c200faa2",
+              "name": "Scenario",
+              "description": "Scenario",
+              "type": "string",
+              "headerId": "c128e5be-0ad2-41c7-a027-832611da748d"
+            },
+            {
+              "id": "684e4471-8254-40b1-a59a-4fa4250ab78f",
+              "name": "Horizon",
+              "description": "Horizon",
+              "type": "string",
+              "headerId": "5b9e4cbc-07bb-4aee-b6d7-9e538f7cf300"
+            },
+            {
+              "id": "aaad7865-7a27-47c6-9be4-f352dfbed474",
+              "name": "Run Status",
+              "description": "Run Status",
+              "type": "string",
+              "headerId": "c3635e39-8757-48f5-8a01-3a15a7d68a3b"
+            },
+            {
+              "id": "5b2bc9a6-6f8f-4b5a-83af-7b165c0ae4bd",
+              "name": "CF Coupon",
+              "description": "CF Coupon",
+              "type": "object",
+              "headerId": "450db1bc-e24c-4880-8b68-97751038758f"
+            }
+          ]
+        },
+        "data": {
+          "columns": {
+            "7e60f682-a34f-4148-b468-5ebe9c7ab00f": {
+              "values": [
+                "3140JQHD"
+              ]
+            },
+            "294eac77-1673-4c27-954c-cca4c200faa2": {
+              "values": [
+                "Base"
+              ]
+            },
+            "684e4471-8254-40b1-a59a-4fa4250ab78f": {
+              "values": [
+                "Base"
+              ]
+            },
+            "aaad7865-7a27-47c6-9be4-f352dfbed474": {
+              "values": [
+                ""
+              ]
+            },
+            "5b2bc9a6-6f8f-4b5a-83af-7b165c0ae4bd": {
+              "values": [
+                {
+                  "20210625": "3.5",
+                  "20210725": "3.5",
+                  "20210825": "3.5",
+                  "20210925": "3.5"
+                }
+              ]
+            }
+          },
+          "metadata": {
+            "items": {
+              "CalculationId": {
+                "value": "ced27774514a41f499b70b4029646789:"
+              }
+            },
+            "locations": {
+              "table": [
+                "CalculationId"
+              ]
+            }
+          }
+        }
+      },
+      "fe772289-2812-4b0e-9b1c-dbafc77f427d": {
+        "definition": {
+          "columns": [
+            {
+              "id": "c_h1",
+              "type": "string",
+              "isDimension": true
+            }
+          ]
+        },
+        "data": {
+          "rows": [
+            {
+              "id": "f68302c1-3fb9-4193-aaca-2f12a14ad1b9"
+            },
+            {
+              "id": "c128e5be-0ad2-41c7-a027-832611da748d"
+            },
+            {
+              "id": "5b9e4cbc-07bb-4aee-b6d7-9e538f7cf300"
+            },
+            {
+              "id": "c3635e39-8757-48f5-8a01-3a15a7d68a3b"
+            },
+            {
+              "id": "450db1bc-e24c-4880-8b68-97751038758f"
+            }
+          ],
+          "columns": {
+            "c_h1": {
+              "values": [
+                "InputSecurity",
+                "Scenario",
+                "Horizon",
+                "Run Status",
+                "CF Coupon"
+              ]
+            }
+          },
+          "metadata": {
+            "locations": {}
+          }
+        }
+      }
+    }
+  }

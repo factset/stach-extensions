@@ -1,13 +1,12 @@
-java/.idea/*
 java/target/*
-python/.idea/*
 python/build/*
-python/dist/*
 python/env/*
 python/venv/*
 **/*.egg-info
 **/__pycache__/*
 java/stachextensions.iml
 python/src/.idea/*
-python/src/dist/*
-python/tests/.idea/*
+**/dist/*
+**/.idea/*
+**/bin/*
+**/obj/*

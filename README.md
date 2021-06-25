@@ -5,7 +5,9 @@
 ![build](https://img.shields.io/badge/Build-Todo-blue)
 [![Maven](https://img.shields.io/maven-central/v/com.factset.protobuf/stachextensions)](https://mvnrepository.com/artifact/com.factset.protobuf/stachextensions)
 [![PyPi](https://img.shields.io/pypi/v/fds.protobuf.stach.extensions)](https://pypi.org/project/fds.protobuf.stach.extensions/)
+[![NuGet](https://img.shields.io/nuget/v/FactSet.Protobuf.Stach.Extensions)](https://www.nuget.org/packages/FactSet.Protobuf.Stach.Extensions)
 [![Apache-2 license](https://img.shields.io/badge/license-Apache2-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+
 
 
 This repository contains extension libraries in different languages for parsing the [stach](https://factset.github.io/stachschema/#/README) format to more simpler to consume formats or data structures.
@@ -27,7 +29,24 @@ Add the below dependency to the project
     <version>ARTIFACT_VERSION</version>
   </dependency>
   ```
+## dotnet
 
+* Install with Package Manager Console:
+
+  ```sh
+  Install-Package FactSet.Protobuf.Stach.Extensions
+  ```
+
+* Install with NuGet:
+
+  ```sh
+  nuget install FactSet.Protobuf.Stach.Extensions
+  ```
+
+* Install with .NET Core:
+
+  ```sh
+  dotnet add package FactSet.Protobuf.Stach.Extensions
 # Usage
 
 There are methods for converting the stach format to the tabular formats in the respective stach extensions classes as shown below and also refer to the tests folder inside each language for detailed usage
@@ -58,7 +77,7 @@ dataFramesList = stachExtension.convert_to_dataframe()
 ``` java
 
 // Stach v2 Row Organized format
-ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
 StachExtensions stachExtension = stachExtensionBuilder.setPackage(data).build();  // data is the stach input in string or object format
 List<TableData> tableDataList = stachExtension.convertToTable();
 
@@ -73,6 +92,28 @@ List<TableData> tableDataList = stachExtension.convertToTable();
 ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V1);
 StachExtensions stachExtension = stachExtensionBuilder.setPackage(data).build(); // data is the stach input in string or object format
 List<TableData> tableDataList = stachExtension.convertToTable();
+
+```
+
+## dotnet
+``` c#
+
+// Stach v2 Row Organized format
+  var rowStachBuilder = StachExtensionFactory.GetRowOrganizedBuilder();
+  var stachExtension = rowStachBuilder.SetPackage(data).Build();   // data is the stach input in string or object format
+  var table = stachExtension.ConvertToTable();
+
+
+// Stach v2 Column Organized format
+  var columnStachBuilder = StachExtensionFactory.GetColumnOrganizedBuilder<Stach.V2.Package>();
+  var stachExtension = columnStachBuilder.SetPackage(data).Build();    // data is the stach input in string or object format
+  var table = stachExtension.ConvertToTable();
+
+
+// Stach v1 Column Organized format
+  var columnStachBuilder = StachExtensionFactory.GetColumnOrganizedBuilder<Package>();
+  var stachExtension = columnStachBuilder.SetPackage(data).Build();     // data is the stach input in string or object format
+  var table = stachExtension.ConvertToTable();
 
 ```
 
