@@ -5,7 +5,9 @@
 ![build](https://img.shields.io/badge/Build-Todo-blue)
 [![Maven](https://img.shields.io/maven-central/v/com.factset.protobuf/stachextensions)](https://mvnrepository.com/artifact/com.factset.protobuf/stachextensions)
 [![PyPi](https://img.shields.io/pypi/v/fds.protobuf.stach.extensions)](https://pypi.org/project/fds.protobuf.stach.extensions/)
+[![NuGet](https://img.shields.io/nuget/v/FactSet.Protobuf.Stach.Extensions)](https://www.nuget.org/packages/FactSet.Protobuf.Stach.Extensions)
 [![Apache-2 license](https://img.shields.io/badge/license-Apache2-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+
 
 
 This repository contains extension libraries in different languages for parsing the [stach](https://factset.github.io/stachschema/#/README) format to more simpler to consume formats or data structures.
