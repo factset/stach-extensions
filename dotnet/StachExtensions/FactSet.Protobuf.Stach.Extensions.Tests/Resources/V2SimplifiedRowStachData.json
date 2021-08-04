@@ -659,61 +659,58 @@
         ],
         "tableMetadata": {
           "Portfolio Holdings As Of Date": {
-            "value": "S&P BSE Sensex 24-JUL-2020"
+            "value": ["S&P BSE Sensex 24-JUL-2020"]
           },
           "Benchmark Holdings As Of Date": {
-            "value": " "
+            "value": [" "]
           },
           "Grouping Frequency": {
-            "value": "Economic Sector - Beginning of Period|Industry - Beginning of Period"
+            "value": ["Economic Sector - Beginning of Period","Industry - Beginning of Period"]
           },
           "Portfolio Pricing Sources": {
-            "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+            "value": ["FactSet - Equity","Client Portfolio|FactSet - Options"]
           },
           "Benchmark Pricing Sources": {
-            "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+            "value": ["FactSet - Equity","Client Portfolio|FactSet - Options"]
           },
           "Portfolio Analytics Sources": {
-            "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+            "value": ["FactSet - Equity","Client Portfolio|FactSet - Options"]
           },
           "Benchmark Analytics Sources": {
-            "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+            "value": ["FactSet - Equity","Client Portfolio|FactSet - Options"]
           },
           "Additional Pricing Options": {
-            "value": "Calculate Returns with Missing Accrued Interest"
+            "value": ["Calculate Returns with Missing Accrued Interest"]
           },
           "Composite Assets": {
-            "value": "None"
+            "value": ["None"]
           },
           "Currency ISO Code": {
-            "value": "USD"
+            "value": ["USD"]
           },
           "Absolute Start Date": {
-            "value": "20200724"
+            "value": ["20200724"]
           },
           "Absolute End Date": {
-            "value": "20200724"
+            "value": ["20200724"]
           },
           "Document Name": {
-            "value": "pa3_documents:/default"
+            "value": ["pa3_documents:/default"]
           },
           "Calendar": {
-            "value": "FIVEDAY"
+            "value": ["FIVEDAY"]
           },
           "Report Frequency": {
-            "value": "Single"
+            "value": ["Single"]
           },
           "Accounts": {
-            "value": "BENCH:180353"
+            "value": ["BENCH:180353"]
           },
           "Benchmark": {
-            "value": ""
+            "value": [""]
           },
           "Component Name": {
-            "value": "Weights"
-          },
-          "CalculationId": {
-            "value": "2CC96DEE879009133AF0DD14DEDA3F9502E1FC4182ACDEBD12681428DE8F90DF:PA1"
+            "value": ["Weights"]
           }
         }
       }
