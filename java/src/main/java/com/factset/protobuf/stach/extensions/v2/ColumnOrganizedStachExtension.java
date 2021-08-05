@@ -78,8 +78,8 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
 
                 int indexOfHeader = StachUtilities.getIndexOf(headerTable.getData().getRowsList(), headerColumnId);
                 Value val = headerTableColumns.get(headerTableseriesDefinition.getId()).getValues().getValues(indexOfHeader);
-                Object valObj = StachUtilities.valueToObject(val);
-                headerRow.getCells().add(valObj == null ? nullFormat : valObj.toString());
+                String valObj = StachUtilities.valueToString(val);
+                headerRow.getCells().add(valObj == null ? nullFormat : valObj);
             }
             table.getRows().add(headerRow);
         }
@@ -91,16 +91,16 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
 
                 String primaryTableColumnId = primaryTableSeriesDefinition.getId();
                 Value val = primaryTableColumns.get(primaryTableColumnId).getValues().getValues(i);
-                Object valObj = StachUtilities.valueToObject(val);
+                String valObj = StachUtilities.valueToString(val);
 
-                dataRow.getCells().add(valObj == null ? nullFormat : valObj.toString());
+                dataRow.getCells().add(valObj == null ? nullFormat : valObj);
             }
             table.getRows().add(dataRow);
         }
 
         Map<String, MetadataItemProto.MetadataItem> metadata = primaryTable.getData().getMetadata().getItemsMap();
         for (Map.Entry<String, MetadataItemProto.MetadataItem> entry : metadata.entrySet()) {
-            table.getMetadata().put(entry.getKey(), StachUtilities.valueToObject(entry.getValue().getValue()).toString());
+            table.getMetadata().put(entry.getKey(), StachUtilities.valueToString(entry.getValue().getValue()));
         }
 
         return table;

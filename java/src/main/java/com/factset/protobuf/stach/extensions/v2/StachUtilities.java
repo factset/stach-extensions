@@ -12,6 +12,7 @@ import java.util.List;
 public class StachUtilities {
 
     /**
+     * @deprecated
      * Returns the respective data type object from the Value object
      *
      * @param value : protobuf Value object input
@@ -19,6 +20,18 @@ public class StachUtilities {
      * @throws InvalidProtocolBufferException 
      */
     public static Object valueToObject(Value value) throws InvalidProtocolBufferException {
+
+        return valueToString(value);
+    }
+
+    /**
+     * Returns the string format of the Value object
+     *
+     * @param value : protobuf Value object input
+     * @return returns the string format of the given Value object
+     * @throws InvalidProtocolBufferException
+     */
+    public static String valueToString(Value value) throws InvalidProtocolBufferException {
         switch (value.getKindCase()) {
             case NULL_VALUE:
                 return null;
