@@ -100,7 +100,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                     metadataItems.TryGetValue(location, out var metadataItem);
                     if (metadataItem != null)
                     {
-                        table.Metadata.Add(location, metadataItem.Value.StringValue);
+                        table.Metadata.Add(location, StachUtilities.ValueToString(metadataItem.Value));
                     }
                 } 
             }

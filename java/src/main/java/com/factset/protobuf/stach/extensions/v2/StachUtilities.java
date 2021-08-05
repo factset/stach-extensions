@@ -31,7 +31,7 @@ public class StachUtilities {
             case STRUCT_VALUE:
                 return JsonFormat.printer().omittingInsignificantWhitespace().print(value.getStructValue());
             case LIST_VALUE:
-                return value.getListValue().getValuesList().toString();
+                return JsonFormat.printer().omittingInsignificantWhitespace().print(value.getListValue());
             default:
                 throw new IllegalArgumentException(String.format("Unsupported protobuf value %s", value));
         }
