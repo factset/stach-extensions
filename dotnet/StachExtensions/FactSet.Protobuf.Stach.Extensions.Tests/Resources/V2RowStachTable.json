@@ -5106,61 +5106,58 @@
     ],
     "tableMetadata": {
       "Portfolio Holdings As Of Date": {
-        "value": "S&P 500 17-MAR-2021"
+        "value": ["S&P 500 17-MAR-2021"]
       },
       "Benchmark Holdings As Of Date": {
-        "value": "S&P 100 17-MAR-2021"
+        "value": ["S&P 100 17-MAR-2021"]
       },
       "Grouping Frequency": {
-        "value": "Economic Sector - FactSet - Beginning of Period|Industry - FactSet - Beginning of Period"
+        "value": ["Economic Sector - FactSet - Beginning of Period","Industry - FactSet - Beginning of Period"]
       },
       "Portfolio Pricing Sources": {
-        "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+        "value": ["FactSet - Equity","Client Portfolio","FactSet - Options"]
       },
       "Benchmark Pricing Sources": {
-        "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+        "value": ["FactSet - Equity","Client Portfolio","FactSet - Options"]
       },
       "Portfolio Analytics Sources": {
-        "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+        "value": ["FactSet - Equity","Client Portfolio","FactSet - Options"]
       },
       "Benchmark Analytics Sources": {
-        "value": "FactSet - Equity|Client Portfolio|FactSet - Options"
+        "value": ["FactSet - Equity","Client Portfolio","FactSet - Options"]
       },
       "Additional Pricing Options": {
-        "value": "Calculate Returns with Missing Accrued Interest"
+        "value": ["Calculate Returns with Missing Accrued Interest"]
       },
       "Composite Assets": {
-        "value": "None"
+        "value": ["None"]
       },
       "Currency ISO Code": {
-        "value": "USD"
+        "value": ["USD"]
       },
       "Absolute Start Date": {
-        "value": "20210317"
+        "value": ["20210317"]
       },
       "Absolute End Date": {
-        "value": "20210317"
+        "value": ["20210317"]
       },
       "Document Name": {
-        "value": "pa3_documents:/default"
+        "value": ["pa3_documents:/default"]
       },
       "Calendar": {
-        "value": "FIVEDAY"
+        "value": ["FIVEDAY"]
       },
       "Report Frequency": {
-        "value": "Single"
+        "value": ["Single"]
       },
       "Accounts": {
-        "value": "BENCH:SP50"
+        "value": ["BENCH:SP50"]
       },
       "Benchmark": {
-        "value": "BENCH:OEX"
+        "value": ["BENCH:OEX"]
       },
       "Component Name": {
-        "value": "Weights Difference"
-      },
-      "CalculationId": {
-        "value": "f0b53847d92e4222898b028b8cf01dcb:PA1"
+        "value": ["Weights Difference"]
       }
     }
   }
