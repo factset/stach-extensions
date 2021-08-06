@@ -91,8 +91,8 @@ public class RowOrganizedStachExtension implements StachExtensions {
                 if(values != null){
                     position = position + values.size();
                     for(Value val : values){
-                        Object valObj = StachUtilities.valueToObject(val);
-                        headerRow.getCells().add(valObj == null ? "" : valObj.toString());
+                        String valObj = StachUtilities.valueToString(val);
+                        headerRow.getCells().add(valObj == null ? "" : valObj);
                     }
                 }
 
@@ -105,9 +105,9 @@ public class RowOrganizedStachExtension implements StachExtensions {
                         rowSpanSpreadList.add(new RowSpanSpread(position, rowspan, colspan, val));
                     }
 
-                    Object valObj = StachUtilities.valueToObject(headerRowValues.get(index));
+                    String valObj = StachUtilities.valueToString(headerRowValues.get(index));
                     for(int i=0;i<colspan;i++){
-                        headerRow.getCells().add(valObj == null ? "" : valObj.toString());
+                        headerRow.getCells().add(valObj == null ? "" : valObj);
                         position ++;
 
                         // After incrementing the position, checking and adding if any value needs to be inserted
@@ -116,8 +116,8 @@ public class RowOrganizedStachExtension implements StachExtensions {
                         if(values != null){
                             position = position + values.size();
                             for(Value spannedValue : values){
-                                Object spannedvalObj = StachUtilities.valueToObject(spannedValue);
-                                headerRow.getCells().add(spannedvalObj == null ? "" : spannedvalObj.toString());
+                                String spannedvalObj = StachUtilities.valueToString(spannedValue);
+                                headerRow.getCells().add(spannedvalObj == null ? "" : spannedvalObj);
                             }
                         }
                     }
@@ -133,8 +133,8 @@ public class RowOrganizedStachExtension implements StachExtensions {
                 // Loop for each of column definition and find the key and add it or else null
                 for (ColumnDefinitionProto.ColumnDefinition colDefinition : stachTable.getDefinition().getColumnsList()) {
 
-                    Object value = StachUtilities.valueToObject(rowDataMap.get(colDefinition.getId()));
-                    String valString = value == null ? colDefinition.getFormat().getNullFormat() : value.toString();
+                    String value = StachUtilities.valueToString(rowDataMap.get(colDefinition.getId()));
+                    String valString = value == null ? colDefinition.getFormat().getNullFormat() : value;
                     dataRow.getCells().add(valString);
                 }
 
@@ -145,8 +145,8 @@ public class RowOrganizedStachExtension implements StachExtensions {
 
         //process metadata
         for (String key : stachTable.getData().getTableMetadataMap().keySet()) {
-            Object metaDataValue = StachUtilities.valueToObject(stachTable.getData().getTableMetadataMap().get(key).getValue());
-            table.getMetadata().put(key, metaDataValue.toString());
+            String metaDataValue = StachUtilities.valueToString(stachTable.getData().getTableMetadataMap().get(key).getValue());
+            table.getMetadata().put(key, metaDataValue);
         }
 
         return table;
