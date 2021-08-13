@@ -66,7 +66,7 @@ public class V2SimplifiedRowOrganizedStachTests {
         List<TableData> tableDataList = stachExtension.convertToTable();
 
         Assert.assertEquals(tableDataList.get(0).getMetadata().keySet().toArray().length, 18);
-        Assert.assertEquals(tableDataList.get(0).getMetadata().get("Report Frequency"), "Single");
+        Assert.assertEquals(tableDataList.get(0).getMetadata().get("Report Frequency"), "[\"Single\"]");
 
     }
 
