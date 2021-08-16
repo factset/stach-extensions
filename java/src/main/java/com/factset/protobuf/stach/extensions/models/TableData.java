@@ -8,6 +8,7 @@ import java.util.Map;
 public class TableData {
     private List<Row> Rows = new ArrayList<Row>();
     private Map<String, String> metadata = new HashMap<String, String>();
+    private Map<String, List<String>> metadataArray = new HashMap<String, List<String>>();
 
     public List<Row> getRows() {
         return Rows;
@@ -21,7 +22,15 @@ public class TableData {
         return metadata;
     }
 
+    public Map<String, List<String>> getMetadataArray() {
+        return metadataArray;
+    }
+
     public void setMetadata(Map<String, String> map) {
         this.metadata = map;
+    }
+
+    public void setMetadataArray(Map<String, List<String>> map) {
+        this.metadataArray = map;
     }
 }
