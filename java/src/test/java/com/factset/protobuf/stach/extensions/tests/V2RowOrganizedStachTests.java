@@ -96,4 +96,15 @@ public class V2RowOrganizedStachTests {
         Assert.assertEquals(tableDataList.get(0).getMetadata().get("Report Frequency"), "[\"Single\"]");
 
     }
+
+    @Test
+    public void testMetaDataArray() throws InvalidProtocolBufferException {
+        input = readFile(fileV2RowOrganizedStach);
+        stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+        StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
+        List<TableData> tableDataList = stachExtension.convertToTable();
+
+        Assert.assertEquals(tableDataList.get(0).getMetadataArray().keySet().toArray().length, 18);
+        Assert.assertEquals(tableDataList.get(0).getMetadataArray().get("Grouping Frequency").get(0), "Economic Sector - FactSet - Beginning of Period");
+    }
 }
