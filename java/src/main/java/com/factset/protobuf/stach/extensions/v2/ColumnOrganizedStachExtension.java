@@ -13,6 +13,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Value;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -102,6 +103,18 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
         for (Map.Entry<String, MetadataItemProto.MetadataItem> entry : metadata.entrySet()) {
             table.getMetadata().put(entry.getKey(), StachUtilities.valueToString(entry.getValue().getValue()));
         }
+
+        table.getMetadata().forEach((k,v) -> {
+            List<String> values = new ArrayList<>();
+
+            String val = v.substring(1,v.length()-1); // remove brackets
+            String[] valArray = val.split(","); // if multiple items, split on ","
+            for (String listItem : valArray) {
+                listItem = listItem.substring(1, listItem.length()-1); // remove quotes
+                values.add(listItem);
+            }
+            table.getMetadataArray().put(k, values);
+        });
 
         return table;
     }

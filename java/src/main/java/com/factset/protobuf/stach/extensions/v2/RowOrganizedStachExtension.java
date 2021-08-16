@@ -149,6 +149,18 @@ public class RowOrganizedStachExtension implements StachExtensions {
             table.getMetadata().put(key, metaDataValue);
         }
 
+        table.getMetadata().forEach((k,v) -> {
+            List<String> values = new ArrayList<>();
+
+            String val = v.substring(1,v.length()-1); // remove brackets
+            String[] valArray = val.split(","); // if multiple items, split on ","
+            for (String listItem : valArray) {
+                listItem = listItem.substring(1, listItem.length()-1); // remove quotes
+                values.add(listItem);
+            }
+            table.getMetadataArray().put(k, values);
+        });
+
         return table;
 
     }

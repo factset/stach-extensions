@@ -12,6 +12,7 @@ import com.factset.protobuf.stach.table.SeriesDefinitionProto.SeriesDefinition;
 import com.factset.protobuf.stach.table.TableProto.Table;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -83,6 +84,16 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
         for (Map.Entry<String, MetadataItem> entry : metadata.entrySet()) {
             table.getMetadata().put(entry.getValue().getName(), entry.getValue().getStringValue());
         }
+
+        table.getMetadata().forEach((k,v) -> {
+            List<String> values = new ArrayList<>();
+            String[] valArray = v.split("\\|", -1); // if multiple items, split on ","
+            for (String listItem : valArray) {
+                values.add(listItem);
+            }
+            table.getMetadataArray().put(k, values);
+        });
+
         return table;
     }
 
