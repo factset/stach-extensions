@@ -102,19 +102,13 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
         Map<String, MetadataItemProto.MetadataItem> metadata = primaryTable.getData().getMetadata().getItemsMap();
         for (Map.Entry<String, MetadataItemProto.MetadataItem> entry : metadata.entrySet()) {
             table.getMetadata().put(entry.getKey(), StachUtilities.valueToString(entry.getValue().getValue()));
-        }
 
-        table.getMetadata().forEach((k,v) -> {
-            List<String> values = new ArrayList<>();
-
-            String val = v.substring(1,v.length()-1); // remove brackets
-            String[] valArray = val.split(","); // if multiple items, split on ","
-            for (String listItem : valArray) {
-                listItem = listItem.substring(1, listItem.length()-1); // remove quotes
-                values.add(listItem);
+            List<Value> values = new ArrayList<>();
+            for (int i=0; i<entry.getValue().getValue().getListValue().getValuesList().size(); i++) {
+                values.add(entry.getValue().getValue().getListValue().getValuesList().get(i));
             }
-            table.getMetadataArray().put(k, values);
-        });
+            table.getRawMetadata().put(entry.getKey(), values);
+        }
 
         return table;
     }

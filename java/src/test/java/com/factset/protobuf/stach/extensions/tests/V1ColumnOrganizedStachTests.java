@@ -77,6 +77,10 @@ public class V1ColumnOrganizedStachTests {
 
         Assert.assertEquals(tableDataList.get(0).getMetadataArray().keySet().toArray().length, 18);
         Assert.assertEquals(tableDataList.get(0).getMetadataArray().get("Grouping Frequency").get(0), "Economic Sector - Beginning of Period");
+
+
+//        Assert.assertEquals(tableDataList.get(0).getRawMetadata().keySet().toArray().length, 18);
+//        Assert.assertEquals(tableDataList.get(0).getRawMetadata().get("Grouping Frequency").getListValue().getValues(0).getStringValue(), "Economic Sector - Beginning of Period");
     }
 
 

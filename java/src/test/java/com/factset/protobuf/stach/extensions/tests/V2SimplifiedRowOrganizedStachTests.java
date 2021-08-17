@@ -67,7 +67,6 @@ public class V2SimplifiedRowOrganizedStachTests {
 
         Assert.assertEquals(tableDataList.get(0).getMetadata().keySet().toArray().length, 18);
         Assert.assertEquals(tableDataList.get(0).getMetadata().get("Report Frequency"), "[\"Single\"]");
-        System.out.println(tableDataList.get(0).getMetadataArray().get("Report Frequency"));
     }
 
     @Test
@@ -78,8 +77,9 @@ public class V2SimplifiedRowOrganizedStachTests {
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
         List<TableData> tableDataList = stachExtension.convertToTable();
 
-        Assert.assertEquals(tableDataList.get(0).getMetadataArray().keySet().toArray().length, 18);
-        Assert.assertEquals(tableDataList.get(0).getMetadataArray().get("Grouping Frequency").get(0), "Economic Sector - Beginning of Period");
+        Assert.assertEquals(tableDataList.get(0).getRawMetadata().keySet().toArray().length, 18);
+        Assert.assertEquals(tableDataList.get(0).getRawMetadata().get("Grouping Frequency").get(0).getStringValue(), "Economic Sector - Beginning of Period");
+
     }
 
 }
