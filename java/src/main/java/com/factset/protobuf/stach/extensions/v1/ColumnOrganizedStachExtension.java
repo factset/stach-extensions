@@ -12,6 +12,7 @@ import com.factset.protobuf.stach.table.SeriesDefinitionProto.SeriesDefinition;
 import com.factset.protobuf.stach.table.TableProto.Table;
 import com.google.protobuf.Value;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,16 +85,15 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
         Map<String, MetadataItem> metadata = primaryTable.getData().getMetadata().getItemsMap();
         for (Map.Entry<String, MetadataItem> entry : metadata.entrySet()) {
             table.getMetadata().put(entry.getValue().getName(), entry.getValue().getStringValue());
-        }
 
-        table.getMetadata().forEach((k,v) -> {
-            List<String> values = new ArrayList<>();
-            String[] valArray = v.split("\\|", -1); // if multiple items, split on "|"
+            List<Value> values = new ArrayList<>();
+            String [] valArray = entry.getValue().getStringValue().split("\\|", -1);
             for (String listItem : valArray) {
-                values.add(listItem);
+                Value val = Value.newBuilder().setStringValue(listItem).build();
+                values.add(val);
             }
-            table.getMetadataArray().put(k, values);
-        });
+            table.getRawMetadata().put(entry.getValue().getName(), values);
+        }
 
         return table;
     }
