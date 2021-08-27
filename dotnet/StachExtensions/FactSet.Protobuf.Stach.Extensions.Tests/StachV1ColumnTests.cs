@@ -29,6 +29,12 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             Assert.IsTrue(table[0].Rows.Count == 62);
             CollectionAssert.AreEqual(table[0].Rows[0].Cells, firstRow);
             CollectionAssert.AreEqual(table[0].Rows[1].Cells, secondRow);
+
+            Assert.IsTrue(table[0].Metadata.Count == 18, "There is an incorrect amount of Metadata items");
+            Assert.AreEqual("Single", table[0].Metadata["Report Frequency"]);
+
+            Assert.IsTrue(table[0].RawMetadata.Count == 18, "There is an incorrect amount of RawMetadata items");
+            Assert.AreEqual("\"Industry - Beginning of Period\"", table[0].RawMetadata["Grouping Frequency"][1].ToString());
         }
         
         [TestMethod]
@@ -45,6 +51,9 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             Assert.IsTrue(table[0].Rows.Count == 2);
             CollectionAssert.AreEqual(table[0].Rows[0].Cells, firstRow);
             CollectionAssert.AreEqual(table[0].Rows[1].Cells, secondRow);
+
+            Assert.IsTrue(table[0].Metadata.Count == 0, "There is an incorrect amount of Metadata items");
+            Assert.IsTrue(table[0].RawMetadata.Count == 0,"There is an incorrect amount of RawMetadata items");
         }
     }
 }

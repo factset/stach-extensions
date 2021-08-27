@@ -2,6 +2,7 @@
 using System.Linq;
 using FactSet.Protobuf.Stach.Extensions.Models;
 using FactSet.Protobuf.Stach.V2;
+using System;
 
 namespace FactSet.Protobuf.Stach.Extensions.V2
 {
@@ -31,7 +32,8 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             var finalTable = new Models.Table
             {
                 Rows = new List<Row>(),
-                Metadata = new Dictionary<string, string>()
+                Metadata = new Dictionary<string, string>(),
+                RawMetadata = new Dictionary<string, List<Google.Protobuf.WellKnownTypes.Value>>()
             };
             
             var rowIndex = 0;
@@ -136,8 +138,23 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
 
             foreach (var metadataItem in table.Data.TableMetadata)
             {
-                var metadataValue = StachUtilities.ValueToString(metadataItem.Value.Value);
-                finalTable.Metadata.Add(metadataItem.Key, metadataValue);
+                var metadataValueString = StachUtilities.ValueToString(metadataItem.Value.Value);
+                var metadataValue = metadataItem.Value.Value;
+
+                finalTable.Metadata.Add(metadataItem.Key, metadataValueString);
+
+                // parsing metadataItem.Value into a List of values
+                string valString = metadataValue.ToString();
+                string[] values = valString.Split(new string[] { "\", \"" }, StringSplitOptions.None);
+                List<Google.Protobuf.WellKnownTypes.Value> valuesList = new List<Google.Protobuf.WellKnownTypes.Value>();
+                foreach (string val in values)
+                {
+                    char[] charsToTrim = { '[', ' ', ']', '\"' };
+                    string trimmed = val.Trim(charsToTrim);
+                    valuesList.Add(Google.Protobuf.WellKnownTypes.Value.ForString(trimmed));
+                }
+
+                finalTable.RawMetadata.Add(metadataItem.Key, valuesList);
             }
 
             return finalTable;

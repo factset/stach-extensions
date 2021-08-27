@@ -43,7 +43,8 @@ namespace FactSet.Protobuf.Stach.Extensions.V1
             var table = new Models.Table
             {
                 Rows = new List<Row>(),
-                Metadata = new Dictionary<string, string>()
+                Metadata = new Dictionary<string, string>(),
+                RawMetadata = new Dictionary<string, List<Google.Protobuf.WellKnownTypes.Value>>()
             };
 
             var headerDataRowList = headerTable.Data.Rows.Select(x => x.Id).ToList();
@@ -93,6 +94,17 @@ namespace FactSet.Protobuf.Stach.Extensions.V1
                 foreach (var location in tableMetadataLocations)
                 {
                     table.Metadata.Add(metadataItems[location].Name, metadataItems[location].StringValue);
+
+                    //Google.Protobuf.WellKnownTypes.Value val = Google.Protobuf.WellKnownTypes.Value.ForString(metadataItems[location].StringValue);
+                    //table.RawMetadata.Add(metadataItems[location].Name, val);
+
+                    string[] stringvalues = metadataItems[location].StringValue.Split('|');
+                    List<Google.Protobuf.WellKnownTypes.Value> values = new List<Google.Protobuf.WellKnownTypes.Value>();
+                    foreach (string value in stringvalues)
+                    {
+                        values.Add(Google.Protobuf.WellKnownTypes.Value.ForString(value));
+                    }
+                    table.RawMetadata.Add(metadataItems[location].Name, values);
                 }  
             }
             

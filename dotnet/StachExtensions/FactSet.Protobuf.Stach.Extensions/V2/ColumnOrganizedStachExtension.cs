@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FactSet.Protobuf.Stach.Extensions.Models;
+using System;
 
 namespace FactSet.Protobuf.Stach.Extensions.V2
 {
@@ -20,7 +21,6 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             {
                 tables.Add(GenerateTable(pkg, primaryTableId));
             }
-
             return tables;
         }
         
@@ -48,7 +48,8 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             var table = new Models.Table
             {
                 Rows = new List<Row>(),
-                Metadata = new Dictionary<string, string>()
+                Metadata = new Dictionary<string, string>(),
+                RawMetadata = new Dictionary<string, List<Google.Protobuf.WellKnownTypes.Value>>()
             };
 
             var headerDataRowList = headerTable.Data.Rows.Select(x => x.Id).ToList();
@@ -94,13 +95,26 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             {
                 var metadataItems = primaryTable.Data.Metadata.Items;
                 var tableMetadataLocations = primaryTable.Data.Metadata.Locations.Table;
-
                 foreach (var location in tableMetadataLocations)
                 {
                     metadataItems.TryGetValue(location, out var metadataItem);
                     if (metadataItem != null)
                     {
                         table.Metadata.Add(location, StachUtilities.ValueToString(metadataItem.Value));
+                        //table.RawMetadata.Add(location, metadataItem.Value);
+
+                        // parsing metadataItem.Value into a List of values
+                        string valString = metadataItem.Value.ToString();
+                        string[] values = valString.Split(new string[] { "\", \"" }, StringSplitOptions.None);
+                        List<Google.Protobuf.WellKnownTypes.Value> valuesList = new List<Google.Protobuf.WellKnownTypes.Value>();
+                        foreach (string val in values)
+                        {
+                            char[] charsToTrim = { '[', ' ', ']', '\"' };
+                            string trimmed = val.Trim(charsToTrim);
+                            valuesList.Add(Google.Protobuf.WellKnownTypes.Value.ForString(trimmed));
+                        }
+
+                        table.RawMetadata.Add(location, valuesList);
                     }
                 } 
             }

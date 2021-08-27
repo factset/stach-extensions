@@ -29,6 +29,12 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             Assert.IsTrue(table[0].Rows.Count == 62);
             CollectionAssert.AreEqual(table[0].Rows[0].Cells, firstRow);
             CollectionAssert.AreEqual(table[0].Rows[1].Cells, secondRow);
+
+            Assert.IsTrue(table[0].Metadata.Count == 18, "There is an incorrect amount of Metadata items");
+            Assert.AreEqual("[ \"Single\" ]", table[0].Metadata["Report Frequency"]);
+
+            Assert.IsTrue(table[0].RawMetadata.Count == 18, "There is an incorrect amount of RawMetadata items");
+            Assert.AreEqual("\"Industry - Beginning of Period\"", table[0].RawMetadata["Grouping Frequency"][1].ToString());
         }
         
         [TestMethod]
@@ -46,6 +52,12 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             Assert.IsTrue(table[0].Rows.Count == 2);
             CollectionAssert.AreEqual(table[0].Rows[0].Cells, firstRow);
             CollectionAssert.AreEqual(table[0].Rows[1].Cells, secondRow);
+
+            Assert.IsTrue(table[0].Metadata.Count == 1, "There is an incorrect amount of Metadata items");
+            Assert.AreEqual("78647885fa4f4594b775a1431e62090c:", table[0].Metadata["CalculationId"]);
+
+            Assert.IsTrue(table[0].RawMetadata.Count == 1, "There is an incorrect amount of RawMetadata items");
+            Assert.AreEqual("\"78647885fa4f4594b775a1431e62090c:\"", table[0].RawMetadata["CalculationId"][0].ToString());
         }
     }
 }

@@ -33,6 +33,12 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             Assert.IsTrue(table[0].Rows.Count == 635);
             CollectionAssert.AreEqual(table[0].Rows[0].Cells, firstRow);
             CollectionAssert.AreEqual(table[0].Rows[1].Cells, secondRow);
+            
+            Assert.IsTrue(table[0].Metadata.Count == 18, "There is an incorrect amount of Metadata items");
+            Assert.AreEqual("[ \"Single\" ]", table[0].Metadata["Report Frequency"]);
+
+            Assert.IsTrue(table[0].RawMetadata.Count == 18, "There is an incorrect amount of RawMetadata items");
+            Assert.AreEqual("\"Industry - FactSet - Beginning of Period\"", table[0].RawMetadata["Grouping Frequency"][1].ToString());
         }
         
         [TestMethod]
@@ -48,6 +54,12 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             Assert.IsTrue(table[1].Rows.Count == 630);
             CollectionAssert.AreEqual(table[0].Rows[0].Cells, firstRow);
             CollectionAssert.AreEqual(table[0].Rows[1].Cells, secondRow);
+
+            Assert.IsTrue(table[1].Metadata.Count == 18, "There is an incorrect amount of Metadata items");
+            Assert.AreEqual("[ \"Single\" ]", table[1].Metadata["Report Frequency"]);
+
+            Assert.IsTrue(table[1].RawMetadata.Count == 18, "There is an incorrect amount of RawMetadata items");
+            Assert.AreEqual("\"Industry - FactSet - Beginning of Period\"", table[1].RawMetadata["Grouping Frequency"][1].ToString());
         }
         
         [TestMethod]
@@ -79,7 +91,12 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             
             Assert.IsTrue(!table[0].Rows[3].isHeader);
             CollectionAssert.AreEqual(table[0].Rows[3].Cells, fourthRow);
-            
+
+            Assert.IsTrue(table[0].Metadata.Count == 1, "There is an incorrect amount of Metadata items");
+            Assert.AreEqual("Risk Analysis", table[0].Metadata["m_h"]);
+
+            Assert.IsTrue(table[0].RawMetadata.Count == 1, "There is an incorrect amount of RawMetadata items");
+            Assert.AreEqual("\"Risk Analysis\"", table[0].RawMetadata["m_h"][0].ToString());
         }
     }
 }
