@@ -101,17 +101,26 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                     if (metadataItem != null)
                     {
                         table.Metadata.Add(location, StachUtilities.ValueToString(metadataItem.Value));
-                        //table.RawMetadata.Add(location, metadataItem.Value);
 
-                        // parsing metadataItem.Value into a List of values
-                        string valString = metadataItem.Value.ToString();
-                        string[] values = valString.Split(new string[] { "\", \"" }, StringSplitOptions.None);
                         List<Google.Protobuf.WellKnownTypes.Value> valuesList = new List<Google.Protobuf.WellKnownTypes.Value>();
-                        foreach (string val in values)
+                        if (metadataItem.Value.KindCase.ToString() == "ListValue")
                         {
-                            char[] charsToTrim = { '[', ' ', ']', '\"' };
-                            string trimmed = val.Trim(charsToTrim);
-                            valuesList.Add(Google.Protobuf.WellKnownTypes.Value.ForString(trimmed));
+                            foreach (Google.Protobuf.WellKnownTypes.Value val in metadataItem.Value.ListValue.Values)
+                            {
+                                valuesList.Add(val);
+                            }
+                        }
+                        else if (metadataItem.Value.KindCase.ToString() == "StringValue")
+                        {
+                            // parsing metadataItem.Value into a List of values
+                            string valString = metadataItem.Value.ToString();
+                            string[] values = valString.Split(new string[] { "\", \"" }, StringSplitOptions.None);
+                            foreach (string val in values)
+                            {
+                                char[] charsToTrim = { '[', ' ', ']', '\"' };
+                                string trimmed = val.Trim(charsToTrim);
+                                valuesList.Add(Google.Protobuf.WellKnownTypes.Value.ForString(trimmed));
+                            }
                         }
 
                         table.RawMetadata.Add(location, valuesList);

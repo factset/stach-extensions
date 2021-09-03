@@ -95,9 +95,6 @@ namespace FactSet.Protobuf.Stach.Extensions.V1
                 {
                     table.Metadata.Add(metadataItems[location].Name, metadataItems[location].StringValue);
 
-                    //Google.Protobuf.WellKnownTypes.Value val = Google.Protobuf.WellKnownTypes.Value.ForString(metadataItems[location].StringValue);
-                    //table.RawMetadata.Add(metadataItems[location].Name, val);
-
                     string[] stringvalues = metadataItems[location].StringValue.Split('|');
                     List<Google.Protobuf.WellKnownTypes.Value> values = new List<Google.Protobuf.WellKnownTypes.Value>();
                     foreach (string value in stringvalues)

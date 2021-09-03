@@ -143,15 +143,25 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
 
                 finalTable.Metadata.Add(metadataItem.Key, metadataValueString);
 
-                // parsing metadataItem.Value into a List of values
-                string valString = metadataValue.ToString();
-                string[] values = valString.Split(new string[] { "\", \"" }, StringSplitOptions.None);
                 List<Google.Protobuf.WellKnownTypes.Value> valuesList = new List<Google.Protobuf.WellKnownTypes.Value>();
-                foreach (string val in values)
+                if (metadataValue.KindCase.ToString() == "ListValue")
                 {
-                    char[] charsToTrim = { '[', ' ', ']', '\"' };
-                    string trimmed = val.Trim(charsToTrim);
-                    valuesList.Add(Google.Protobuf.WellKnownTypes.Value.ForString(trimmed));
+                    foreach (Google.Protobuf.WellKnownTypes.Value val in metadataValue.ListValue.Values)
+                    {
+                        valuesList.Add(val);
+                    }
+                }
+                else if (metadataValue.KindCase.ToString() == "StringValue")
+                {
+                    // parsing metadataItem.Value into a List of values
+                    string valString = metadataValue.ToString();
+                    string[] values = valString.Split(new string[] { "\", \"" }, StringSplitOptions.None);
+                    foreach (string val in values)
+                    {
+                        char[] charsToTrim = { '[', ' ', ']', '\"' };
+                        string trimmed = val.Trim(charsToTrim);
+                        valuesList.Add(Google.Protobuf.WellKnownTypes.Value.ForString(trimmed));
+                    }
                 }
 
                 finalTable.RawMetadata.Add(metadataItem.Key, valuesList);
