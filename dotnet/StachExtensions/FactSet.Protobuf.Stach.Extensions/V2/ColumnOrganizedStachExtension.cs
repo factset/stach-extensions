@@ -112,15 +112,8 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                         }
                         else if (metadataItem.Value.KindCase.ToString() == "StringValue")
                         {
-                            // parsing metadataItem.Value into a List of values
-                            string valString = metadataItem.Value.ToString();
-                            string[] values = valString.Split(new string[] { "\", \"" }, StringSplitOptions.None);
-                            foreach (string val in values)
-                            {
-                                char[] charsToTrim = { '[', ' ', ']', '\"' };
-                                string trimmed = val.Trim(charsToTrim);
-                                valuesList.Add(Google.Protobuf.WellKnownTypes.Value.ForString(trimmed));
-                            }
+                            string val = metadataItem.Value.ToString().Trim('\"');
+                            valuesList.Add(Google.Protobuf.WellKnownTypes.Value.ForString(val));
                         }
 
                         table.RawMetadata.Add(location, valuesList);
