@@ -51,38 +51,53 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
         Map<String, TableProto.Table> tablesMap = packageObj.getTablesMap();
         TableProto.Table primaryTable = tablesMap.get(primaryTableId);
         String headerId = primaryTable.getDefinition().getHeaderTableId();
-        TableProto.Table headerTable = tablesMap.get(headerId);
         int rowsCount = primaryTable.getData().getRowsCount();
 
         TableData table = new TableData();
 
-        // Construct the column headers by considering dimension columns and header
-        // rows.
-        List<ColumnDefinitionProto.ColumnDefinition> headerTableSeriesDefinitions = headerTable.getDefinition().getColumnsList();
         List<ColumnDefinitionProto.ColumnDefinition> primaryTableSeriesDefinitions = primaryTable.getDefinition().getColumnsList();
-
-        Map<String, ColumnDataProto.ColumnData> headerTableColumns = headerTable.getData().getColumnsMap();
         Map<String, ColumnDataProto.ColumnData> primaryTableColumns = primaryTable.getData().getColumnsMap();
 
-        for (ColumnDefinitionProto.ColumnDefinition headerTableseriesDefinition : headerTableSeriesDefinitions) {
-            Row headerRow = new Row();
-            headerRow.setHeader(true);
-            for (ColumnDefinitionProto.ColumnDefinition primaryTableSeriesDefinition : primaryTableSeriesDefinitions) {
-                if (primaryTableSeriesDefinition.getIsDimension()) {
-                    headerRow.getCells().add(Utilities.isNullOrEmpty(primaryTableSeriesDefinition.getDescription()) ? primaryTableSeriesDefinition.getName() : primaryTableSeriesDefinition.getDescription());
-                    continue;
+        if (headerId.length() > 0) {
+            TableProto.Table headerTable = tablesMap.get(headerId);
+            // Construct the column headers by considering dimension columns and header
+            // rows.
+            List<ColumnDefinitionProto.ColumnDefinition> headerTableSeriesDefinitions = headerTable.getDefinition().getColumnsList();
+            Map<String, ColumnDataProto.ColumnData> headerTableColumns = headerTable.getData().getColumnsMap();
+
+            for (ColumnDefinitionProto.ColumnDefinition headerTableseriesDefinition : headerTableSeriesDefinitions) {
+                Row headerRow = new Row();
+                headerRow.setHeader(true);
+                for (ColumnDefinitionProto.ColumnDefinition primaryTableSeriesDefinition : primaryTableSeriesDefinitions) {
+                    if (primaryTableSeriesDefinition.getIsDimension()) {
+                        headerRow.getCells().add(Utilities.isNullOrEmpty(primaryTableSeriesDefinition.getDescription()) ? primaryTableSeriesDefinition.getName() : primaryTableSeriesDefinition.getDescription());
+                        continue;
+                    }
+
+                    String headerColumnId = primaryTableSeriesDefinition.getHeaderId();
+                    String nullFormat = headerTableseriesDefinition.getFormat().getNullFormat();
+
+                    int indexOfHeader = StachUtilities.getIndexOf(headerTable.getData().getRowsList(), headerColumnId);
+                    Value val = headerTableColumns.get(headerTableseriesDefinition.getId()).getValues().getValues(indexOfHeader);
+                    String valObj = StachUtilities.valueToString(val);
+                    headerRow.getCells().add(valObj == null ? nullFormat : valObj);
                 }
-
-                String headerColumnId = primaryTableSeriesDefinition.getHeaderId();
-                String nullFormat = headerTableseriesDefinition.getFormat().getNullFormat();
-
-                int indexOfHeader = StachUtilities.getIndexOf(headerTable.getData().getRowsList(), headerColumnId);
-                Value val = headerTableColumns.get(headerTableseriesDefinition.getId()).getValues().getValues(indexOfHeader);
-                String valObj = StachUtilities.valueToString(val);
-                headerRow.getCells().add(valObj == null ? nullFormat : valObj);
+                table.getRows().add(headerRow);
             }
+        }
+        else {
+            // if we dont have header row in the firstRow, it is simplifiedrow format
+            // process simplifiedrow headers from description section
+            Row headerRow = new Row();
+
+            for (ColumnDefinitionProto.ColumnDefinition columnDefinition : primaryTable.getDefinition().getColumnsList()) {
+                String description = Utilities.isNullOrEmpty(columnDefinition.getDescription()) ? columnDefinition.getName() : columnDefinition.getDescription();
+                headerRow.getCells().add(description);
+            }
+            headerRow.setHeader(true);
             table.getRows().add(headerRow);
         }
+
         // Construct the column data
         for (int i = 0; i < rowsCount; i++) {
             Row dataRow = new Row();
