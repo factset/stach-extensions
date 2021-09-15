@@ -36,6 +36,18 @@ class V2StachTests(unittest.TestCase):
             self.assertEqual(headerColumns, tables[0].columns.values.tolist())
             self.assertEqual(firstRow, tables[0].iloc[0].values.tolist())
 
+    def test_stachv2_metadata(self):
+        file = os.path.join(ROOT_DIR, "resources", "V2RowStachData.json")
+        with open(file) as f:
+            data = json.load(f)
+            table = data['tables']['3805a4c8-5493-4e63-9d71-c553d20f266b']
+            stachBuilder = StachExtensionFactory.get_row_organized_builder(StachVersion.V2)
+            stachExtension = stachBuilder.add_table("id1", table).build()
+            metadata = stachExtension.get_metadata()
+
+            self.assertEqual(18, len(metadata[0]))
+            self.assertEqual("Single", metadata[0]["Report Frequency"][0].string_value)
+            self.assertEqual("Industry - FactSet - Beginning of Period", metadata[0]["Grouping Frequency"][1].string_value)
 
 if __name__ == '__main__':
     unittest.main()

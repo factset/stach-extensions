@@ -20,6 +20,12 @@ class RowOrganizedStachExtension(IStachExtension):
             tables.append(RowOrganizedStachExtension.__generate_table(self.package.tables[tableId]))
         return tables
 
+    def get_metadata(self):
+        metadata = list()
+        for tableId in self.package.tables:
+            metadata.append(RowOrganizedStachExtension.__generate_metadata(self.package.tables[tableId]))
+        return metadata
+
     @staticmethod
     def __generate_table(table):
         """
@@ -110,3 +116,22 @@ class RowOrganizedStachExtension(IStachExtension):
             data_frame = data_frame.replace({np.nan: None})
 
             return data_frame
+
+    @staticmethod
+    def __generate_metadata(table):
+        """
+        The purpose of this function is to generate the metadata for the provided stach data through the package.
+
+        :param table: A particular table inside a package.
+        :return: Returns the generated metadata from the package provided.
+        """
+        metadata = {}
+
+        for metadataItem in table.data.table_metadata:
+            values = list()
+            for value in table.data.table_metadata[metadataItem].value.list_value.values:
+                values.append(value)
+
+            metadata[metadataItem] = values
+
+        return metadata
