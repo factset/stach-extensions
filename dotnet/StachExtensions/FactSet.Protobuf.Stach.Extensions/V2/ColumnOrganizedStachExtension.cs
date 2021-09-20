@@ -82,6 +82,8 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             }
             else
             {
+                // If first row is not header row, considering it as simplified row format.
+                // Process simplifiedrow headers from description section
                 var headerRow = new Row { Cells = new List<string>() };
                 foreach (var columnDefinition in primaryTable.Definition.Columns)
                 {
