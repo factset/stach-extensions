@@ -54,6 +54,8 @@ class ColumnOrganizedStachExtension(IStachExtension):
                     headers.append(header_row)
             
             else:
+                # if there is no headers table, it is simplified row format
+                # process simplifiedrow headers from description section
                 header = list()
                 for column_definition in primary_table.definition.columns:
                     header.append(column_definition.description or column_definition.name)
