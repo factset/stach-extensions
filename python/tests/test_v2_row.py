@@ -40,9 +40,8 @@ class V2StachTests(unittest.TestCase):
         file = os.path.join(ROOT_DIR, "resources", "V2RowStachData.json")
         with open(file) as f:
             data = json.load(f)
-            table = data['tables']['3805a4c8-5493-4e63-9d71-c553d20f266b']
             stachBuilder = StachExtensionFactory.get_row_organized_builder(StachVersion.V2)
-            stachExtension = stachBuilder.add_table("id1", table).build()
+            stachExtension = stachBuilder.set_package(data).build()
             metadata = stachExtension.get_metadata()
 
             self.assertEqual(18, len(metadata[0]))
