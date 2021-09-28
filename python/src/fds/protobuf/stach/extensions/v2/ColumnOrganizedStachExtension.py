@@ -31,25 +31,34 @@ class ColumnOrganizedStachExtension(IStachExtension):
         if isinstance(package_response, Package):
             primary_table = package_response.tables[primary_table_id]
             header_id = primary_table.definition.header_table_id
-            header_table = package_response.tables[header_id]
             headers = list(list())
+            header_table = package_response.tables[header_id]
 
-            # Construct header rows
-            for header_table_definition in header_table.definition.columns:
-                header_row = list()
+            if (len(header_id) > 0):
 
-                for primary_table_definition in primary_table.definition.columns:
-                    if (primary_table_definition.is_dimension == True):
-                        header_row.append(primary_table_definition.description or primary_table_definition.name)
-                        continue
+                # Construct header rows
+                for header_table_definition in header_table.definition.columns:
+                    header_row = list()
 
-                    headerColumnId = primary_table_definition.header_id
-                    indexOfHeaderColumnId = [index for index in range(len(header_table.data.rows)) if
-                                             header_table.data.rows[index].id == headerColumnId][0]
-                    val = header_table.data.columns[header_table_definition.id].values[indexOfHeaderColumnId]
-                    header_row.append(val)
+                    for primary_table_definition in primary_table.definition.columns:
+                        if (primary_table_definition.is_dimension == True):
+                            header_row.append(primary_table_definition.description or primary_table_definition.name)
+                            continue
 
-                headers.append(header_row)
+                        headerColumnId = primary_table_definition.header_id
+                        indexOfHeaderColumnId = [index for index in range(len(header_table.data.rows)) if
+                                                header_table.data.rows[index].id == headerColumnId][0]
+                        val = header_table.data.columns[header_table_definition.id].values[indexOfHeaderColumnId]
+                        header_row.append(val)
+
+                    headers.append(header_row)
+            
+            else:
+                # if there is no headers table process headers from description section
+                header = list()
+                for column_definition in primary_table.definition.columns:
+                    header.append(column_definition.description or column_definition.name)
+                headers.append(header)
 
             # Construct data rows
             data = list(list())
