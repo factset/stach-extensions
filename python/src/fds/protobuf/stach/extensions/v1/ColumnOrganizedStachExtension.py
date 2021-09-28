@@ -17,6 +17,12 @@ class ColumnOrganizedStachExtension(IStachExtension):
             tables.append(ColumnOrganizedStachExtension.__generate_table(self.package, primary_table_id))
         return tables
 
+    def get_metadata(self):
+        metadata = list()
+        for primary_table_id in self.package.primary_table_ids:
+            metadata.append(self.__generate_metadata(self.package, primary_table_id))
+        return metadata
+
     @staticmethod
     def __generate_table(package_response, primary_table_id):
         """
@@ -70,3 +76,24 @@ class ColumnOrganizedStachExtension(IStachExtension):
 
         else:
             ValueError("Response data passed should be of package type.")
+
+    @staticmethod
+    def __generate_metadata(package_response, primary_table_id):
+        """
+        The purpose of this function is to generate the metadata for the provided stach data through the package.
+
+        :param package_response: Stach Data which is represented as a Package object.
+        :param primary_table_id: Refers to the id for a particular table inside a package.
+        :return: Returns the generated metadata from the package provided.
+        """
+        primary_table = package_response.tables[primary_table_id]
+        metadata = {}
+
+        for location in primary_table.data.metadata.locations.table:
+            name = primary_table.data.metadata.items[location].name
+
+            stringval = primary_table.data.metadata.items[location].string_value
+            values = stringval.split("|")
+            
+            metadata[name] = values
+        return metadata
