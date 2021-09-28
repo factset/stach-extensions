@@ -17,11 +17,11 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-public class V2ColumnOrganizedStachTests {
+public class V2ColumnOrganizedStachTestsWithoutHeaderTable {
 
     Path workingDirectory;
     ColumnStachExtensionBuilder stachExtensionBuilder;
-    String fileV2ColumnOrganizedStach = "V2ColumnOrganizedStachData.json";
+    String fileV2ColumnOrganizedStachWithoutHeadersTable = "V2ColumnOrganizedStachDataWithoutHeadersTable.json";
     String input;
 
     List<String> row1 = Arrays.asList("total0", "group1", "group2", "Port.+Weight", "Bench.+Weight", "Difference");
@@ -42,7 +42,7 @@ public class V2ColumnOrganizedStachTests {
 
     @Test
     public void testConvert() throws InvalidProtocolBufferException {
-        readFile(fileV2ColumnOrganizedStach);
+        readFile(fileV2ColumnOrganizedStachWithoutHeadersTable);
 
         stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
@@ -58,7 +58,7 @@ public class V2ColumnOrganizedStachTests {
 
     @Test
     public void testMetaData() throws InvalidProtocolBufferException {
-        readFile(fileV2ColumnOrganizedStach);
+        readFile(fileV2ColumnOrganizedStachWithoutHeadersTable);
         stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
         List<TableData> tableDataList = stachExtension.convertToTable();
