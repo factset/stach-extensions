@@ -86,8 +86,7 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
             }
         }
         else {
-            // if we dont have header row in the firstRow, it is simplifiedrow format
-            // process simplifiedrow headers from description section
+            // if there is no headers table process headers from description section
             Row headerRow = new Row();
 
             for (ColumnDefinitionProto.ColumnDefinition columnDefinition : primaryTable.getDefinition().getColumnsList()) {
