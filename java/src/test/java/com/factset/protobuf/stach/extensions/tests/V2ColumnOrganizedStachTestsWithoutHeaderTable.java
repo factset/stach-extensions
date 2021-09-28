@@ -1,6 +1,6 @@
 package com.factset.protobuf.stach.extensions.tests;
 
-import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
+import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
 import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
@@ -17,16 +17,15 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-public class V2SimplifiedRowOrganizedStachTests {
+public class V2ColumnOrganizedStachTestsWithoutHeaderTable {
 
     Path workingDirectory;
-    RowStachExtensionBuilder stachExtensionBuilder;
-    String fileV2SimplifiedRowOrganizedStach = "V2SimplifiedRowOrganizedStachData.json";
+    ColumnStachExtensionBuilder stachExtensionBuilder;
+    String fileV2ColumnOrganizedStachWithoutHeadersTable = "V2ColumnOrganizedStachDataWithoutHeadersTable.json";
     String input;
 
     List<String> row1 = Arrays.asList("total0", "group1", "group2", "Port.+Weight", "Bench.+Weight", "Difference");
-    List<String> row2 = Arrays.asList("Total", "", "", "100.0", "", "100.0");
-    String inputFileName = "V2SimplifiedRowOrganizedStachData.json";
+    List<String> row2 = Arrays.asList("Total", "", "", "100.0", "--", "100.0");
 
     private void readFile(String fileName){
         try{
@@ -43,9 +42,9 @@ public class V2SimplifiedRowOrganizedStachTests {
 
     @Test
     public void testConvert() throws InvalidProtocolBufferException {
+        readFile(fileV2ColumnOrganizedStachWithoutHeadersTable);
 
-        readFile(fileV2SimplifiedRowOrganizedStach);
-        stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+        stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
         List<TableData> tableDataList = stachExtension.convertToTable();
 
@@ -59,28 +58,14 @@ public class V2SimplifiedRowOrganizedStachTests {
 
     @Test
     public void testMetaData() throws InvalidProtocolBufferException {
-
-        readFile(fileV2SimplifiedRowOrganizedStach);
-        stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+        readFile(fileV2ColumnOrganizedStachWithoutHeadersTable);
+        stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
         List<TableData> tableDataList = stachExtension.convertToTable();
 
         Assert.assertEquals(tableDataList.get(0).getMetadata().keySet().toArray().length, 18);
         Assert.assertEquals(tableDataList.get(0).getMetadata().get("Report Frequency"), "[\"Single\"]");
-    }
 
-    @Test
-    public void testMetaDataArray() throws InvalidProtocolBufferException {
-
-        readFile(fileV2SimplifiedRowOrganizedStach);
-        stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
-        StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
-        List<TableData> tableDataList = stachExtension.convertToTable();
-
-
-        Assert.assertEquals(tableDataList.get(0).getRawMetadata().keySet().toArray().length, 18);
-        Assert.assertEquals(tableDataList.get(0).getRawMetadata().get("Report Frequency").get(0).getStringValue(), "Single");
-        Assert.assertEquals(tableDataList.get(0).getRawMetadata().get("Grouping Frequency").get(1).getStringValue(), "Industry - Beginning of Period");
     }
 
 }

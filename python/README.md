@@ -7,11 +7,18 @@ For manual install and testing from the source code follow the below instruction
 
 ## Installation
 
-Navigate into the "src" folder and run the below commands
-
 ``` python
+cd src
 python setup.py sdist
-pip install .
+```
+Copy and paste `fds.protobuf.stach.extensions-1.0.1.tar` from `src/dist` to `tests`
+``` python
+cd ../tests
+```
+Create a virtual environment
+``` python
+pip install -r requirements.txt
+pip install fds.protobuf.stach.extensions-1.0.1.tar
 ```
 
 ## Testing
@@ -22,3 +29,6 @@ Navigate to the "tests" folder and run the below command
 ```python
 python -m unittest discover -p "test_*.py"
 ```
+#### Or
+
+Follow [these](https://code.visualstudio.com/docs/python/testing#_configure-tests) steps to run tests within VSCode
