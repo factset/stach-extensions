@@ -36,7 +36,6 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             
             var primaryTable = package.Tables[primaryTableId];
             var headerId = primaryTable.Definition.HeaderTableId;
-            var headerTable = package.Tables[headerId];
             var columnIds = primaryTable.Definition.Columns.Select(c => c.Id).ToList();
             var rowCount = primaryTable.Data.Rows.Count;
 
@@ -51,31 +50,52 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                 Metadata = new Dictionary<string, string>()
             };
 
-            var headerDataRowList = headerTable.Data.Rows.Select(x => x.Id).ToList();
-            foreach (var headerTableSeriesDefinition in headerTable.Definition.Columns)
+            if (headerId.Length > 0)
             {
-                var headerRow = new Row {Cells = new List<string>()};
-                foreach (var primaryTableSeriesDefinition in primaryTable.Definition.Columns)
-                {
-                    if (primaryTableSeriesDefinition.IsDimension)
-                    {
-                        var description = string.IsNullOrEmpty(primaryTableSeriesDefinition.Description)
-                            ? primaryTableSeriesDefinition.Name
-                            : primaryTableSeriesDefinition.Description;
+                var headerTable = package.Tables[headerId];
 
-                        headerRow.Cells.Add(description);
-                        continue;
+                var headerDataRowList = headerTable.Data.Rows.Select(x => x.Id).ToList();
+                foreach (var headerTableSeriesDefinition in headerTable.Definition.Columns)
+                {
+                    var headerRow = new Row { Cells = new List<string>() };
+                    foreach (var primaryTableSeriesDefinition in primaryTable.Definition.Columns)
+                    {
+                        if (primaryTableSeriesDefinition.IsDimension)
+                        {
+                            var description = string.IsNullOrEmpty(primaryTableSeriesDefinition.Description)
+                                ? primaryTableSeriesDefinition.Name
+                                : primaryTableSeriesDefinition.Description;
+
+                            headerRow.Cells.Add(description);
+                            continue;
+                        }
+
+                        var index = headerDataRowList.IndexOf(primaryTableSeriesDefinition.HeaderId);
+                        var value = headerTable.Data.Columns[headerTableSeriesDefinition.Id].Values.Values[index];
+
+                        headerRow.Cells.Add(StachUtilities.ValueToString(value));
                     }
 
-                    var index = headerDataRowList.IndexOf(primaryTableSeriesDefinition.HeaderId);
-                    var value = headerTable.Data.Columns[headerTableSeriesDefinition.Id].Values.Values[index];
-                        
-                    headerRow.Cells.Add(StachUtilities.ValueToString(value));
+                    headerRow.isHeader = true;
+                    table.Rows.Add(headerRow);
+                }
+            }
+            else
+            {
+                // if there is no headers table process headers from description section
+                var headerRow = new Row { Cells = new List<string>() };
+                foreach (var columnDefinition in primaryTable.Definition.Columns)
+                {
+                    var description = string.IsNullOrWhiteSpace(columnDefinition.Description)
+                        ? columnDefinition.Name
+                        : columnDefinition.Description;
+                    headerRow.Cells.Add(description);
                 }
 
                 headerRow.isHeader = true;
                 table.Rows.Add(headerRow);
             }
+
 
             // Constructs the column data
             for (int i = 0; i < rowCount; i++)
