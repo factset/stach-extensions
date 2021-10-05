@@ -87,11 +87,9 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
             table.getMetadata().put(entry.getValue().getName(), entry.getValue().getStringValue());
 
             List<Value> values = new ArrayList<>();
-            String [] valArray = entry.getValue().getStringValue().split("\\|", -1);
-            for (String listItem : valArray) {
-                Value val = Value.newBuilder().setStringValue(listItem).build();
-                values.add(val);
-            }
+            Value val = Value.newBuilder().setStringValue(entry.getValue().getStringValue()).build();
+            values.add(val);
+
             table.getRawMetadata().put(entry.getValue().getName(), values);
         }
 
