@@ -10,3 +10,4 @@ python/src/.idea/*
 **/.idea/*
 **/bin/*
 **/obj/*
+*.tar.gz
