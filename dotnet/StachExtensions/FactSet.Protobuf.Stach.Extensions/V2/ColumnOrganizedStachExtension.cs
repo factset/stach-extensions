@@ -2,6 +2,8 @@
 using System.Linq;
 using FactSet.Protobuf.Stach.Extensions.Models;
 using System;
+using System.Diagnostics;
+using Google.Protobuf.WellKnownTypes;
 
 namespace FactSet.Protobuf.Stach.Extensions.V2
 {
@@ -48,7 +50,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             {
                 Rows = new List<Row>(),
                 Metadata = new Dictionary<string, string>(),
-                RawMetadata = new Dictionary<string, List<Google.Protobuf.WellKnownTypes.Value>>()
+                RawMetadata = new Dictionary<string, List<Value>>()
             };
 
             if (headerId.Length > 0)
@@ -122,18 +124,17 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                     {
                         table.Metadata.Add(location, StachUtilities.ValueToString(metadataItem.Value));
 
-                        List<Google.Protobuf.WellKnownTypes.Value> valuesList = new List<Google.Protobuf.WellKnownTypes.Value>();
+                        List<Value> valuesList = new List<Value>();
                         if (metadataItem.Value.KindCase.ToString() == "ListValue")
                         {
-                            foreach (Google.Protobuf.WellKnownTypes.Value val in metadataItem.Value.ListValue.Values)
+                            foreach (Value val in metadataItem.Value.ListValue.Values)
                             {
                                 valuesList.Add(val);
                             }
                         }
                         else if (metadataItem.Value.KindCase.ToString() == "StringValue")
                         {
-                            string val = metadataItem.Value.ToString().Trim('\"');
-                            valuesList.Add(Google.Protobuf.WellKnownTypes.Value.ForString(val));
+                            valuesList.Add(metadataItem.Value);
                         }
 
                         table.RawMetadata.Add(location, valuesList);

@@ -3,11 +3,16 @@ using System.Linq;
 using FactSet.Protobuf.Stach.Extensions.Models;
 using FactSet.Protobuf.Stach.V2;
 using System;
+using System.Diagnostics;
+using Google.Protobuf.WellKnownTypes;
+
 
 namespace FactSet.Protobuf.Stach.Extensions.V2
 {
     public class RowOrganizedStachExtension : IStachExtension
     {
+        public const string ListValue = "ListValue";
+
         private RowOrganizedPackage pkg;
 
         public RowOrganizedStachExtension(RowOrganizedPackage pkg)
@@ -33,7 +38,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             {
                 Rows = new List<Row>(),
                 Metadata = new Dictionary<string, string>(),
-                RawMetadata = new Dictionary<string, List<Google.Protobuf.WellKnownTypes.Value>>()
+                RawMetadata = new Dictionary<string, List<Value>>()
             };
             
             var rowIndex = 0;
@@ -143,18 +148,17 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
 
                 finalTable.Metadata.Add(metadataItem.Key, metadataValueString);
 
-                List<Google.Protobuf.WellKnownTypes.Value> valuesList = new List<Google.Protobuf.WellKnownTypes.Value>();
-                if (metadataValue.KindCase.ToString() == "ListValue")
+                List<Value> valuesList = new List<Value>();
+                if (metadataValue.KindCase.ToString() == ListValue)
                 {
-                    foreach (Google.Protobuf.WellKnownTypes.Value val in metadataValue.ListValue.Values)
+                    foreach (Value val in metadataValue.ListValue.Values)
                     {
                         valuesList.Add(val);
                     }
                 }
                 else if (metadataValue.KindCase.ToString() == "StringValue")
                 {
-                    string val = metadataValue.ToString().Trim('\"');
-                    valuesList.Add(Google.Protobuf.WellKnownTypes.Value.ForString(val));
+                    valuesList.Add(metadataValue);
                 }
 
                 finalTable.RawMetadata.Add(metadataItem.Key, valuesList);
