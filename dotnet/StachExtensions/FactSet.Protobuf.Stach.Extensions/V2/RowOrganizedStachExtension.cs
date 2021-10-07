@@ -11,9 +11,9 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
 {
     public class RowOrganizedStachExtension : IStachExtension
     {
-        public const string ListValue = "ListValue";
-
         private RowOrganizedPackage pkg;
+        public const string ListValue = "ListValue";
+        public const string StringValue = "StringValue";
 
         public RowOrganizedStachExtension(RowOrganizedPackage pkg)
         {
@@ -156,7 +156,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                         valuesList.Add(val);
                     }
                 }
-                else if (metadataValue.KindCase.ToString() == "StringValue")
+                else if (metadataValue.KindCase.ToString() == StringValue)
                 {
                     valuesList.Add(metadataValue);
                 }
