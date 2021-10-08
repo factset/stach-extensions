@@ -12,8 +12,6 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
     public class RowOrganizedStachExtension : IStachExtension
     {
         private RowOrganizedPackage pkg;
-        public const string ListValue = "ListValue";
-        public const string StringValue = "StringValue";
 
         public RowOrganizedStachExtension(RowOrganizedPackage pkg)
         {
@@ -149,14 +147,14 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                 finalTable.Metadata.Add(metadataItem.Key, metadataValueString);
 
                 List<Value> valuesList = new List<Value>();
-                if (metadataValue.KindCase.ToString() == ListValue)
+                if (metadataValue.KindCase == Value.KindOneofCase.ListValue)
                 {
                     foreach (Value val in metadataValue.ListValue.Values)
                     {
                         valuesList.Add(val);
                     }
                 }
-                else if (metadataValue.KindCase.ToString() == StringValue)
+                else if (metadataValue.KindCase == Value.KindOneofCase.StringValue)
                 {
                     valuesList.Add(metadataValue);
                 }

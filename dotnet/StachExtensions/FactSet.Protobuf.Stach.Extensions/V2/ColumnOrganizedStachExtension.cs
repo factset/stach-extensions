@@ -10,9 +10,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
     public class ColumnOrganizedStachExtension : IStachExtension
     {
         private readonly Stach.V2.Package pkg;
-        public const string ListValue = "ListValue";
-        public const string StringValue = "StringValue";
-        
+
         public ColumnOrganizedStachExtension(Stach.V2.Package pkg)
         {
             this.pkg = pkg;
@@ -127,14 +125,14 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                         table.Metadata.Add(location, StachUtilities.ValueToString(metadataItem.Value));
 
                         List<Value> valuesList = new List<Value>();
-                        if (metadataItem.Value.KindCase.ToString() == ListValue)
+                        if (metadataItem.Value.KindCase == Value.KindOneofCase.ListValue)
                         {
                             foreach (Value val in metadataItem.Value.ListValue.Values)
                             {
                                 valuesList.Add(val);
                             }
                         }
-                        else if (metadataItem.Value.KindCase.ToString() == StringValue)
+                        else if (metadataItem.Value.KindCase == Value.KindOneofCase.StringValue)
                         {
                             valuesList.Add(metadataItem.Value);
                         }
