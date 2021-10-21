@@ -148,11 +148,15 @@ public class RowOrganizedStachExtension implements StachExtensions {
             String metaDataValue = StachUtilities.valueToString(stachTable.getData().getTableMetadataMap().get(key).getValue());
             table.getMetadata().put(key, metaDataValue);
 
-            List<Value> values = new ArrayList<>();
-            for (int i=0; i<stachTable.getData().getTableMetadataMap().get(key).getValue().getListValue().getValuesList().size(); i++) {
-                values.add(stachTable.getData().getTableMetadataMap().get(key).getValue().getListValue().getValuesList().get(i));
+            Value metadataValue = stachTable.getData().getTableMetadataMap().get(key).getValue();
+            if (metadataValue.getKindCase() == Value.KindCase.LIST_VALUE) {
+                List<Value> valuesList = metadataValue.getListValue().getValuesList();
+                table.getRawMetadata().put(key, valuesList);
             }
-            table.getRawMetadata().put(key, values);
+            else {
+                List<Value> valuesList = Arrays.asList(metadataValue);
+                table.getRawMetadata().put(key, valuesList);
+            }
         }
 
         return table;

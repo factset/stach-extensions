@@ -10,12 +10,10 @@ import com.factset.protobuf.stach.v2.table.ColumnDefinitionProto;
 import com.factset.protobuf.stach.v2.table.MetadataItemProto;
 import com.factset.protobuf.stach.v2.table.TableProto;
 import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.ListValue;
 import com.google.protobuf.Value;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ColumnOrganizedStachExtension implements StachExtensions {
 
@@ -117,12 +115,15 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
         for (Map.Entry<String, MetadataItemProto.MetadataItem> entry : metadata.entrySet()) {
             table.getMetadata().put(entry.getKey(), StachUtilities.valueToString(entry.getValue().getValue()));
 
-            List<Value> values = new ArrayList<>();
-            List<Value> list = entry.getValue().getValue().getListValue().getValuesList();
-            for (int i=0; i<list.size(); i++) {
-                values.add(list.get(i));
+            Value metadataValue = entry.getValue().getValue();
+            if (metadataValue.getKindCase() == Value.KindCase.LIST_VALUE) {
+                List<Value> valuesList = metadataValue.getListValue().getValuesList();
+                table.getRawMetadata().put(entry.getKey(), valuesList);
             }
-            table.getRawMetadata().put(entry.getKey(), values);
+            else {
+                List<Value> valuesList = Arrays.asList(metadataValue);
+                table.getRawMetadata().put(entry.getKey(), valuesList);
+            }
         }
 
         return table;
