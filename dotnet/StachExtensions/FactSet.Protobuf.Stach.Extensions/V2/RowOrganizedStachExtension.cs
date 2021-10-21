@@ -154,7 +154,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                         valuesList.Add(val);
                     }
                 }
-                else if (metadataValue.KindCase == Value.KindOneofCase.StringValue)
+                else
                 {
                     valuesList.Add(metadataValue);
                 }

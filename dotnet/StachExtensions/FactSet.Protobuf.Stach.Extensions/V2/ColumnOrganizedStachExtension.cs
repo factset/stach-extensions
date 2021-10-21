@@ -132,7 +132,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                                 valuesList.Add(val);
                             }
                         }
-                        else if (metadataItem.Value.KindCase == Value.KindOneofCase.StringValue)
+                        else
                         {
                             valuesList.Add(metadataItem.Value);
                         }
