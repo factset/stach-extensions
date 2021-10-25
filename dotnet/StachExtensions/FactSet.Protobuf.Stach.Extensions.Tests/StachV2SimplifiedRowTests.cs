@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using FactSet.Protobuf.Stach.Extensions.V2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactSet.Protobuf.Stach.Extensions.Tests
@@ -34,7 +35,7 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             Assert.AreEqual("[ \"Single\" ]", table[0].Metadata["Report Frequency"]);
 
             Assert.IsTrue(table[0].RawMetadata.Count == 18, "There is an incorrect amount of RawMetadata items");
-            Assert.AreEqual("\"Industry - Beginning of Period\"", table[0].RawMetadata["Grouping Frequency"][1].ToString());
+            Assert.AreEqual("Industry - Beginning of Period", StachUtilities.ValueToString(table[0].RawMetadata["Grouping Frequency"][1]));
         }
         
         [TestMethod]
@@ -57,7 +58,7 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             Assert.AreEqual("78647885fa4f4594b775a1431e62090c:", table[0].Metadata["CalculationId"]);
 
             Assert.IsTrue(table[0].RawMetadata.Count == 1, "There is an incorrect amount of RawMetadata items");
-            Assert.AreEqual("\"78647885fa4f4594b775a1431e62090c:\"", table[0].RawMetadata["CalculationId"][0].ToString());
+            Assert.AreEqual("78647885fa4f4594b775a1431e62090c:", StachUtilities.ValueToString(table[0].RawMetadata["CalculationId"][0]));
         }
     }
 }

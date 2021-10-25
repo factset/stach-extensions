@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using FactSet.Protobuf.Stach.Extensions.V2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactSet.Protobuf.Stach.Extensions.Tests
@@ -39,7 +40,7 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             Assert.AreEqual("[ \"Single\" ]", table[0].Metadata["Report Frequency"]);
 
             Assert.IsTrue(table[0].RawMetadata.Count == 18, "There is an incorrect amount of RawMetadata items");
-            Assert.AreEqual("\"Industry - FactSet - Beginning of Period\"", table[0].RawMetadata["Grouping Frequency"][1].ToString());
+            Assert.AreEqual("Industry - FactSet - Beginning of Period", StachUtilities.ValueToString(table[0].RawMetadata["Grouping Frequency"][1]));
         }
         
         [TestMethod]
@@ -60,9 +61,9 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             Assert.AreEqual("[ \"Single\" ]", table[1].Metadata["Report Frequency"]);
 
             Assert.IsTrue(table[1].RawMetadata.Count == 18, "There is an incorrect amount of RawMetadata items");
-            Assert.AreEqual("\"Industry - FactSet - Beginning of Period\"", table[1].RawMetadata["Grouping Frequency"][1].ToString());
+            Assert.AreEqual("Industry - FactSet - Beginning of Period", StachUtilities.ValueToString(table[1].RawMetadata["Grouping Frequency"][1]));
         }
-        
+
         [TestMethod]
         public void TestConvertRowAndColSpan()
         {
@@ -97,7 +98,7 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             Assert.AreEqual("Risk Analysis", table[0].Metadata["m_h"]);
 
             Assert.IsTrue(table[0].RawMetadata.Count == 1, "There is an incorrect amount of RawMetadata items");
-            Assert.AreEqual("\"Risk Analysis\"", table[0].RawMetadata["m_h"][0].ToString());
+            Assert.AreEqual("Risk Analysis",StachUtilities.ValueToString(table[0].RawMetadata["m_h"][0]));
         }
     }
 }

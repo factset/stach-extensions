@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using FactSet.Protobuf.Stach.Extensions.V2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactSet.Protobuf.Stach.Extensions.Tests
@@ -34,7 +35,7 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             Assert.AreEqual("Single", table[0].Metadata["Report Frequency"]);
 
             Assert.IsTrue(table[0].RawMetadata.Count == 18, "There is an incorrect amount of RawMetadata items");
-            Assert.AreEqual("\"Economic Sector - Beginning of Period|Industry - Beginning of Period\"", table[0].RawMetadata["Grouping Frequency"][0].ToString());
+            Assert.AreEqual("Economic Sector - Beginning of Period|Industry - Beginning of Period", StachUtilities.ValueToString(table[0].RawMetadata["Grouping Frequency"][0]));
         }
         
         [TestMethod]
