@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FactSet.Protobuf.Stach.Extensions.Models;
+using System;
+using System.Diagnostics;
+using Google.Protobuf.WellKnownTypes;
 
 namespace FactSet.Protobuf.Stach.Extensions.V2
 {
     public class ColumnOrganizedStachExtension : IStachExtension
     {
         private readonly Stach.V2.Package pkg;
-        
+
         public ColumnOrganizedStachExtension(Stach.V2.Package pkg)
         {
             this.pkg = pkg;
@@ -20,7 +23,6 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             {
                 tables.Add(GenerateTable(pkg, primaryTableId));
             }
-
             return tables;
         }
         
@@ -47,7 +49,8 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             var table = new Models.Table
             {
                 Rows = new List<Row>(),
-                Metadata = new Dictionary<string, string>()
+                Metadata = new Dictionary<string, string>(),
+                RawMetadata = new Dictionary<string, List<Value>>()
             };
 
             if (headerId.Length > 0)
@@ -114,13 +117,27 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             {
                 var metadataItems = primaryTable.Data.Metadata.Items;
                 var tableMetadataLocations = primaryTable.Data.Metadata.Locations.Table;
-
                 foreach (var location in tableMetadataLocations)
                 {
                     metadataItems.TryGetValue(location, out var metadataItem);
                     if (metadataItem != null)
                     {
                         table.Metadata.Add(location, StachUtilities.ValueToString(metadataItem.Value));
+
+                        List<Value> valuesList = new List<Value>();
+                        if (metadataItem.Value.KindCase == Value.KindOneofCase.ListValue)
+                        {
+                            foreach (Value val in metadataItem.Value.ListValue.Values)
+                            {
+                                valuesList.Add(val);
+                            }
+                        }
+                        else
+                        {
+                            valuesList.Add(metadataItem.Value);
+                        }
+
+                        table.RawMetadata.Add(location, valuesList);
                     }
                 } 
             }

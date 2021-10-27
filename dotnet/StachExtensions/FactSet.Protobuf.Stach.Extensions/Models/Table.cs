@@ -19,6 +19,11 @@ namespace FactSet.Protobuf.Stach.Extensions.Models
         /// </summary>
         public Dictionary<string, string> Metadata { get; set; }
 
+           /// <summary>
+        /// Raw metadata of the table.
+        /// </summary>
+        public Dictionary<string, List<Google.Protobuf.WellKnownTypes.Value>> RawMetadata { get; set; }
+
         /// <summary>
         /// The purpose of this function is to concatenate member of Row array with specified separator between each member i.e a newline.
         /// </summary>

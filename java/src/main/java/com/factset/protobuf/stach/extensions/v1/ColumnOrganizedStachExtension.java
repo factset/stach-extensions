@@ -10,8 +10,11 @@ import com.factset.protobuf.stach.table.SeriesDataProto.SeriesData;
 import com.factset.protobuf.stach.table.SeriesDefinitionProto;
 import com.factset.protobuf.stach.table.SeriesDefinitionProto.SeriesDefinition;
 import com.factset.protobuf.stach.table.TableProto.Table;
+import com.google.protobuf.Value;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -82,7 +85,14 @@ public class ColumnOrganizedStachExtension implements StachExtensions {
         Map<String, MetadataItem> metadata = primaryTable.getData().getMetadata().getItemsMap();
         for (Map.Entry<String, MetadataItem> entry : metadata.entrySet()) {
             table.getMetadata().put(entry.getValue().getName(), entry.getValue().getStringValue());
+
+            List<Value> values = new ArrayList<>();
+            Value val = Value.newBuilder().setStringValue(entry.getValue().getStringValue()).build();
+            values.add(val);
+
+            table.getRawMetadata().put(entry.getValue().getName(), values);
         }
+
         return table;
     }
 

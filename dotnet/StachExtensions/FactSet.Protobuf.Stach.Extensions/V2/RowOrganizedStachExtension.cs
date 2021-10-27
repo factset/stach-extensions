@@ -2,6 +2,10 @@
 using System.Linq;
 using FactSet.Protobuf.Stach.Extensions.Models;
 using FactSet.Protobuf.Stach.V2;
+using System;
+using System.Diagnostics;
+using Google.Protobuf.WellKnownTypes;
+
 
 namespace FactSet.Protobuf.Stach.Extensions.V2
 {
@@ -31,7 +35,8 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             var finalTable = new Models.Table
             {
                 Rows = new List<Row>(),
-                Metadata = new Dictionary<string, string>()
+                Metadata = new Dictionary<string, string>(),
+                RawMetadata = new Dictionary<string, List<Value>>()
             };
             
             var rowIndex = 0;
@@ -136,8 +141,25 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
 
             foreach (var metadataItem in table.Data.TableMetadata)
             {
-                var metadataValue = StachUtilities.ValueToString(metadataItem.Value.Value);
-                finalTable.Metadata.Add(metadataItem.Key, metadataValue);
+                var metadataValueString = StachUtilities.ValueToString(metadataItem.Value.Value);
+                var metadataValue = metadataItem.Value.Value;
+
+                finalTable.Metadata.Add(metadataItem.Key, metadataValueString);
+
+                List<Value> valuesList = new List<Value>();
+                if (metadataValue.KindCase == Value.KindOneofCase.ListValue)
+                {
+                    foreach (Value val in metadataValue.ListValue.Values)
+                    {
+                        valuesList.Add(val);
+                    }
+                }
+                else
+                {
+                    valuesList.Add(metadataValue);
+                }
+
+                finalTable.RawMetadata.Add(metadataItem.Key, valuesList);
             }
 
             return finalTable;
