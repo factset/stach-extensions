@@ -34,6 +34,32 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             }
         }
 
+        public static object ValueToObject(Value value)
+        {
+            switch (value.KindCase)
+            {
+                case Value.KindOneofCase.BoolValue:
+                    return value.BoolValue;
+                
+                case Value.KindOneofCase.ListValue:
+                    return value.ListValue.ToString();
+                
+                case Value.KindOneofCase.NumberValue:
+                    return value.NumberValue;
+                
+                case Value.KindOneofCase.StringValue:
+                    return value.StringValue;
+                
+                case Value.KindOneofCase.StructValue:
+                    return JsonFormatter.Default.Format(value.StructValue);
+                
+                case Value.KindOneofCase.NullValue:
+                case Value.KindOneofCase.None:
+                default:
+                    return null;
+            }
+        }
+
         /// <summary>
         /// Checks if values needs to be added at the given row and given position based on rowspan information. If values needs to be added,
         /// builds the list of values to be added at the position and returns it.
