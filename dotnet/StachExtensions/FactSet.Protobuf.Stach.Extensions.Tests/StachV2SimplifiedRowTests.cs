@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -66,7 +65,7 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
         [TestMethod]
         public void TestMethod3()
         {
-            var firstItem = new Dictionary<dynamic, dynamic>(){{"total0", "Total"}, {"group1", null}, {"group2", null}, {"Port.+Weight", 100.0},
+            var firstItem = new Dictionary<string, dynamic>(){{"total0", "Total"}, {"group1", null}, {"group2", null}, {"Port.+Weight", 100.0},
                 {"Bench.+Weight", null}, {"Difference", 100.0}};
             
             var simplifiedRowStachBuilder = StachExtensionFactory.GetSimplifiedRowOrganizedStachBuilder();
@@ -74,14 +73,18 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             var dynamicObject = stachExtension.ConvertToDynamicObject();
             var transposedDynamicObject = stachExtension.ConvertToTransposedDynamicObject();
             var table = stachExtension.ConvertToTable();
-            
+
             Assert.IsTrue(dynamicObject.Count == 61, "There is an incorrect amount of items in the dynamic object");
-            Assert.IsTrue(transposedDynamicObject.First().Count == 62, "There is an incorrect amount of items in the transposed dynamic object");
+            Assert.IsTrue(((IDictionary<string,dynamic>)transposedDynamicObject.First()).Count == 62, "There is an incorrect amount of items in the transposed dynamic object");
             Assert.IsTrue(table[0].Rows.Count == 62);
             Assert.IsTrue(transposedDynamicObject.Count == 3);
-            
-            CollectionAssert.AreEqual(firstItem, dynamicObject[0]);
-            
+
+            var i = 0;
+            foreach (var pair in (IDictionary<string, object>)dynamicObject[0])
+            {
+                Assert.IsTrue(pair.Key.Equals(firstItem.Keys.ToArray()[i]));
+                i++;
+            }
         }
     }
 }

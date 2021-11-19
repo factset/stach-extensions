@@ -7,7 +7,5 @@ namespace FactSet.Protobuf.Stach.Extensions
         List<dynamic> ConvertToDynamicObject();
 
         List<dynamic> ConvertToTransposedDynamicObject();
-
-        string GetStringifiedCsv(List<dynamic> outputObject);
     }
 }

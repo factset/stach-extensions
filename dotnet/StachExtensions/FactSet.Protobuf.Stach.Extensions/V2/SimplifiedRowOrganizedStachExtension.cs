@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using FactSet.Protobuf.Stach.V2;
 
@@ -31,7 +32,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
 
                 foreach (var dataRow in table.Data.Rows)
                 {
-                    dynamic data = new Dictionary<dynamic, dynamic>();
+                    var data = new ExpandoObject() as IDictionary<string, dynamic>;
                     for (var i = 0; i < dataRow.Values.Fields.Count; i++)
                     {
                         data.Add(headerRow[i], StachUtilities.ValueToObject(dataRow.Values.Fields["col_"+i]));
@@ -79,7 +80,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                 {
                     if (dimensionColumnIds.Contains(column.Id)) continue;
                     
-                    var data = new Dictionary<string, dynamic>();
+                    var data = new ExpandoObject() as IDictionary<string, dynamic>;
                     data.Add(headerKeys[0], column.Description ?? column.Name);
                     int j = 1;
                     for (var i = 0; i < headerKeys.Count - 1; i++)
@@ -98,28 +99,6 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             }
             
             return transposedOutput;
-        }
-
-        public string GetStringifiedCsv(List<dynamic> output)
-        {
-            string csv = null;
-            foreach (var pair in output.First())
-            {
-                csv += pair.Key.ToString() + ",";
-            }
-
-            csv += "\n";
-            foreach (var pair in output)
-            {
-                foreach (var item in pair)
-                {
-                    csv += item.Value?.ToString() + ",";
-                }
-
-                csv += "\n";
-            }
-
-            return csv;
         }
     }
 }
