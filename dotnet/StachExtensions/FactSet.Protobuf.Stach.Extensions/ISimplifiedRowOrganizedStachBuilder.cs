@@ -32,7 +32,7 @@ namespace FactSet.Protobuf.Stach.Extensions
         ISimplifiedRowOrganizedStachBuilder SetPackage(string package);
 
         /// <summary>
-        /// Add the SimplifiedRowOrganized Table to the package in the builder.
+        /// Add the Simplified Row Organized format's Table to the package in the builder.
         /// </summary>
         /// <param name="tableId">id of the table.</param>
         /// <param name="simplifiedRowOrganizedTable">SimplifiedRowOrganized Table</param>
@@ -40,7 +40,7 @@ namespace FactSet.Protobuf.Stach.Extensions
         ISimplifiedRowOrganizedStachBuilder AddTable(string tableId, RowOrganizedPackage.Types.Table simplifiedRowOrganizedTable);
 
         /// <summary>
-        /// Add the SimplifiedRowOrganized Table to the package in the builder.
+        /// Add the Simplified Row Organized format's Table to the package in the builder.
         /// </summary>
         /// <param name="tableId">id of the table.</param>
         /// <param name="simplifiedRowOrganizedTableString">SimplifiedRowOrganized Table in string format</param>
@@ -48,7 +48,7 @@ namespace FactSet.Protobuf.Stach.Extensions
         ISimplifiedRowOrganizedStachBuilder AddTable(string tableId, string simplifiedRowOrganizedTableString);
 
         /// <summary>
-        /// Add the SimplifiedRowOrganized Table to the package in the builder.
+        /// Add the Simplified Row Organized format's Table to the package in the builder.
         /// </summary>
         /// <param name="tableId">id of the table.</param>
         /// <param name="simplifiedRowOrganizedTableObject">SimplifiedRowOrganized Table object</param>
