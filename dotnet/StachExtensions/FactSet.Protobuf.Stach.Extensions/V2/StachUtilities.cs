@@ -40,11 +40,11 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
         }
 
         /// <summary>
-        /// Returns the actual value object instead of the Protobuf Value object.
+        /// Returns the underlying raw object from the protobuf Value object.
         /// For Lists and Struct, we return the stringified values.
         /// </summary>
         /// <param name="value"></param>
-        /// <returns>Actual value object</returns>
+        /// <returns>Raw object value</returns>
         public static object ValueToObject(Value value)
         {
             switch (value.KindCase)
