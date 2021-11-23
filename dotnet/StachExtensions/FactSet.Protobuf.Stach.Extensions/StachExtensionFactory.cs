@@ -34,6 +34,15 @@ namespace FactSet.Protobuf.Stach.Extensions
         {
             return new RowOrganizedStachBuilder();
         }
+
+        /// <summary>
+        /// Get the SimplifiedRowOrganizedStachBuilder instance.
+        /// </summary>
+        /// <returns>SimplifiedRowOrganizedStachBuilder</returns>
+        public static ISimplifiedRowOrganizedStachBuilder GetSimplifiedRowOrganizedStachBuilder()
+        {
+            return new SimplifiedRowOrganizedStachBuilder();
+        }
     }
 
 }

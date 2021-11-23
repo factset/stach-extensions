@@ -8,6 +8,11 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
 {
     public static class StachUtilities
     {
+        /// <summary>
+        /// Returns stringified value for the Protobuf Value object
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>String value</returns>
         public static string ValueToString(Value value)
         {
             switch (value.KindCase)
@@ -20,6 +25,38 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
 
                 case Value.KindOneofCase.NumberValue:
                     return value.NumberValue.ToString();
+                
+                case Value.KindOneofCase.StringValue:
+                    return value.StringValue;
+                
+                case Value.KindOneofCase.StructValue:
+                    return JsonFormatter.Default.Format(value.StructValue);
+                
+                case Value.KindOneofCase.NullValue:
+                case Value.KindOneofCase.None:
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Returns the underlying raw object from the protobuf Value object.
+        /// For Lists and Struct, we return the stringified values.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>Raw object value</returns>
+        public static object ValueToObject(Value value)
+        {
+            switch (value.KindCase)
+            {
+                case Value.KindOneofCase.BoolValue:
+                    return value.BoolValue;
+                
+                case Value.KindOneofCase.ListValue:
+                    return value.ListValue.ToString();
+                
+                case Value.KindOneofCase.NumberValue:
+                    return value.NumberValue;
                 
                 case Value.KindOneofCase.StringValue:
                     return value.StringValue;
