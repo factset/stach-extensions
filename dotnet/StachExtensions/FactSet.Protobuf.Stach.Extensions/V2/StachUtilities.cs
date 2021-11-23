@@ -8,6 +8,11 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
 {
     public static class StachUtilities
     {
+        /// <summary>
+        /// Returns stringified value for the Protobuf Value object
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>String value</returns>
         public static string ValueToString(Value value)
         {
             switch (value.KindCase)
@@ -34,6 +39,12 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             }
         }
 
+        /// <summary>
+        /// Returns the actual value object instead of the Protobuf Value object.
+        /// For Lists and Struct, we return the stringified values.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>Actual value object</returns>
         public static object ValueToObject(Value value)
         {
             switch (value.KindCase)

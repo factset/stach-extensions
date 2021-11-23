@@ -9,19 +9,20 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
     public class SimplifiedRowOrganizedStachExtension : RowOrganizedStachExtension, ISimplifiedRowStachExtension
     {
         private RowOrganizedPackage pkg;
+        private const string ColumnIdPrefix = "col_";
         
         public SimplifiedRowOrganizedStachExtension(RowOrganizedPackage pkg) : base(pkg)
         {
             this.pkg = pkg;
         }
         
-        public List<dynamic> ConvertToDynamicObject()
+        public List<dynamic> ConvertToDynamicObjects()
         {
             var output = new List<dynamic>();
             
             foreach (var table in pkg.Tables.Values)
             {
-                var headerRow = new List<dynamic>();
+                var headerRow = new List<dynamic>(); // List of keys for ExpandoObject
                 foreach (var columnDefinition in table.Definition.Columns)
                 {
                     var description = string.IsNullOrWhiteSpace(columnDefinition.Description)
@@ -35,7 +36,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                     var data = new ExpandoObject() as IDictionary<string, dynamic>;
                     for (var i = 0; i < dataRow.Values.Fields.Count; i++)
                     {
-                        data.Add(headerRow[i], StachUtilities.ValueToObject(dataRow.Values.Fields["col_"+i]));
+                        data.Add(headerRow[i], StachUtilities.ValueToObject(dataRow.Values.Fields[ColumnIdPrefix + i]));
                     }
                     output.Add(data);
                 }
@@ -44,23 +45,22 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
             return output;
         }
 
-        public List<dynamic> ConvertToTransposedDynamicObject()
+        public List<dynamic> ConvertToTransposedDynamicObjects()
         {
             var transposedOutput = new List<dynamic>();
 
             foreach (var table in pkg.Tables.Values)
             {
-                var headerKeys = new List<dynamic>();
+                var headerKeys = new List<dynamic>();// List of key values
                 
                 string key = null;
                 var dimensionColumnIds = new List<string>();
                 if (table.Definition.Columns.Count(c => c.IsDimension) == 0)
-                    table.Definition.Columns.First().IsDimension = true;
+                    table.Definition.Columns.First().IsDimension = true; // If no dimension column, then assuming first column as dimension column
                 
-                foreach (var column in table.Definition.Columns)
+                foreach (var column in table.Definition.Columns.Where(c=> c.IsDimension))
                 {
-                    if (!column.IsDimension) continue;
-                    key +=  (column.Description?? column.Name) + " | ";
+                    key +=  (column.Description?? column.Name) + " | "; // concatenating dimension columns' names to add in keys list
                     dimensionColumnIds.Add(column.Id);
                 }
                 headerKeys.Add(key?.Remove(key.LastIndexOf(" | ", StringComparison.OrdinalIgnoreCase)));
@@ -70,22 +70,21 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                     string keyValue = null;
                     foreach (var id in dimensionColumnIds)
                     {
-                        if (StachUtilities.ValueToString(row.Values.Fields[id]) == null) continue;
-                        keyValue += StachUtilities.ValueToString(row.Values.Fields[id]) + " | ";
+                        var rowCellValue = StachUtilities.ValueToString(row.Values.Fields[id]);
+                        if (rowCellValue == null) continue;
+                        keyValue += rowCellValue + " | "; // concatenating dimension columns' values to add in keys list
                     }
                     headerKeys.Add(keyValue?.Remove(keyValue.LastIndexOf(" | ", StringComparison.OrdinalIgnoreCase)));
                 }
                 
-                foreach (var column in table.Definition.Columns)
+                foreach (var column in table.Definition.Columns.Where(c=> c.IsDimension != true))
                 {
-                    if (dimensionColumnIds.Contains(column.Id)) continue;
-                    
                     var data = new ExpandoObject() as IDictionary<string, dynamic>;
                     data.Add(headerKeys[0], column.Description ?? column.Name);
                     int j = 1;
                     for (var i = 0; i < headerKeys.Count - 1; i++)
                     {
-                        if (data.ContainsKey(headerKeys[i + 1]))
+                        if (data.ContainsKey(headerKeys[i + 1])) //logic to handle duplicate key values
                         {
                             headerKeys[i + 1] += "_"+j;
                             j++;

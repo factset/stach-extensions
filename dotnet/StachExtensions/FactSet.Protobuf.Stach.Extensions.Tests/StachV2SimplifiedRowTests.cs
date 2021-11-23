@@ -67,23 +67,27 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
         {
             var firstItem = new Dictionary<string, dynamic>(){{"total0", "Total"}, {"group1", null}, {"group2", null}, {"Port.+Weight", 100.0},
                 {"Bench.+Weight", null}, {"Difference", 100.0}};
+            var keysValue = new List<string>() { "total0 | group1 | group2", "Total", "Communications", "Communications | Wireless Telecommunications",
+                "Finance | Regional Banks | State Bank of India", "Utilities | Electric Utilities | Power Grid Corporation of India Limited"};
             
             var simplifiedRowStachBuilder = StachExtensionFactory.GetSimplifiedRowOrganizedStachBuilder();
             var stachExtension = simplifiedRowStachBuilder.SetPackage(input).Build();
-            var dynamicObject = stachExtension.ConvertToDynamicObject();
-            var transposedDynamicObject = stachExtension.ConvertToTransposedDynamicObject();
+            var dynamicObject = stachExtension.ConvertToDynamicObjects();
+            var transposedDynamicObject = stachExtension.ConvertToTransposedDynamicObjects();
             var table = stachExtension.ConvertToTable();
 
             Assert.IsTrue(dynamicObject.Count == 61, "There is an incorrect amount of items in the dynamic object");
-            Assert.IsTrue(((IDictionary<string,dynamic>)transposedDynamicObject.First()).Count == 62, "There is an incorrect amount of items in the transposed dynamic object");
+            Assert.IsTrue(((IDictionary<string, dynamic>)transposedDynamicObject.First()).Count == 62, "There is an incorrect amount of items in the transposed dynamic object");
             Assert.IsTrue(table[0].Rows.Count == 62);
             Assert.IsTrue(transposedDynamicObject.Count == 3);
-
-            var i = 0;
-            foreach (var pair in (IDictionary<string, object>)dynamicObject[0])
+            foreach (var key in keysValue)
             {
-                Assert.IsTrue(pair.Key.Equals(firstItem.Keys.ToArray()[i]));
-                i++;
+                Assert.IsTrue(((IDictionary<string, dynamic>)transposedDynamicObject.First()).ContainsKey(key), $"{key} is missing from the transposed object's key list");
+            }
+
+            foreach (var item in firstItem)
+            {
+                Assert.IsTrue(((IDictionary<string, dynamic>)dynamicObject.First()).ContainsKey(item.Key), $"{item.Key} is missing from the dynamic object's key list");
             }
         }
     }
