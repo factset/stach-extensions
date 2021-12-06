@@ -68,11 +68,11 @@ class StachUtilities:
                 return null_format
             return value
         elif DataType.Name(datatype) == "DURATION":
-            if NullValues.DURATION.equals(value):
+            if NullValues.DURATION == value:
                 return null_format
             return value
         elif DataType.Name(datatype) == "TIMESTAMP":
-            if NullValues.TIMESTAMP.equals(value):
+            if NullValues.TIMESTAMP == value:
                 return null_format
             return value
         else:
