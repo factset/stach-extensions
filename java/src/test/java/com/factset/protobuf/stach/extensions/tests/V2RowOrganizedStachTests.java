@@ -1,5 +1,6 @@
 package com.factset.protobuf.stach.extensions.tests;
 
+import com.factset.protobuf.stach.extensions.Configurations;
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
 import com.factset.protobuf.stach.extensions.StachExtensions;
@@ -27,7 +28,7 @@ public class V2RowOrganizedStachTests {
 
     List<String> row1 = Arrays.asList("total0", "group1", "group2", "Difference");
     List<String> row2 = Arrays.asList("Total", "", "", "--");
-    List<String> row3 = Arrays.asList("Commercial Services", "", "", "0.913395362480243");
+    List<String> row3 = Arrays.asList("Commercial Services", "", "", "13644858.4156231");
 
     private String readFile(String fileName){
         try{
@@ -49,6 +50,7 @@ public class V2RowOrganizedStachTests {
         input = readFile(fileV2RowOrganizedStach);
         stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
+        Configurations.setSuppressScientificNotationForDoubles(false);
         List<TableData> tableDataList = stachExtension.convertToTable();
 
         Assert.assertEquals(row1, tableDataList.get(0).getRows().get(0).getCells());
@@ -57,8 +59,9 @@ public class V2RowOrganizedStachTests {
         Assert.assertEquals(row2, tableDataList.get(0).getRows().get(1).getCells());
         Assert.assertFalse(tableDataList.get(0).getRows().get(1).isHeader());
 
-        Assert.assertEquals(row3, tableDataList.get(0).getRows().get(2).getCells());
+        Assert.assertTrue(tableDataList.get(0).getRows().get(2).getCells().get(3).contains("E"));
         Assert.assertFalse(tableDataList.get(0).getRows().get(1).isHeader());
+        Configurations.setSuppressScientificNotationForDoubles(true); // resetting the flag to default value for other tests to work as expected
 
     }
 
@@ -107,5 +110,16 @@ public class V2RowOrganizedStachTests {
         Assert.assertEquals(tableDataList.get(0).getRawMetadata().keySet().toArray().length, 18);
         Assert.assertEquals(tableDataList.get(0).getRawMetadata().get("Report Frequency").get(0).getStringValue(), "Single");
         Assert.assertEquals(tableDataList.get(0).getRawMetadata().get("Grouping Frequency").get(1).getStringValue(), "Industry - FactSet - Beginning of Period");
+    }
+
+    @Test
+    public void testConvertWithOutScientificNotation() throws InvalidProtocolBufferException {
+        input = readFile(fileV2RowOrganizedStach);
+        stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+        StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
+        List<TableData> tableDataList = stachExtension.convertToTable();
+
+        Assert.assertEquals(row3, tableDataList.get(0).getRows().get(2).getCells());
+        Assert.assertEquals(false, tableDataList.get(0).getRows().get(2).isHeader());
     }
 }
