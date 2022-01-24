@@ -4,7 +4,7 @@ public class Configurations {
     private static boolean SUPPRESS_SCIENTIFIC_NOTATION_FOR_DOUBLES = true;
 
     /**
-     * The purpose of this function is to get the SUPPRESS_SCIENTIFIC_NOTATION_FOR_DOUBLES boolean value
+     * The purpose of this function is to get the flag that suppresses double's default scientific notation of a value
      * @return Returns a boolean value, default is true
      */
     public static boolean getSuppressScientificNotationForDoubles(){
@@ -12,7 +12,7 @@ public class Configurations {
     }
 
     /**
-     * The purpose of this function is to set the SUPPRESS_SCIENTIFIC_NOTATION_FOR_DOUBLES boolean value
+     * The purpose of this function is to suppress double's default scientific notation of a value
      * @param value: Boolean value
      */
     public static void setSuppressScientificNotationForDoubles(boolean value){
