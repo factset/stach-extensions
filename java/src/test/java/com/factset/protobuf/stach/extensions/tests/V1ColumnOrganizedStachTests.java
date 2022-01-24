@@ -1,6 +1,7 @@
 package com.factset.protobuf.stach.extensions.tests;
 
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
+import com.factset.protobuf.stach.extensions.Configurations;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
 import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
@@ -25,7 +26,8 @@ public class V1ColumnOrganizedStachTests {
     String input;
 
     List<String> row1 = Arrays.asList("total0", "group1", "group2", "Port.+Weight", "Bench.+Weight", "Difference");
-    List<String> row2 = Arrays.asList("Total", "", "", "100.0", "--", "100.0");
+    List<String> row2 = Arrays.asList("Total", "", "", "1.36448584156231E7", "--", "100.0");
+    List<String> row2WithoutScientificNotation = Arrays.asList("Total", "", "", "13644858.4156231", "--", "100");
 
     private void readFile(String fileName){
         try{
@@ -46,6 +48,7 @@ public class V1ColumnOrganizedStachTests {
 
         stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V1);
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
+        Configurations.setSuppressScientificNotationForDoubles(false);
         List<TableData> tableDataList = stachExtension.convertToTable();
 
         Assert.assertEquals(row1, tableDataList.get(0).getRows().get(0).getCells());
@@ -54,6 +57,22 @@ public class V1ColumnOrganizedStachTests {
         Assert.assertEquals(row2, tableDataList.get(0).getRows().get(1).getCells());
         Assert.assertEquals(false, tableDataList.get(0).getRows().get(1).isHeader());
 
+        Configurations.setSuppressScientificNotationForDoubles(true); // resetting the flag to default value for other tests to work as expected
+    }
+
+    @Test
+    public void testConvertWithoutScientificNotation() throws InvalidProtocolBufferException {
+        readFile(fileV1ColumnOrganizedStach);
+
+        stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V1);
+        StachExtensions stachExtension = stachExtensionBuilder.setPackage(input).build();
+        List<TableData> tableDataList = stachExtension.convertToTable();
+
+        Assert.assertEquals(row1, tableDataList.get(0).getRows().get(0).getCells());
+        Assert.assertEquals(true, tableDataList.get(0).getRows().get(0).isHeader());
+
+        Assert.assertEquals(row2WithoutScientificNotation, tableDataList.get(0).getRows().get(1).getCells());
+        Assert.assertEquals(false, tableDataList.get(0).getRows().get(1).isHeader());
     }
 
     @Test

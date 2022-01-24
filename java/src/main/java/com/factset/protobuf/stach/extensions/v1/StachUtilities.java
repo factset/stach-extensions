@@ -1,6 +1,7 @@
 package com.factset.protobuf.stach.extensions.v1;
 
 import com.factset.protobuf.stach.NullValues;
+import com.factset.protobuf.stach.extensions.Configurations;
 import com.factset.protobuf.stach.table.DataTypeProto;
 import com.factset.protobuf.stach.table.SeriesDataProto;
 import com.factset.protobuf.stach.table.SeriesDefinitionProto;
@@ -8,6 +9,7 @@ import com.google.protobuf.Duration;
 import com.google.protobuf.Timestamp;
 import org.apache.poi.ss.formula.eval.NotImplementedException;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class StachUtilities {
@@ -45,6 +47,10 @@ public class StachUtilities {
             return NullValues.STRING.equals(value) ? nullFormat : value;
         } else if (dataType == DataTypeProto.DataType.DOUBLE) {
             double value = seriesData.getDoubleArray().getValues(index);
+            if(Configurations.getSuppressScientificNotationForDoubles() && !Double.isNaN(value)){
+                String decimalFormat = BigDecimal.valueOf(seriesData.getDoubleArray().getValues(index)).stripTrailingZeros().toPlainString();
+                return decimalFormat;
+            }
             return Double.isNaN(value) ? nullFormat : value;
         } else if (dataType == DataTypeProto.DataType.BOOL) {
             return seriesData.getBoolArray().getValues(index);

@@ -1,11 +1,13 @@
 package com.factset.protobuf.stach.extensions.v2;
 
+import com.factset.protobuf.stach.extensions.Configurations;
 import com.factset.protobuf.stach.extensions.models.RowSpanSpread;
 import com.factset.protobuf.stach.v2.table.RowDefinitionProto;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,11 +34,14 @@ public class StachUtilities {
      * @throws InvalidProtocolBufferException
      */
     public static String valueToString(Value value) throws InvalidProtocolBufferException {
-        switch (value.getKindCase()) {
+        switch (value != null ? value.getKindCase(): Value.KindCase.NULL_VALUE) {
             case NULL_VALUE:
                 return null;
             case NUMBER_VALUE:
-                return "" + value.getNumberValue();
+                if(Configurations.getSuppressScientificNotationForDoubles())
+                    return BigDecimal.valueOf(value.getNumberValue()).stripTrailingZeros().toPlainString();
+                else
+                    return "" + value.getNumberValue();
             case STRING_VALUE:
                 return value.getStringValue();
             case BOOL_VALUE:
