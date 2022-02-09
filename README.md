@@ -47,6 +47,11 @@ Add the below dependency to the project
 
   ```sh
   dotnet add package FactSet.Protobuf.Stach.Extensions
+  ```
+## R
+	install.packages('factset.protobuf.stach.v2')
+	install.packages('factset.protobuf.stachextensions')
+
 # Usage
 
 There are methods for converting the stach format to the tabular formats in the respective stach extensions classes as shown below and also refer to the tests folder inside each language for detailed usage
@@ -114,6 +119,37 @@ List<TableData> tableDataList = stachExtension.convertToTable();
   var columnStachBuilder = StachExtensionFactory.GetColumnOrganizedBuilder<Package>();
   var stachExtension = columnStachBuilder.SetPackage(data).Build();     // data is the stach input in string or object format
   var table = stachExtension.ConvertToTable();
+
+```
+
+## R
+``` R
+
+# Column Organized Stach 
+package <- read(factset.protobuf.stach.v2.Package,input='local path of your stach extension file')
+stachExtensioncol <- factset.protobuf.stachextensions::V2ColumnOrganizedStachExtension$new()
+
+# To get the Column Organized stach data in tabular format with merging the headers 
+columnOrganizedData <- stachExtensioncol$ConvertToDataFrame(package)
+
+# To get the Column Organized stach data in tabular format without merging the headers
+columnOrganizedData <- stachExtensioncol$ConvertToDataFrame(package,FALSE)
+
+# To get the Column Organized meta data 
+columnOrganizedMetadata <- stachExtensioncol$GetMetadata(package)
+
+# Row Organized Stach
+package <- read(factset.protobuf.stach.v2.RowOrganizedPackage,input='local path of your stach extension file')
+stachExtensionrow <- factset.protobuf.stachextensions::V2RowOrganizedStachExtension$new()
+
+# To get the Row Organized stach data in tabular format with merging the headers
+rowOrganizedData <- stachExtensionrow$ConvertToDataFrame(package)
+
+# To get the Row Organized stach data in tabular format without merging the headers
+rowOrganizedData <- stachExtensionrow$ConvertToDataFrame(package,FALSE)
+
+# To get the Row Organized meta data 
+rowOrganizedMetadata <- stachExtensionrow$GetMetadata(package)
 
 ```
 
