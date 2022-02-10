@@ -12,6 +12,8 @@ This library was used to convert stach to tabular format and to get meta data fr
 
 ```R
 install.packages('factset.protobuf.stach.v2')
+install.packages('factset.protobuf.stachextensions')
+
 ```
 
 ## Usage
