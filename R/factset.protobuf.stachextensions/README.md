@@ -6,7 +6,7 @@
 Helps clients to convert stach to tabular format.
 
 ## Overview
-This library was used to convert stach to tabular format and to get meta data from stach.
+This package was used to convert stach to tabular format and to get meta data from stach.
 
 ## Installation
 

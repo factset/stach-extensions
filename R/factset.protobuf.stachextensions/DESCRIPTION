@@ -4,7 +4,7 @@ Version: 1.0.1
 Author: analytics-api
 Maintainer: Sai Giridhar Pasumarthi<spasumarthi@factset.com>
 Description: Allow clients to convert 'FactSet' 'STACH' formatted data to simpler 
-    tabular formats in the form of data frames. This library also provides helper
+    tabular formats in the form of data frames. This package also provides helper
     methods to extract the meta data from 'FactSet' 'STACH' formatted
     data. See documentation on the 'GitHub' repository for more information
 License: Apache License 2.0
