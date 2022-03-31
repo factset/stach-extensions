@@ -1,5 +1,6 @@
 from google.protobuf import json_format
-from google.protobuf.struct_pb2 import Struct
+from google.protobuf.struct_pb2 import Struct, Value
+
 
 class StachUtilities:
     @staticmethod
@@ -42,7 +43,7 @@ class StachUtilities:
 
     @staticmethod
     def get_value(val):
-        if(type(val) is Struct):
+        if(type(val) is Struct or type(val) is Value):
             return str(json_format.MessageToDict(val))
         else:
             return val
