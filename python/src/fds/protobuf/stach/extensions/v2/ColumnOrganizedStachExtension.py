@@ -12,7 +12,7 @@ class ColumnOrganizedStachExtension(IStachExtension):
 
     def get_package(self):
         return self.package
-    
+
     def convert_to_dataframe(self):
         tables = list()
         for primary_table_id in self.package.primary_table_ids:
@@ -58,7 +58,7 @@ class ColumnOrganizedStachExtension(IStachExtension):
                         header_row.append(val)
 
                     headers.append(header_row)
-            
+
             else:
                 # if there is no headers table process headers from description section
                 header = list()
