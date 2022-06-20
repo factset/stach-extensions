@@ -70,7 +70,7 @@ dataFramesList = stachExtension.convert_to_dataframe()
 # Stach v2 Column Organized format
 stachBuilder = StachExtensionFactory.get_column_organized_builder(StachVersion.V2)
 stachBuilder.set_package(data)  # data is the stach input in string or object format
-# package = stachBuilder.get_package()
+# package = stachBuilder.get_package()  # Package from fds.protobuf.stach.v2
 stachExtension = stachBuilder.build()
 dataFramesList = stachExtension.convert_to_dataframe()
 
@@ -78,7 +78,7 @@ dataFramesList = stachExtension.convert_to_dataframe()
 # Stach v1 Column Organized format
 stachBuilder = StachExtensionFactory.get_column_organized_builder(StachVersion.V1)
 stachBuilder.set_package(data)  # data is the stach input in string or object format
-# package = stachBuilder.get_package()
+# package = stachBuilder.get_package()  # Package from fds.protobuf.stach
 stachExtension = stachBuilder.build()
 dataFramesList = stachExtension.convert_to_dataframe()
 
