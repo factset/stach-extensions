@@ -12,7 +12,7 @@
 
 This repository contains extension libraries in different languages for parsing the [stach](https://factset.github.io/stachschema/#/README) format to more simpler to consume formats or data structures.
 
-As of now the languages supported are Java and Python. The source code for the supported languages is organized in the respective language folders in the root directory
+As of now the languages supported are Java, Python, .Net and R. The source code for the supported languages is organized in the respective language folders in the root directory
 
 # Installation
  
