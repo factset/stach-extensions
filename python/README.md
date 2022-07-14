@@ -18,7 +18,7 @@ cd ../tests
 Create a virtual environment
 ``` python
 pip install -r requirements.txt
-pip install fds.protobuf.stach.extensions-1.0.1.tar
+pip install --user fds.protobuf.stach.extensions-1.1.1.tar.gz
 ```
 
 ## Testing
