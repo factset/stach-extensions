@@ -20,17 +20,15 @@ class ColumnOrganizedStachUtilities:
             return column["values"]
 
     @staticmethod
-    def decompress_page(result_pages, table_id):
+    def decompress_page(result_page, table_id):
         """
         This method parses data pages, decompressing columns
         :param result_pages: the data page to be decompressed
         :return result_page: the decompressed data page
         """
-        for page in result_pages:
-            print(page)
-            for column in result_pages["tables"][table_id]["definition"]["columns"]:
-                column_data = result_pages[page]["tables"]["table"]["data"]["columns"][column["id"]]
-                column_data["values"] = ColumnOrganizedStachUtilities.decompress_column(column_data)
-        return result_pages
+        for column in result_page["tables"][table_id]["definition"]["columns"]:
+            column_data = result_page["tables"][table_id]["data"]["columns"][column["id"]]
+            column_data["values"] = ColumnOrganizedStachUtilities.decompress_column(column_data)
+        return result_page
 
 

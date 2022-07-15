@@ -1,29 +1,18 @@
-{
+{  "primaryTableIds": [
+    "table1"
+  ],
     "tables" :
     {   "table1" :{
+        "headerTableId": "fe772289-2812-4b0e-9b1c-dbafc77f427d",
         "definition":{
             "columns":[{
                 "description": "Example_col",
-                "id":          "0",
+                "id":          "col1",
                 "isDimension": true,
                 "name":        "Example_col1",
                 "type":        "string"}]
         },
         "data": {
-            "rows": [
-                {
-                "id": "889ecc0c-fa7c-4469-8a8a-a24b74b212a3"
-                },
-                {
-                "id": "015d8e47-c34e-457a-bdb1-ff119e3e7165"
-                },
-                {
-                "id": "ea3f1aa7-4b67-4263-ab2b-42a75f73d162"
-                },
-                {
-                    "id": "ea3f1aa7-4b67-4263-ab2b-42a75f73d162"
-                }
-            ],
             "columns": {
                 "col1": {
                     "ranges":{
