@@ -24,6 +24,6 @@ class V2StachUtilsTests(unittest.TestCase):
         file = os.path.join(ROOT_DIR, "resources", "V2StachWithCompressedTable.json")
         with open(file) as f:
             data = json.load(f)
-            decompressed_data = ColumnOrganizedStachUtilities.decompress_page(data,"table1")
+            decompressed_data = ColumnOrganizedStachUtilities.decompress_all_columns(data,"table1")
 
             self.assertEqual(decompressed_data["tables"]["table1"]["data"]["columns"]["col1"]["values"],column_values)

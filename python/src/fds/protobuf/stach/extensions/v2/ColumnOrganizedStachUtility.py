@@ -20,7 +20,7 @@ class ColumnOrganizedStachUtilities:
             return column["values"]
 
     @staticmethod
-    def decompress_page(result_page, table_id):
+    def decompress_all_columns(result_page, table_id):
         """
         This method parses data pages, decompressing columns
         :param result_pages: the data page to be decompressed
