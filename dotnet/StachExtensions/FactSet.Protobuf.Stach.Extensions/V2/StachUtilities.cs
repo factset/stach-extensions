@@ -136,12 +136,16 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
         /// <param name="package">The stachdata in string json format</param>
         /// <param name="primaryTableId">The specific table id to decompress</param>
         /// <returns>Decompressed stachdata</returns>
-        public static string Decompress(string package, string primaryTableId) {
+        public static string Decompress(string package) {
             JObject packageJson = JObject.Parse(package);
 
-            JObject decompressed = StachUtilities.Decompress(packageJson, primaryTableId);
+            List<String> tableIds = StachUtilities.GetPrimaryTableIds(package);
 
-            return decompressed.ToString();
+            foreach(String tableId in tableIds) {
+                packageJson = StachUtilities.Decompress(packageJson, tableId);
+            }
+
+            return packageJson.ToString();
         }
 
         /// <summary>
@@ -150,7 +154,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
         /// <param name="package">The stachdata in json format</param>
         /// <param name="primaryTableId">The specific table id to decompress</param>
         /// <returns>Decompressed stachdata</returns>
-        public static JObject Decompress(JObject package, string primaryTableId)
+        private static JObject Decompress(JObject package, string primaryTableId)
         {
             JObject columns = (JObject)package["tables"][primaryTableId]["data"]["columns"];
             List<String> columnIDs = columns.Properties().Select(p => p.Name).ToList();

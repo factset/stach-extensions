@@ -37,12 +37,11 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
         [TestMethod]
         public void TestDecompress() 
         {
-            string primaryTableId = StachUtilities.GetPrimaryTableIds(fileInput)[0];
-
-            string decompressed = StachUtilities.Decompress(fileInput, primaryTableId);
+            string decompressed = StachUtilities.Decompress(fileInput);
 
             JObject decompressedJson = JObject.Parse(decompressed);
             string dataColumnId = "1";
+            string primaryTableId = StachUtilities.GetPrimaryTableIds(fileInput)[0];
             List<String> dataValues = getDataValues<String>(decompressedJson, primaryTableId, dataColumnId);
             
             Assert.AreEqual(dataValues.Count, decompressedExpected.Count);
