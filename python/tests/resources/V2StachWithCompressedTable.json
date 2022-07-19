@@ -1,0 +1,33 @@
+{  "primaryTableIds": [
+    "table1"
+  ],
+    "tables" :
+    {   "table1" :{
+        "headerTableId": "fe772289-2812-4b0e-9b1c-dbafc77f427d",
+        "definition":{
+            "columns":[{
+                "description": "Example_col",
+                "id":          "col1",
+                "isDimension": true,
+                "name":        "Example_col1",
+                "type":        "string"}]
+        },
+        "data": {
+            "columns": {
+                "col1": {
+                    "ranges":{
+                    "1":3
+                    },
+                    "values": [
+                    "Port.+Weight",
+                    "Bench.+Weight"
+                ]
+                }
+            },
+            "metadata": {
+                "locations": {}
+            }
+        }
+    }
+    }
+}
