@@ -16,7 +16,7 @@
         <PackageTags>STACH;Protobuf;FactSet;FDS;Analytics;Analytics API</PackageTags>
         <RepositoryType>git</RepositoryType>
         <PackageProjectUrl>https://github.com/factset/stach-extensions</PackageProjectUrl>
-        <PackageReleaseNotes>Initial version of stach extensions package</PackageReleaseNotes>
+        <PackageReleaseNotes>Add decompression utility for stach data</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
