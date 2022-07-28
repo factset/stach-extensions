@@ -7,7 +7,7 @@ import java.util.Iterator;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
-public class ColumnOrganizedStachUtility {
+public class ColumnOrganizedStachDecompress {
     /**
      * Get a list of primary table ids from stach data
      *

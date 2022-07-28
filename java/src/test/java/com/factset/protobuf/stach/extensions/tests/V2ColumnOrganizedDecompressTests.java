@@ -1,6 +1,6 @@
 package com.factset.protobuf.stach.extensions.tests;
 
-import com.factset.protobuf.stach.extensions.v2.ColumnOrganizedStachUtility;
+import com.factset.protobuf.stach.extensions.v2.ColumnOrganizedStachDecompress;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
-public class V2ColumnOrganizedStachUtilityTests {
+public class V2ColumnOrganizedDecompressTests {
 
     String stachDataJsonStr;
     String fileName = "V2ColumnOrganizedCompressed.json";
@@ -38,7 +38,7 @@ public class V2ColumnOrganizedStachUtilityTests {
 
     @Test
     public void testGetPrimaryTableIds() {
-        List<String> ids = ColumnOrganizedStachUtility.getPrimaryTableIds(stachDataJsonStr);
+        List<String> ids = ColumnOrganizedStachDecompress.getPrimaryTableIds(stachDataJsonStr);
 
         Assert.assertEquals(ids.size(), 1);
         Assert.assertEquals(ids.get(0), "a649ec50-7e58-443d-b791-1340e9eebf24");
@@ -47,7 +47,7 @@ public class V2ColumnOrganizedStachUtilityTests {
     @Test
     public void testDecompress() {
 
-        String decompressedString = ColumnOrganizedStachUtility.decompress(stachDataJsonStr);
+        String decompressedString = ColumnOrganizedStachDecompress.decompress(stachDataJsonStr);
 
         JSONObject decompressed = new JSONObject(decompressedString);
         String firstDataColumnId = "1";
