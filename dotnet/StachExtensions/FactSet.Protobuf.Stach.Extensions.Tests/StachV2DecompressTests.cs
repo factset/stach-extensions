@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 namespace FactSet.Protobuf.Stach.Extensions.Tests 
 {
     [TestClass]
-    public class StachUtilitiesTests
+    public class DecompressTests
     {
         private string fileInput;
         private List<String> decompressedExpected = new List<String> {
@@ -28,7 +28,7 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
         [TestMethod]
         public void TestGetPrimaryTableIds()
         {
-            List<String> primaryTableIds = StachUtilities.GetPrimaryTableIds(fileInput);
+            List<String> primaryTableIds = ColumnOrganizedDecompress.GetPrimaryTableIds(fileInput);
 
             Assert.AreEqual(primaryTableIds.Count, 1);
             Assert.AreEqual(primaryTableIds[0], "a649ec50-7e58-443d-b791-1340e9eebf24");
@@ -37,11 +37,11 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
         [TestMethod]
         public void TestDecompress() 
         {
-            string decompressed = StachUtilities.Decompress(fileInput);
+            string decompressed = ColumnOrganizedDecompress.Decompress(fileInput);
 
             JObject decompressedJson = JObject.Parse(decompressed);
             string dataColumnId = "1";
-            string primaryTableId = StachUtilities.GetPrimaryTableIds(fileInput)[0];
+            string primaryTableId = ColumnOrganizedDecompress.GetPrimaryTableIds(fileInput)[0];
             List<String> dataValues = getDataValues<String>(decompressedJson, primaryTableId, dataColumnId);
             
             Assert.AreEqual(dataValues.Count, decompressedExpected.Count);
