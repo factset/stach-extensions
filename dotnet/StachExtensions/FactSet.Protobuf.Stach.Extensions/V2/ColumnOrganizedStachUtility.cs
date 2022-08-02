@@ -5,7 +5,7 @@ using System;
 
 namespace FactSet.Protobuf.Stach.Extensions.V2
 {
-    public static class ColumnOrganizedDecompress
+    public static class ColumnOrganizedStachUtilities
     {
         /// <summary>
         /// Get a list of primary table ids.
@@ -24,15 +24,14 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
         /// Decompress column organized stach data
         /// </summary>
         /// <param name="package">The stachdata in string json format</param>
-        /// <param name="primaryTableId">The specific table id to decompress</param>
         /// <returns>Decompressed stachdata</returns>
         public static string Decompress(string package) {
             JObject packageJson = JObject.Parse(package);
 
-            List<String> tableIds = ColumnOrganizedDecompress.GetPrimaryTableIds(package);
+            List<String> tableIds = ColumnOrganizedStachUtilities.GetPrimaryTableIds(package);
 
             foreach(String tableId in tableIds) {
-                packageJson = ColumnOrganizedDecompress.Decompress(packageJson, tableId);
+                packageJson = ColumnOrganizedStachUtilities.Decompress(packageJson, tableId);
             }
 
             return packageJson.ToString();
@@ -53,7 +52,7 @@ namespace FactSet.Protobuf.Stach.Extensions.V2
                 JObject column = (JObject)columns[columnID];
                 if (!column.ContainsKey("ranges"))
                     continue;
-                ColumnOrganizedDecompress.decompressColumn(column);
+                ColumnOrganizedStachUtilities.decompressColumn(column);
             }
 
             return package;
