@@ -10,13 +10,13 @@
         <Authors>FactSet Research Systems, Inc.</Authors>
         <Company>FactSet Research Systems, Inc</Company>
         <Product>FactSet.Protobuf.Stach.Extensions</Product>
-        <Version>1.2.0</Version>
+        <Version>1.3.0</Version>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/factset/stach-extensions.git</RepositoryUrl>
         <PackageTags>STACH;Protobuf;FactSet;FDS;Analytics;Analytics API</PackageTags>
         <RepositoryType>git</RepositoryType>
         <PackageProjectUrl>https://github.com/factset/stach-extensions</PackageProjectUrl>
-        <PackageReleaseNotes>Initial version of stach extensions package</PackageReleaseNotes>
+        <PackageReleaseNotes>Add decompression utility for stach data</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
