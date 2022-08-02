@@ -1,6 +1,6 @@
 package com.factset.protobuf.stach.extensions.tests;
 
-import com.factset.protobuf.stach.extensions.v2.ColumnOrganizedStachDecompress;
+import com.factset.protobuf.stach.extensions.v2.ColumnOrganizedStachUtilities;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -38,7 +38,7 @@ public class V2ColumnOrganizedDecompressTests {
 
     @Test
     public void testGetPrimaryTableIds() {
-        List<String> ids = ColumnOrganizedStachDecompress.getPrimaryTableIds(stachDataJsonStr);
+        List<String> ids = ColumnOrganizedStachUtilities.getPrimaryTableIds(stachDataJsonStr);
 
         Assert.assertEquals(ids.size(), 1);
         Assert.assertEquals(ids.get(0), "a649ec50-7e58-443d-b791-1340e9eebf24");
@@ -47,7 +47,7 @@ public class V2ColumnOrganizedDecompressTests {
     @Test
     public void testDecompress() {
 
-        String decompressedString = ColumnOrganizedStachDecompress.decompress(stachDataJsonStr);
+        String decompressedString = ColumnOrganizedStachUtilities.decompress(stachDataJsonStr);
 
         JSONObject decompressed = new JSONObject(decompressedString);
         String firstDataColumnId = "1";
