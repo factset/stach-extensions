@@ -19,18 +19,18 @@ V2ColumnOrganizedStachUtilities <- R6::R6Class(
     #' @description  Get decompress stach data
     #' @param package  Stach Data which is represented as a Package object
     #' @return Returns decompressed stach data
-    DecompressAll = function(package) {
-      ids <- self$GetPrimaryTableIds(package)
+    Decompress = function(package) {
+      primaryTableIds <- self$GetPrimaryTableIds(package)
 
-      for(id in ids) {
-        package <- private$Decompress(package, id)
+      for(tableId in primaryTableIds) {
+        package <- private$DecompressTable(package, tableId)
       }
 
       return(package)
     }
   ),
   private = list(
-    Decompress = function(package, primaryTableId) {
+    DecompressTable = function(package, primaryTableId) {
       definitionColumns <- package[["tables"]][[primaryTableId]][["definition"]][["columns"]]
       dataColumns <- package[["tables"]][[primaryTableId]][["data"]][["columns"]]
 
@@ -53,7 +53,7 @@ V2ColumnOrganizedStachUtilities <- R6::R6Class(
       decompressedValues <- c()
 
       # Arrays start from element 1
-      compressedIndex <- 1
+      compressedValueIndex <- 1
       for(compressedValue in compressedValues) {
         currDecompressedIndex <- toString(length(decompressedValues))
 
@@ -62,14 +62,14 @@ V2ColumnOrganizedStachUtilities <- R6::R6Class(
           loopRange <- 1:rangeValue
 
           for(i in loopRange) {
-            decompressedValues <- append(decompressedValues, compressedValues[compressedIndex])
+            decompressedValues <- append(decompressedValues, compressedValues[compressedValueIndex])
           }
 
         } else {
-          decompressedValues <- append(decompressedValues, compressedValues[compressedIndex])
+          decompressedValues <- append(decompressedValues, compressedValues[compressedValueIndex])
         }
 
-        compressedIndex <- compressedIndex + 1
+        compressedValueIndex <- compressedValueIndex + 1
       }
 
       column[["ranges"]] <- NULL

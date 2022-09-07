@@ -22,7 +22,7 @@ testthat::test_that("column organized utilities, decompress",
 
   utility <- factset.protobuf.stachextensions::V2ColumnOrganizedStachUtilities$new()
 
-  package <- utility$DecompressAll(package)
+  package <- utility$Decompress(package)
 
   primaryTableId <- "a649ec50-7e58-443d-b791-1340e9eebf24"
   actualData <- package[["tables"]][[primaryTableId]][["data"]][["columns"]][["1"]][["values"]]
