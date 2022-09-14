@@ -42,7 +42,9 @@ python -m unittest
 
 ### R
 
-Running tests
+Make sure Rscript is in your path to run the commands in command line.
+
+Running tests.
 
 ```
 cd R/factset/protobuf.stachextensions/tests
