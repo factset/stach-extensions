@@ -40,6 +40,23 @@ mvn test
 python -m unittest
 ```
 
+### R
+
+Make sure Rscript is in your path to run the commands in command line.
+
+Running tests.
+
+```
+cd R/factset/protobuf.stachextensions/tests
+Rscript testthat.R
+```
+
+Running the automatic documentation tool
+
+```
+Rscript build.R
+```
+
 ## Feature Requests
 
 We're always looking for suggestions to improve this project. If you have a suggestion for improving an existing feature, or would like to suggest a completely new feature, please file an issue with our [GitHub repository](https://github.com/factset/stach-extensions/issues).

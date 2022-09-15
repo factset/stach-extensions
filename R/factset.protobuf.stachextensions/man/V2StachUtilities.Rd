@@ -10,14 +10,14 @@ The purpose of this class is to provide the helper methods
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-GetMappingObject}{\code{V2StachUtilities$GetMappingObject()}}
-\item \href{#method-ValueToString}{\code{V2StachUtilities$ValueToString()}}
-\item \href{#method-clone}{\code{V2StachUtilities$clone()}}
+\item \href{#method-V2StachUtilities-GetMappingObject}{\code{V2StachUtilities$GetMappingObject()}}
+\item \href{#method-V2StachUtilities-ValueToString}{\code{V2StachUtilities$ValueToString()}}
+\item \href{#method-V2StachUtilities-clone}{\code{V2StachUtilities$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-GetMappingObject"></a>}}
-\if{latex}{\out{\hypertarget{method-GetMappingObject}{}}}
+\if{html}{\out{<a id="method-V2StachUtilities-GetMappingObject"></a>}}
+\if{latex}{\out{\hypertarget{method-V2StachUtilities-GetMappingObject}{}}}
 \subsection{Method \code{GetMappingObject()}}{
 Helper method for getting the value corresponding to the given key from the object.
 \subsection{Usage}{
@@ -40,8 +40,8 @@ Returns the value corresponding to the given key from the object
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ValueToString"></a>}}
-\if{latex}{\out{\hypertarget{method-ValueToString}{}}}
+\if{html}{\out{<a id="method-V2StachUtilities-ValueToString"></a>}}
+\if{latex}{\out{\hypertarget{method-V2StachUtilities-ValueToString}{}}}
 \subsection{Method \code{ValueToString()}}{
 Helper method for converting value to string
 \subsection{Usage}{
@@ -60,8 +60,8 @@ Returns the value by converting corresponding value to string
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-V2StachUtilities-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-V2StachUtilities-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

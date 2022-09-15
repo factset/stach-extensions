@@ -11,14 +11,14 @@ and to get meta data from stach
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-ConvertToDataFrame}{\code{V2ColumnOrganizedStachExtension$ConvertToDataFrame()}}
-\item \href{#method-GetMetadata}{\code{V2ColumnOrganizedStachExtension$GetMetadata()}}
-\item \href{#method-clone}{\code{V2ColumnOrganizedStachExtension$clone()}}
+\item \href{#method-V2ColumnOrganizedStachExtension-ConvertToDataFrame}{\code{V2ColumnOrganizedStachExtension$ConvertToDataFrame()}}
+\item \href{#method-V2ColumnOrganizedStachExtension-GetMetadata}{\code{V2ColumnOrganizedStachExtension$GetMetadata()}}
+\item \href{#method-V2ColumnOrganizedStachExtension-clone}{\code{V2ColumnOrganizedStachExtension$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ConvertToDataFrame"></a>}}
-\if{latex}{\out{\hypertarget{method-ConvertToDataFrame}{}}}
+\if{html}{\out{<a id="method-V2ColumnOrganizedStachExtension-ConvertToDataFrame"></a>}}
+\if{latex}{\out{\hypertarget{method-V2ColumnOrganizedStachExtension-ConvertToDataFrame}{}}}
 \subsection{Method \code{ConvertToDataFrame()}}{
 This function is used for converting stach to Tabular format
 \subsection{Usage}{
@@ -41,8 +41,8 @@ Returns the List of data frame for the stach data
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-GetMetadata"></a>}}
-\if{latex}{\out{\hypertarget{method-GetMetadata}{}}}
+\if{html}{\out{<a id="method-V2ColumnOrganizedStachExtension-GetMetadata"></a>}}
+\if{latex}{\out{\hypertarget{method-V2ColumnOrganizedStachExtension-GetMetadata}{}}}
 \subsection{Method \code{GetMetadata()}}{
 This function is used to get meta data from stach
 \subsection{Usage}{
@@ -61,8 +61,8 @@ Returns the List of metadata for the stach data
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-V2ColumnOrganizedStachExtension-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-V2ColumnOrganizedStachExtension-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
