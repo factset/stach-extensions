@@ -1,5 +1,8 @@
 name: pr-build
 
+env:
+  JAVA_SDK_LOCATION: "java"
+
 on:
   pull_request:
     types: [opened, synchronize, reopened]
