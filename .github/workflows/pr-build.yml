@@ -19,10 +19,6 @@ jobs:
       with:
         java-version: 1.8
 
-    - name: Print current directory
-      run : |
-        pwd
-
     - name: Build
       run: |
         mvn -B package --file ${{ env.JAVA_SDK_LOCATION }}/pom.xml
