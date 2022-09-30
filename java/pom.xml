@@ -132,6 +132,7 @@
                 <configuration>
                     <includes>
                         <include>**/*Tests.java</include>
+                        <include>**/Resources/*.json</include>
                     </includes>
                 </configuration>
             </plugin>
