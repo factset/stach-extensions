@@ -39,7 +39,7 @@ public class V2ColumnOrganizedStachTests {
 
     @BeforeTest
     public void setup() throws IOException {
-        workingDirectory = Paths.get("src", "test", "java", "resources");
+        workingDirectory = Paths.get("src", "test", "java", "Resources");
     }
 
     @Test

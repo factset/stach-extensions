@@ -41,7 +41,7 @@ public class V2RowOrganizedStachTests {
 
     @BeforeTest
     public void setup() throws IOException {
-        workingDirectory = Paths.get("src", "test", "java", "resources");
+        workingDirectory = Paths.get("src", "test", "java", "Resources");
         input = new String(Files.readAllBytes(Paths.get(workingDirectory.toString(), "V2RowOrganizedStachData.json")));
     }
 

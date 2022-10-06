@@ -31,8 +31,13 @@ public class V2ColumnOrganizedDecompressTests {
 
     @BeforeTest
     public void setup() throws IOException {
-        Path workingDirectory = Paths.get("src", "test", "java", "resources");
+        Path workingDirectory = Paths.get("src", "test", "java", "Resources");
 
+        try {
+            stachDataJsonStr = new String(Files.readAllBytes(Paths.get(workingDirectory.toString(), fileName)));
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         stachDataJsonStr = new String(Files.readAllBytes(Paths.get(workingDirectory.toString(), fileName)));
     }
 
