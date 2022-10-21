@@ -100,3 +100,8 @@ binaryFilePath <-
 
 simplifiedrowstructpackage <-
   read(factset.protobuf.stach.v2.RowOrganizedPackage, input = binaryFilePath)
+
+binaryFilePath <-
+  system.file('testdata/V2ColumnOrganizedCompressed.json', package = 'factset.protobuf.stachextensions')
+compressedData <- jsonlite::read_json(path=binaryFilePath, auto_unbox=TRUE)
+

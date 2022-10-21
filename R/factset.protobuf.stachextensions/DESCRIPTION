@@ -1,8 +1,8 @@
 Package: factset.protobuf.stachextensions
 Title: 'FactSet' 'STACH' Extensions Package
-Version: 1.0.1
-Author: analytics-api
-Maintainer: Sai Giridhar Pasumarthi<spasumarthi@factset.com>
+Version: 1.0.2
+Authors@R: 
+    person("Veda Bhaskara Ramanth", role = c("aut","cre"), email = "vedabhaskararamanth.addala@factset.com")
 Description: Allow clients to convert 'FactSet' 'STACH' formatted data to simpler 
     tabular formats in the form of data frames. This package also provides helper
     methods to extract the meta data from 'FactSet' 'STACH' formatted
@@ -11,7 +11,7 @@ License: Apache License 2.0
 URL: https://github.com/factset/stach-extensions
 BugReports: https://github.com/factset/stach-extensions/issues
 Imports: jsonlite, R6, stringr
-Suggests: testthat, factset.protobuf.stach.v2
+Suggests: testthat, factset.protobuf.stach.v2, rjson
 SystemRequirements: ProtoBuf libraries and compiler version 3.3.0 or later;
  On Debian/Ubuntu these can be installed as libprotoc-dev, libprotobuf-dev
  and protobuf-compiler, while on Fedora/CentOS protobuf-devel and
