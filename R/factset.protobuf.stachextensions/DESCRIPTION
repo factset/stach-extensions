@@ -11,7 +11,7 @@ License: Apache License 2.0
 URL: https://github.com/factset/stach-extensions
 BugReports: https://github.com/factset/stach-extensions/issues
 Imports: jsonlite, R6, stringr
-Suggests: testthat, factset.protobuf.stach.v2, rjson
+Suggests: testthat, factset.protobuf.stach.v2
 SystemRequirements: ProtoBuf libraries and compiler version 3.3.0 or later;
  On Debian/Ubuntu these can be installed as libprotoc-dev, libprotobuf-dev
  and protobuf-compiler, while on Fedora/CentOS protobuf-devel and
