@@ -10,7 +10,7 @@
 
     <groupId>com.factset.protobuf</groupId>
     <artifactId>stachextensions</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
 
     <licenses>
         <license>
@@ -47,7 +47,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <protobuf-version>3.12.2</protobuf-version>
+        <protobuf-version>3.21.8</protobuf-version>
     </properties>
 
     <profiles>
@@ -142,7 +142,7 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>4.0.1</version>
+            <version>4.1.2</version>
         </dependency>
         <dependency>
             <groupId>com.google.protobuf</groupId>
