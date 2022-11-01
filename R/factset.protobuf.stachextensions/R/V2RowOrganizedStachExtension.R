@@ -6,6 +6,13 @@
 #'
 #' @importFrom R6 R6Class
 #' @export
+#' @examples
+#'\dontrun{
+#' package <- 'Stach data which is converted into RowOrganized Package'
+#' stachExtensionrow <-
+#' factset.protobuf.stachextensions::V2RowOrganizedStachExtension$new()
+#' dataFrame <- stachExtensionrow$ConvertToDataFrame(package)
+#' }
 
 V2RowOrganizedStachExtension <- R6::R6Class(
   "V2RowOrganizedStachExtension",

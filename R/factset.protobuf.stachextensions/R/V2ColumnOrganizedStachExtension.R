@@ -1,4 +1,5 @@
 
+
 #' @docType class
 #' @title V2ColumnOrganizedStachExtension
 #' @description The purpose of this class is to provide the helper methods for converting stach(column organized) to Tabular format
@@ -6,6 +7,13 @@
 #'
 #' @importFrom R6 R6Class
 #' @export
+#' @examples
+#'\dontrun{
+#' package <- 'Stach data which is converted into ColumnOrganized Package'
+#' stachExtensioncol <-
+#' factset.protobuf.stachextensions::V2ColumnOrganizedStachExtension$new()
+#' dataFrame <- stachExtensioncol$ConvertToDataFrame(package)
+#' }
 
 V2ColumnOrganizedStachExtension <- R6::R6Class(
   "V2ColumnOrganizedStachExtension",
