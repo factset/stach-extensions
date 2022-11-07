@@ -8,17 +8,25 @@
 The purpose of this class is to provide the helper methods for converting stach(row organized) to Tabular format
 and to get meta data from stach
 }
+\examples{
+\dontrun{
+package <- 'Stach data which is converted into RowOrganized Package'
+stachExtensionrow <-
+factset.protobuf.stachextensions::V2RowOrganizedStachExtension$new()
+dataFrame <- stachExtensionrow$ConvertToDataFrame(package)
+}
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-V2RowOrganizedStachExtension-ConvertToDataFrame}{\code{V2RowOrganizedStachExtension$ConvertToDataFrame()}}
-\item \href{#method-V2RowOrganizedStachExtension-GetMetadata}{\code{V2RowOrganizedStachExtension$GetMetadata()}}
-\item \href{#method-V2RowOrganizedStachExtension-clone}{\code{V2RowOrganizedStachExtension$clone()}}
+\item \href{#method-ConvertToDataFrame}{\code{V2RowOrganizedStachExtension$ConvertToDataFrame()}}
+\item \href{#method-GetMetadata}{\code{V2RowOrganizedStachExtension$GetMetadata()}}
+\item \href{#method-clone}{\code{V2RowOrganizedStachExtension$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-V2RowOrganizedStachExtension-ConvertToDataFrame"></a>}}
-\if{latex}{\out{\hypertarget{method-V2RowOrganizedStachExtension-ConvertToDataFrame}{}}}
+\if{html}{\out{<a id="method-ConvertToDataFrame"></a>}}
+\if{latex}{\out{\hypertarget{method-ConvertToDataFrame}{}}}
 \subsection{Method \code{ConvertToDataFrame()}}{
 This function is used for converting stach to Tabular format
 \subsection{Usage}{
@@ -41,8 +49,8 @@ Returns the List of data frame for the stach data
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-V2RowOrganizedStachExtension-GetMetadata"></a>}}
-\if{latex}{\out{\hypertarget{method-V2RowOrganizedStachExtension-GetMetadata}{}}}
+\if{html}{\out{<a id="method-GetMetadata"></a>}}
+\if{latex}{\out{\hypertarget{method-GetMetadata}{}}}
 \subsection{Method \code{GetMetadata()}}{
 This function is used to get meta data from stach
 \subsection{Usage}{
@@ -61,8 +69,8 @@ Returns the List of metadata for the stach data
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-V2RowOrganizedStachExtension-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-V2RowOrganizedStachExtension-clone}{}}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

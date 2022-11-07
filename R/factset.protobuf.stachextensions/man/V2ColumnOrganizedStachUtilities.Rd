@@ -7,17 +7,37 @@
 \description{
 Provide helper functions for column organized stach
 }
+\examples{
+\dontrun{
+compressedFilePath <- 'Path of your json file'
+compressedData <- jsonlite::read_json(path=compressedFilePath,
+auto_unbox=TRUE)
+stachUtilities <-
+factset.protobuf.stachextensions::V2ColumnOrganizedStachUtilities
+primaryTableIds <-
+stachUtilities$public_methods$GetPrimaryTableIds(compressedData)
+}
+
+\dontrun{
+compressedFilePath <- 'Path of your json file'
+compressedData <- jsonlite::read_json(path=compressedFilePath,
+auto_unbox=TRUE)
+utility <-
+factset.protobuf.stachextensions::V2ColumnOrganizedStachUtilities$new()
+deCompressedData <- utility$Decompress(compressedData)
+}
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-V2ColumnOrganizedStachUtilities-GetPrimaryTableIds}{\code{V2ColumnOrganizedStachUtilities$GetPrimaryTableIds()}}
-\item \href{#method-V2ColumnOrganizedStachUtilities-DecompressAll}{\code{V2ColumnOrganizedStachUtilities$DecompressAll()}}
-\item \href{#method-V2ColumnOrganizedStachUtilities-clone}{\code{V2ColumnOrganizedStachUtilities$clone()}}
+\item \href{#method-GetPrimaryTableIds}{\code{V2ColumnOrganizedStachUtilities$GetPrimaryTableIds()}}
+\item \href{#method-Decompress}{\code{V2ColumnOrganizedStachUtilities$Decompress()}}
+\item \href{#method-clone}{\code{V2ColumnOrganizedStachUtilities$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-V2ColumnOrganizedStachUtilities-GetPrimaryTableIds"></a>}}
-\if{latex}{\out{\hypertarget{method-V2ColumnOrganizedStachUtilities-GetPrimaryTableIds}{}}}
+\if{html}{\out{<a id="method-GetPrimaryTableIds"></a>}}
+\if{latex}{\out{\hypertarget{method-GetPrimaryTableIds}{}}}
 \subsection{Method \code{GetPrimaryTableIds()}}{
 Get Primary Table Ids
 \subsection{Usage}{
@@ -36,12 +56,12 @@ Returns list of primary table ids
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-V2ColumnOrganizedStachUtilities-DecompressAll"></a>}}
-\if{latex}{\out{\hypertarget{method-V2ColumnOrganizedStachUtilities-DecompressAll}{}}}
-\subsection{Method \code{DecompressAll()}}{
+\if{html}{\out{<a id="method-Decompress"></a>}}
+\if{latex}{\out{\hypertarget{method-Decompress}{}}}
+\subsection{Method \code{Decompress()}}{
 Get decompress stach data
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{V2ColumnOrganizedStachUtilities$DecompressAll(package)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{V2ColumnOrganizedStachUtilities$Decompress(package)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -56,8 +76,8 @@ Returns decompressed stach data
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-V2ColumnOrganizedStachUtilities-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-V2ColumnOrganizedStachUtilities-clone}{}}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
