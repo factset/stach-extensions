@@ -4,10 +4,12 @@ requiredPackages <- c("factset.protobuf.stach.v2")
 # Install missing packages
 missingPackages <- requiredPackages %in% installed.packages()[, "Package"]
 if (any(missingPackages == FALSE)) {
-  install.packages(requiredPackages[!missingPackages], repos = "http://cran.us.r-project.org")
+  install.packages(requiredPackages, repos = "http://cran.us.r-project.org")
 }
 
 # Load packages
+# In the below statement 'invisible' is used to make the printing statements invisible
+# which means the printing statements will not appear
 invisible(lapply(requiredPackages, library, character.only = TRUE))
 
 # Column Organized with Stach Data
