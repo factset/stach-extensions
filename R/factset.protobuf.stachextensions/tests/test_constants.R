@@ -1,14 +1,14 @@
 # List of required packages
-lib_List <- c("factset.protobuf.stach.v2")
+requiredPackages <- c("factset.protobuf.stach.v2")
 
 # Install missing packages
-instpack <- lib_List %in% installed.packages()[, "Package"]
-if (any(instpack == FALSE)) {
-  install.packages(lib_List[!instpack], repos = "http://cran.us.r-project.org")
+missingPackages <- requiredPackages %in% installed.packages()[, "Package"]
+if (any(missingPackages == FALSE)) {
+  install.packages(requiredPackages[!missingPackages], repos = "http://cran.us.r-project.org")
 }
 
 # Load packages
-invisible(lapply(lib_List, library, character.only = TRUE))
+invisible(lapply(requiredPackages, library, character.only = TRUE))
 
 # Column Organized with Stach Data
 binaryFilePath <-
