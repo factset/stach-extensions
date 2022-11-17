@@ -1,4 +1,14 @@
-library(factset.protobuf.stach.v2)
+# List of required packages
+lib_List <- c("factset.protobuf.stach.v2")
+
+# Install missing packages
+instpack <- lib_List %in% installed.packages()[, "Package"]
+if (any(instpack == FALSE)) {
+  install.packages(lib_List[!instpack], repos = "http://cran.us.r-project.org")
+}
+
+# Load packages
+invisible(lapply(lib_List, library, character.only = TRUE))
 
 # Column Organized with Stach Data
 binaryFilePath <-
@@ -103,5 +113,5 @@ simplifiedrowstructpackage <-
 
 compressedFilePath <-
   system.file('testdata/V2ColumnOrganizedCompressed.json', package = 'factset.protobuf.stachextensions')
-compressedData <- jsonlite::read_json(path=compressedFilePath, auto_unbox=TRUE)
-
+compressedData <-
+  jsonlite::read_json(path = compressedFilePath, auto_unbox = TRUE)
