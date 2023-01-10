@@ -1,6 +1,6 @@
 Package: factset.protobuf.stachextensions
 Title: 'FactSet' 'STACH' Extensions Package
-Version: 1.0.2
+Version: 1.0.3
 Authors@R: 
     person("Veda Bhaskara Ramanth", role = c("aut","cre"), email = "vedabhaskararamanth.addala@factset.com")
 Description: Allow clients to convert 'FactSet' 'STACH' formatted data to simpler 
