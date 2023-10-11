@@ -204,9 +204,9 @@ V2RowOrganizedStachExtension <- R6::R6Class(
           fieldsKeys <- c() # stores the fields keys (example:"col_0")
           fieldsValues <- c() # stores the fields values (example:"Utilities")
 
-          for(v in 1:length(rowDataMap)){
-            fieldsKeys <- append(fieldsKeys, rowDataMap[[v]]$key)
-            columnValue <- rowDataMap[[v]]$value
+          for(rowDataMapIndex in 1:length(rowDataMap)){
+            fieldsKeys <- append(fieldsKeys, rowDataMap[[rowDataMapIndex]]$key)
+            columnValue <- rowDataMap[[rowDataMapIndex]]$value
             stringValue <-
               V2StachUtilities$public_methods$ValueToString(columnValue)
             fieldsValues <- append(fieldsValues, stringValue)
@@ -216,9 +216,9 @@ V2RowOrganizedStachExtension <- R6::R6Class(
           fieldsKeyValue = data.frame(row.names=fieldsKeys , val=fieldsValues)
 
           #Reading the value from fieldsKeyValue data frame using columnid of columndefinition(example:"col_0")
-          for (j in 1:defColCount)
+          for (colIndex in 1:defColCount)
           {
-            rowVal <- fieldsKeyValue[tableData$definition$columns[[j]]$id,]
+            rowVal <- fieldsKeyValue[tableData$definition$columns[[colIndex]]$id,]
             rowdataList <- append(rowdataList, rowVal)
           }
         }
