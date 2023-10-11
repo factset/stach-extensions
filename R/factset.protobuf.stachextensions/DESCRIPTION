@@ -2,7 +2,7 @@ Package: factset.protobuf.stachextensions
 Title: 'FactSet' 'STACH' Extensions Package
 Version: 1.0.4
 Authors@R: 
-    person("Veda Bhaskara Ramanth", role = c("aut","cre"), email = "vamshikrishna.mupparaju@factset.com")
+    person("Veda Bhaskara Ramanth", role = c("aut","cre"), email = "vedabhaskararamanth.addala@factset.com")
 Description: Allow clients to convert 'FactSet' 'STACH' formatted data to simpler 
     tabular formats in the form of data frames. This package also provides helper
     methods to extract the meta data from 'FactSet' 'STACH' formatted
