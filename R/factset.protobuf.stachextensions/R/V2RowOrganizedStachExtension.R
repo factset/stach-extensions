@@ -195,13 +195,31 @@ V2RowOrganizedStachExtension <- R6::R6Class(
         }
         else
         {
-          routeMap <- tableData$data$rows[[rowindex]]$values$fields
-          for (j in 1:defColCount)
-          {
-            columnValue <- routeMap[[j]]$value
+          rowDataMap <- tableData$data$rows[[rowindex]]$values$fields
+
+          # here fields are of type list.
+          # In order to read the value using columnid from fields,
+          # keys and values of fields are converted to key-value pair using data frame.
+
+          fieldsKeys <- c() # stores the fields keys (example:"col_0")
+          fieldsValues <- c() # stores the fields values (example:"Utilities")
+
+          for(rowDataMapIndex in 1:length(rowDataMap)){
+            fieldsKeys <- append(fieldsKeys, rowDataMap[[rowDataMapIndex]]$key)
+            columnValue <- rowDataMap[[rowDataMapIndex]]$value
             stringValue <-
               V2StachUtilities$public_methods$ValueToString(columnValue)
-            rowdataList <- append(rowdataList, stringValue)
+            fieldsValues <- append(fieldsValues, stringValue)
+          }
+
+          # Stored the fields key-value in a data frame("col_0":"Utilities")
+          fieldsKeyValue = data.frame(row.names=fieldsKeys , val=fieldsValues)
+
+          #Reading the value from fieldsKeyValue data frame using columnid of columndefinition(example:"col_0")
+          for (colIndex in 1:defColCount)
+          {
+            rowVal <- fieldsKeyValue[tableData$definition$columns[[colIndex]]$id,]
+            rowdataList <- append(rowdataList, rowVal)
           }
         }
       }
