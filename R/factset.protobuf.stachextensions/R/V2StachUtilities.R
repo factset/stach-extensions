@@ -7,6 +7,14 @@
 #' @importFrom jsonlite toJSON
 #' @importFrom stringr str_locate
 #' @export
+#' @examples
+#'\dontrun{
+#' package <- 'Stach data which is converted into RowOrganized Package'
+#' tableData <-
+#' V2StachUtilities$public_methods$GetMappingObject(package$tables,
+#' primaryTableId)$value
+#' }
+
 V2StachUtilities <- R6::R6Class(
   "V2StachUtilities",
   public = list(

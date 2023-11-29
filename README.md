@@ -6,13 +6,14 @@
 [![Maven](https://img.shields.io/maven-central/v/com.factset.protobuf/stachextensions)](https://mvnrepository.com/artifact/com.factset.protobuf/stachextensions)
 [![PyPi](https://img.shields.io/pypi/v/fds.protobuf.stach.extensions)](https://pypi.org/project/fds.protobuf.stach.extensions/)
 [![NuGet](https://img.shields.io/nuget/v/FactSet.Protobuf.Stach.Extensions)](https://www.nuget.org/packages/FactSet.Protobuf.Stach.Extensions)
+[![CRAN](https://img.shields.io/cran/v/factset.protobuf.stachextensions)](https://cran.r-project.org/web/packages/factset.protobuf.stachextensions/index.html)
 [![Apache-2 license](https://img.shields.io/badge/license-Apache2-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 
 
 This repository contains extension libraries in different languages for parsing the [stach](https://factset.github.io/stachschema/#/README) format to more simpler to consume formats or data structures.
 
-As of now the languages supported are Java and Python. The source code for the supported languages is organized in the respective language folders in the root directory
+As of now the languages supported are Java, Python, .Net and R. The source code for the supported languages is organized in the respective language folders in the root directory
 
 # Installation
  
@@ -61,19 +62,25 @@ There are methods for converting the stach format to the tabular formats in the 
 ``` python
 # Stach v2 Row Organized format
 stachBuilder = StachExtensionFactory.get_row_organized_builder(StachVersion.V2)
-stachExtension = stachBuilder.set_package(data).build()  # data is the stach input in string or object format
+stachBuilder.set_package(data)  # data is the stach input in string or object format
+# rowOrganizedPackage = stachBuilder.get_package()
+stachExtension = stachBuilder.build()
 dataFramesList = stachExtension.convert_to_dataframe()
 
 
 # Stach v2 Column Organized format
 stachBuilder = StachExtensionFactory.get_column_organized_builder(StachVersion.V2)
-stachExtension = stachBuilder.set_package(data).build()  # data is the stach input in string or object format
+stachBuilder.set_package(data)  # data is the stach input in string or object format
+# package = stachBuilder.get_package()  # Package from fds.protobuf.stach.v2
+stachExtension = stachBuilder.build()
 dataFramesList = stachExtension.convert_to_dataframe()
 
 
 # Stach v1 Column Organized format
 stachBuilder = StachExtensionFactory.get_column_organized_builder(StachVersion.V1)
-stachExtension = stachBuilder.set_package(data).build()  # data is the stach input in string or object format
+stachBuilder.set_package(data)  # data is the stach input in string or object format
+# package = stachBuilder.get_package()  # Package from fds.protobuf.stach
+stachExtension = stachBuilder.build()
 dataFramesList = stachExtension.convert_to_dataframe()
 
 ```
@@ -83,19 +90,25 @@ dataFramesList = stachExtension.convert_to_dataframe()
 
 // Stach v2 Row Organized format
 RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
-StachExtensions stachExtension = stachExtensionBuilder.setPackage(data).build();  // data is the stach input in string or object format
+stachExtensionBuilder.setPackage(data);  // data is the stach input in string or object format
+// RowOrganizedPackage rowOrganizedPackage = stachExtensionBuilder.getPackage();
+StachExtensions stachExtension = stachExtensionBuilder.build();
 List<TableData> tableDataList = stachExtension.convertToTable();
 
 
 // Stach v2 Column Organized format
 ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
-StachExtensions stachExtension = stachExtensionBuilder.setPackage(data).build();  // data is the stach input in string or object format
+stachExtensionBuilder.setPackage(data);  // data is the stach input in string or object format
+// com.factset.protobuf.stach.v2.PackageProto.Package pkg = (com.factset.protobuf.stach.v2.PackageProto.Package) stachExtensionBuilder.getPackage();
+StachExtensions stachExtension = stachExtensionBuilder.build();
 List<TableData> tableDataList = stachExtension.convertToTable();
 
 
 // Stach v1 Column Organized format
 ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V1);
-StachExtensions stachExtension = stachExtensionBuilder.setPackage(data).build(); // data is the stach input in string or object format
+stachExtensionBuilder.setPackage(data); // data is the stach input in string or object format
+// com.factset.protobuf.stach.PackageProto.Package pkg = (com.factset.protobuf.stach.PackageProto.Package) stachExtensionBuilder.getPackage();
+StachExtensions stachExtension = stachExtensionBuilder.build();
 List<TableData> tableDataList = stachExtension.convertToTable();
 
 ```
@@ -104,21 +117,27 @@ List<TableData> tableDataList = stachExtension.convertToTable();
 ``` c#
 
 // Stach v2 Row Organized format
-  var rowStachBuilder = StachExtensionFactory.GetRowOrganizedBuilder();
-  var stachExtension = rowStachBuilder.SetPackage(data).Build();   // data is the stach input in string or object format
-  var table = stachExtension.ConvertToTable();
+var rowStachBuilder = StachExtensionFactory.GetRowOrganizedBuilder();
+rowStachBuilder.SetPackage(data);  // data is the stach input in string or object format
+// var rowOrganizedPackage = rowStachBuilder.GetPackage();
+var stachExtension = rowStachBuilder.Build();
+var table = stachExtension.ConvertToTable();
 
 
 // Stach v2 Column Organized format
-  var columnStachBuilder = StachExtensionFactory.GetColumnOrganizedBuilder<Stach.V2.Package>();
-  var stachExtension = columnStachBuilder.SetPackage(data).Build();    // data is the stach input in string or object format
-  var table = stachExtension.ConvertToTable();
+var columnStachBuilder = StachExtensionFactory.GetColumnOrganizedBuilder<Stach.V2.Package>();
+columnStachBuilder.SetPackage(data);  // data is the stach input in string or object format
+// var package = columnStachBuilder.GetPackage();
+var stachExtension = columnStachBuilder.Build();
+var table = stachExtension.ConvertToTable();
 
 
 // Stach v1 Column Organized format
-  var columnStachBuilder = StachExtensionFactory.GetColumnOrganizedBuilder<Package>();
-  var stachExtension = columnStachBuilder.SetPackage(data).Build();     // data is the stach input in string or object format
-  var table = stachExtension.ConvertToTable();
+var columnStachBuilder = StachExtensionFactory.GetColumnOrganizedBuilder<Package>();
+columnStachBuilder.SetPackage(data);  // data is the stach input in string or object format
+// var package = columnStachBuilder.GetPackage();
+var stachExtension = columnStachBuilder.Build();
+var table = stachExtension.ConvertToTable();
 
 ```
 

@@ -1,5 +1,12 @@
 package com.factset.protobuf.stach.extensions;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Iterator;
+
+import org.json.JSONObject;
+import org.json.JSONArray;
+
 public class Utilities {
 
     /**

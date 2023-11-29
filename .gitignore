@@ -11,3 +11,4 @@ python/src/.idea/*
 **/bin/*
 **/obj/*
 *.tar.gz
+.Rproj.user

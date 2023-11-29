@@ -8,6 +8,14 @@
 The purpose of this class is to provide the helper methods for converting stach(column organized) to Tabular format
 and to get meta data from stach
 }
+\examples{
+\dontrun{
+package <- 'Stach data which is converted into ColumnOrganized Package'
+stachExtensioncol <-
+factset.protobuf.stachextensions::V2ColumnOrganizedStachExtension$new()
+dataFrame <- stachExtensioncol$ConvertToDataFrame(package)
+}
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{

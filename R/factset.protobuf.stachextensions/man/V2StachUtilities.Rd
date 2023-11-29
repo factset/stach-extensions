@@ -7,6 +7,14 @@
 \description{
 The purpose of this class is to provide the helper methods
 }
+\examples{
+\dontrun{
+package <- 'Stach data which is converted into RowOrganized Package'
+tableData <-
+V2StachUtilities$public_methods$GetMappingObject(package$tables,
+primaryTableId)$value
+}
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{

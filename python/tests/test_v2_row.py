@@ -6,8 +6,6 @@ from fds.protobuf.stach.extensions.StachVersion import StachVersion
 from fds.protobuf.stach.extensions.StachExtensionFactory import StachExtensionFactory
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-
-
 class V2StachTests(unittest.TestCase):
     def test_stachv2(self):
         headerColumns = ["total0", "group1", "group2", "Difference"]

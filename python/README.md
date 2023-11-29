@@ -11,14 +11,15 @@ For manual install and testing from the source code follow the below instruction
 cd src
 python setup.py sdist
 ```
-Copy and paste `fds.protobuf.stach.extensions-1.0.1.tar` from `src/dist` to `tests`
+Copy and paste `fds.protobuf.stach.extensions-"version-number".tar` from `src/dist` to `tests`
 ``` python
 cd ../tests
 ```
-Create a virtual environment
+Create a virtual environmentls
+
 ``` python
 pip install -r requirements.txt
-pip install fds.protobuf.stach.extensions-1.0.1.tar
+pip install --user fds.protobuf.stach.extensions-"version-number".tar.gz
 ```
 
 ## Testing
