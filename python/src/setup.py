@@ -1,10 +1,10 @@
 import setuptools
 
-REQUIRES = ["fds.protobuf.stach<2.0.0", "fds.protobuf.stach.v2<2.0.0", "pandas<2.0.0", "numpy<2.0.0"]
+REQUIRES = ["fds.protobuf.stach<2.0.0", "fds.protobuf.stach.v2<2.0.0", "pandas<3.0.0", "numpy<2.0.0"]
 
 setuptools.setup(
     name="fds.protobuf.stach.extensions",
-    version="1.3.0",
+    version="1.3.1",
     author="Analytics API",
     author_email="analytics.api.support@factset.com",
     description="FactSet stach extensions",
