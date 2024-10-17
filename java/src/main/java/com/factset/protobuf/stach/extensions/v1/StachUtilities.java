@@ -7,8 +7,6 @@ import com.factset.protobuf.stach.table.SeriesDataProto;
 import com.factset.protobuf.stach.table.SeriesDefinitionProto;
 import com.google.protobuf.Duration;
 import com.google.protobuf.Timestamp;
-import org.apache.poi.ss.formula.eval.NotImplementedException;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -70,7 +68,7 @@ public class StachUtilities {
             Timestamp value = seriesData.getTimestampArray().getValues(index);
             return NullValues.TIMESTAMP.equals(value) ? nullFormat : value;
         } else {
-            throw new NotImplementedException(dataType + " is not implemented");
+            throw new UnsupportedOperationException(dataType + " is not implemented");
         }
     }
 }
