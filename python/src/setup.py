@@ -4,7 +4,7 @@ REQUIRES = ["fds.protobuf.stach<2.0.0", "fds.protobuf.stach.v2<2.0.0", "pandas<3
 
 setuptools.setup(
     name="fds.protobuf.stach.extensions",
-    version="1.3.2",
+    version="1.3.3",
     author="Analytics API",
     author_email="analytics.api.support@factset.com",
     description="FactSet stach extensions",
@@ -14,5 +14,5 @@ setuptools.setup(
     install_requires=REQUIRES,
     include_package_data=True,
     license="Apache License 2.0",
-    python_requires=">=3.6",
+    python_requires=">=3.9",
 )

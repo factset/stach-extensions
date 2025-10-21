@@ -73,7 +73,7 @@ class RowOrganizedStachExtension(IStachExtension):
                         header.extend(rowSpannedHeader)
                     for val in currentRow.cells:
 
-                        headerCellDetail = list(currentRow.header_cell_details._values.values())[index]
+                        headerCellDetail = list(currentRow.header_cell_details.values())[index]
                         colspan = headerCellDetail.colspan
                         colspan = 1 if colspan <= 1 else colspan
                         rowspan = headerCellDetail.rowspan
