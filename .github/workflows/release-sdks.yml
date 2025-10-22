@@ -92,7 +92,7 @@ jobs:
     - name: Extract version from pom.xml
       id: get_version
       run: |
-        version=$(xmllint --xpath "/*[local-name()='project']/*[local-name()='version']/text()" auto-generated-sdk/pom.xml)
+        version=$(xmllint --xpath "/*[local-name()='project']/*[local-name()='version']/text()" ${{ env.JAVA_SDK_LOCATION }}/pom.xml)
         echo "version=$version" >> $GITHUB_OUTPUT
         if [[ "$version" == *SNAPSHOT* ]]; then
           echo "is_snapshot=true" >> $GITHUB_OUTPUT
