@@ -162,6 +162,9 @@
                 <groupId>org.sonatype.central</groupId>
                 <version>0.8.0</version>
                 <extensions>true</extensions>
+                <configuration>
+                    <deploymentName>${groupId}-${artifactId}-${version}</deploymentName>
+                </configuration>
             </plugin>
         </plugins>
     </build>
