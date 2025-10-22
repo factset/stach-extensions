@@ -79,23 +79,57 @@ jobs:
       && (github.event.inputs.SDKs == 'java' || github.event.inputs.SDKs == 'all'))
       
     steps:
-    - uses: actions/checkout@v2
-  
-    - name: Set up Java JDK
-      uses: actions/setup-java@v1
+    - uses: actions/checkout@v3
+
+    - name: Import GPG key
+      run: |
+        echo "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" | gpg --batch --import
+        echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf
+        
+    - name: Install xmllint
+      run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
+    - name: Extract version from pom.xml
+      id: get_version
+      run: |
+        version=$(xmllint --xpath "/*[local-name()='project']/*[local-name()='version']/text()" auto-generated-sdk/pom.xml)
+        echo "version=$version" >> $GITHUB_OUTPUT
+        if [[ "$version" == *SNAPSHOT* ]]; then
+          echo "is_snapshot=true" >> $GITHUB_OUTPUT
+        else
+          echo "is_snapshot=false" >> $GITHUB_OUTPUT
+        fi
+    - name: Set up JDK for snapshot repository
+      if: steps.get_version.outputs.is_snapshot == 'true'
+      uses: actions/setup-java@v4
       with:
-        java-version: 1.8
-        server-id: ossrh
-        server-username: MAVEN_USERNAME
-        server-password: MAVEN_PASSWORD
-        gpg-private-key: ${{ env.MAVEN_GPG_PRIVATE_KEY }}
+        java-version: '8'
+        distribution: 'temurin'
+        server-id: central-portal-snapshots
+        server-username: MAVEN_PORTAL_USERNAME
+        server-password: MAVEN_CENTRAL_TOKEN
+        gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
-    
-    - name: Build
-      run: |
-        mvn -B package --file ${{ env.JAVA_SDK_LOCATION }}/pom.xml
-      
+
+    - name: Set up JDK for release repository
+      if: steps.get_version.outputs.is_snapshot == 'false'
+      uses: actions/setup-java@v4
+      with:
+        java-version: '8'
+        distribution: 'temurin'
+        server-id: central
+        server-username: MAVEN_PORTAL_USERNAME
+        server-password: MAVEN_CENTRAL_TOKEN
+        gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+        gpg-passphrase: MAVEN_GPG_PASSPHRASE
+
+    - name: Build with Maven
+      run: mvn -B package --file ${{ env.JAVA_SDK_LOCATION }}/pom.xml
+        
     - name: Publish to Apache Maven Central
-      run: |
-        cd ${{ env.JAVA_SDK_LOCATION }}
-        mvn -Psign-artifacts verify deploy
+      run: cd ${{ env.JAVA_SDK_LOCATION }} && mvn -Psign-artifacts verify deploy
+      env:
+        MAVEN_PORTAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+        MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+        MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+  
