@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     
     <PropertyGroup>
-        <TargetFramework>netstandard1.0</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <AssemblyName>FactSet.Protobuf.Stach.Extensions</AssemblyName>
         <RootNamespace>FactSet.Protobuf.Stach.Extensions</RootNamespace>
         <Description>Package for parsing STACH data into simpler and easy to consume data structures</Description>
@@ -22,7 +22,9 @@
     <ItemGroup>
         <PackageReference Include="FactSet.Protobuf.Stach" Version="1.0.1" />
         <PackageReference Include="FactSet.Protobuf.Stach.V2" Version="1.0.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+        <PackageReference Include="FactSet.Protobuf.Stach.V3" Version="1.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Apache.Arrow" Version="20.0.0" />
     </ItemGroup>
 
 </Project>
