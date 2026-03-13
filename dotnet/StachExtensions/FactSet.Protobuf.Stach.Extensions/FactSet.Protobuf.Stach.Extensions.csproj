@@ -25,6 +25,7 @@
         <PackageReference Include="FactSet.Protobuf.Stach.V3" Version="1.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="Apache.Arrow" Version="20.0.0" />
+        <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     </ItemGroup>
 
 </Project>
