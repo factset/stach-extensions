@@ -35,6 +35,12 @@
       <None Update="Resources\StachV3ArrowStreamResponse.arrow">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="Resources\V3ArrowFileStachResponse.arrow">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\V3ArrowStreamStachResponse.arrow">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

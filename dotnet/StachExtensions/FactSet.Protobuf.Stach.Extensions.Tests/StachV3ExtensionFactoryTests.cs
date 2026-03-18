@@ -15,7 +15,7 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
         public void Init()
         {
             string baseDirectory = AppContext.BaseDirectory;
-            string jsonFilePath = Path.Combine(baseDirectory, "Resources", "StachV3JsonResponse.json");
+            string jsonFilePath = Path.Combine(baseDirectory, "Resources", "V3JsonStachResponse.json");
 
             if (!File.Exists(jsonFilePath))
                 throw new FileNotFoundException($"Test resource file not found at: {jsonFilePath}");
@@ -25,12 +25,12 @@ namespace FactSet.Protobuf.Stach.Extensions.Tests
             if (string.IsNullOrWhiteSpace(jsonFileContent))
                 throw new InvalidOperationException($"File at {jsonFilePath} is empty");
 
-            arrowFilePath = Path.Combine(baseDirectory, "Resources", "StachV3ArrowFileResponse.arrow");
+            arrowFilePath = Path.Combine(baseDirectory, "Resources", "V3ArrowFileStachResponse.arrow");
 
             if (!File.Exists(arrowFilePath))
                 throw new FileNotFoundException($"Test resource file not found at: {arrowFilePath}");
 
-            arrowStreamFilePath = Path.Combine(baseDirectory, "Resources", "StachV3ArrowStreamResponse.arrow");
+            arrowStreamFilePath = Path.Combine(baseDirectory, "Resources", "V3ArrowStreamStachResponse.arrow");
 
             if (!File.Exists(arrowStreamFilePath))
                 throw new FileNotFoundException($"Test resource file not found at: {arrowStreamFilePath}");
