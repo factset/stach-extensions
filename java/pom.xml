@@ -10,7 +10,7 @@
 
     <groupId>com.factset.protobuf</groupId>
     <artifactId>stachextensions</artifactId>
-    <version>1.6.1</version>
+    <version>1.7.0</version>
 
     <licenses>
         <license>
