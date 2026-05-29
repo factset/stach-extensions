@@ -18,7 +18,6 @@ from fds.protobuf.stach.extensions.v3.StachV3ArrowHelper import (
     get_arrow_stream
 )
 from fds.protobuf.stach.extensions.v3.StachV3JsonHelper import (
-    _load_json,
     _parse_table,
     _parse_views,
     _parse_data_table,
@@ -112,12 +111,14 @@ def ConvertArrowStreamToTable(arrow_bytes):
 
     return data_set
 
-def ConvertJsonToTable(jsonFilePath):
+def ConvertJsonToTable(jsonFileContent):
     global column_headers_mapping
     column_headers_mapping = {}  # Reset for each conversion
     data_set = {}
 
-    stachJObject = _load_json(jsonFilePath)
+    if jsonFileContent is None:
+        return
+    stachJObject = json.loads(jsonFileContent)
     if stachJObject is None:
         return
 

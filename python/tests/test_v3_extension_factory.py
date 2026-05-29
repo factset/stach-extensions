@@ -15,7 +15,9 @@ class TestConvertJsonToTable(unittest.TestCase):
         json_file = os.path.join(ROOT_DIR, "resources", "V3JsonStachResponse.json")
         if os.path.exists(json_file):
             try:
-                result = ConvertJsonToTable(json_file)
+                with open(json_file, "r") as f:
+                    json_file_content = f.read()
+                result = ConvertJsonToTable(json_file_content)
                 self.assertIsNotNone(result)
                 self.assertIn('table', result)
                
