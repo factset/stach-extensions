@@ -1,7 +1,6 @@
 import json
 import os
 import pandas as pd
-from IPython.core.display import HTML
 from fds.protobuf.stach.extensions.v3.TableSchema import (TableSchema)
 
 from fds.protobuf.stach.extensions.v3.StachV3SchemaProperties import (

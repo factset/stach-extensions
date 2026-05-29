@@ -4,7 +4,6 @@ import base64
 import pandas as pd
 import json
 from google.protobuf import json_format
-from IPython.core.display import HTML
 import io
 from fds.protobuf.stach.extensions.v3.StachV3ArrowHelper import (
     _read_arrow_stream,
