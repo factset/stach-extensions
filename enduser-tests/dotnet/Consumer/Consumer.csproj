@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <!-- Version is supplied by the run script so it always matches the freshly packed artifact. -->
+    <StachExtensionsVersion Condition="'$(StachExtensionsVersion)' == ''">1.4.0</StachExtensionsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Consumed from the LOCAL NuGet feed, by package id+version, exactly like a real consumer. -->
+    <PackageReference Include="FactSet.Protobuf.Stach.Extensions" Version="$(StachExtensionsVersion)" />
+  </ItemGroup>
+
+</Project>
