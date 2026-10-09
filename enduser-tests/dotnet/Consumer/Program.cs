@@ -18,10 +18,10 @@ class Program
             return 2;
         }
 
-        string resourcesDir = args[0];
-        string jsonPath = Path.Combine(resourcesDir, "V3JsonStachResponse.json");
-        string arrowFilePath = Path.Combine(resourcesDir, "V3ArrowFileStachResponse.arrow");
-        string arrowStreamPath = Path.Combine(resourcesDir, "V3ArrowStreamStachResponse.arrow");
+        string resourcesDir = Path.GetFullPath(args[0]);
+        string jsonPath = ValidatePath(resourcesDir, "V3JsonStachResponse.json");
+        string arrowFilePath = ValidatePath(resourcesDir, "V3ArrowFileStachResponse.arrow");
+        string arrowStreamPath = ValidatePath(resourcesDir, "V3ArrowStreamStachResponse.arrow");
 
         // Prove the type comes from the installed NuGet package, not a project reference.
         string asmLocation = typeof(StachV3ExtensionFactory).Assembly.Location;
@@ -40,6 +40,19 @@ class Program
 
         Console.WriteLine("\nEND-USER TEST PASSED");
         return 0;
+    }
+
+    static string ValidatePath(string baseDir, string filename)
+    {
+        string fullPath = Path.GetFullPath(Path.Combine(baseDir, filename));
+        string normalizedBase = Path.GetFullPath(baseDir);
+
+        if (!fullPath.StartsWith(normalizedBase + Path.DirectorySeparatorChar) && fullPath != normalizedBase)
+        {
+            throw new Exception($"Path traversal detected: {fullPath} is outside {normalizedBase}");
+        }
+
+        return fullPath;
     }
 
     static void Check(string name, DataSet result)
