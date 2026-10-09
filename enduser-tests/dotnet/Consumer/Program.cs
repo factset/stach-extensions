@@ -44,11 +44,6 @@ class Program
 
     static string ValidatePath(string baseDir, string filename)
     {
-        if (filename.Contains("..") || filename.Contains("/") || filename.Contains("\\") || Path.IsPathRooted(filename))
-        {
-            throw new Exception($"Invalid filename: {filename} contains path traversal characters");
-        }
-
         string normalizedBase = Path.GetFullPath(baseDir);
         string fullPath = Path.GetFullPath(Path.Combine(normalizedBase, filename));
 
