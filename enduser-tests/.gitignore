@@ -1,0 +1,6 @@
+# Build artifacts produced by the end-user test runs
+dotnet/Consumer/bin/
+dotnet/Consumer/obj/
+dotnet/Consumer/NuGet.config
+java/consumer/target/
+__pycache__/
