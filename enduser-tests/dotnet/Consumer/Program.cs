@@ -44,33 +44,15 @@ class Program
 
     static string ValidatePath(string baseDir, string filename)
     {
+        string fullPath = Path.GetFullPath(Path.Combine(baseDir, filename));
         string normalizedBase = Path.GetFullPath(baseDir);
-        string fullPath = Path.GetFullPath(Path.Combine(normalizedBase, filename));
 
-        if (!IsPathWithinDirectory(fullPath, normalizedBase))
+        if (!fullPath.StartsWith(normalizedBase + Path.DirectorySeparatorChar) && fullPath != normalizedBase)
         {
             throw new Exception($"Path traversal detected: {fullPath} is outside {normalizedBase}");
         }
 
         return fullPath;
-    }
-
-    static bool IsPathWithinDirectory(string filePath, string directoryPath)
-    {
-        var fileInfo = new System.IO.FileInfo(filePath);
-        var dirInfo = new System.IO.DirectoryInfo(directoryPath);
-
-        var currentDir = fileInfo.Directory;
-        while (currentDir != null)
-        {
-            if (currentDir.FullName == dirInfo.FullName)
-            {
-                return true;
-            }
-            currentDir = currentDir.Parent;
-        }
-
-        return false;
     }
 
     static void Check(string name, DataSet result)
