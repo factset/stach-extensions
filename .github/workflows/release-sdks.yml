@@ -133,7 +133,7 @@ jobs:
       run: mvn -B clean package --file ${{ env.JAVA_SDK_LOCATION }}/pom.xml
         
     - name: Publish to Apache Maven Central
-      run: cd ${{ env.JAVA_SDK_LOCATION }} && mvn -Psign-artifacts verify deploy
+      run: cd ${{ env.JAVA_SDK_LOCATION }} && mvn -B -Psign-artifacts clean verify deploy
       env:
         MAVEN_PORTAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
