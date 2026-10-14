@@ -16,7 +16,13 @@ on:
   workflow_dispatch:
     inputs:
       SDKs:
-        description: 'Which SDK to release? Options are "all", "java", "python" and "dotnet"'
+        description: 'Which SDK to release?'
+        type: choice
+        options:
+          - all
+          - java
+          - python
+          - dotnet
         required: true
         default: all
 
