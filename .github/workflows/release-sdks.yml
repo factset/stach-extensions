@@ -130,7 +130,7 @@ jobs:
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
     - name: Build with Maven
-      run: mvn -B package --file ${{ env.JAVA_SDK_LOCATION }}/pom.xml
+      run: mvn -B clean package --file ${{ env.JAVA_SDK_LOCATION }}/pom.xml
         
     - name: Publish to Apache Maven Central
       run: cd ${{ env.JAVA_SDK_LOCATION }} && mvn -Psign-artifacts verify deploy
