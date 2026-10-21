@@ -10,7 +10,7 @@
 
     <groupId>com.factset.protobuf</groupId>
     <artifactId>stachextensions</artifactId>
-    <version>1.6.2</version>
+    <version>1.6.3</version>
 
     <licenses>
         <license>
@@ -185,6 +185,11 @@
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java-util</artifactId>
             <version>${protobuf-version}</version>
+        </dependency>
+        <!-- Direct declaration so consumers resolve the patched Guava instead of the transitive 32.0.1-jre from protobuf-java-util (CVE-2026-102554) -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
         <dependency>
             <groupId>com.factset.protobuf</groupId>
