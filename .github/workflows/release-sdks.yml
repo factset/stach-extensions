@@ -16,7 +16,13 @@ on:
   workflow_dispatch:
     inputs:
       SDKs:
-        description: 'Which SDK to release? Options are "all", "java", "python" and "dotnet"'
+        description: 'Which SDK to release?'
+        type: choice
+        options:
+          - all
+          - java
+          - python
+          - dotnet
         required: true
         default: all
 
@@ -123,11 +129,20 @@ jobs:
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
+    - name: Install Maven 3.9.16
+      # Maven 3.10 leaves maven-metadata-local.xml and _remote.repositories in the staging repo, which Central rejects
+      run: |
+        curl -fsSL https://archive.apache.org/dist/maven/maven-3/3.9.16/binaries/apache-maven-3.9.16-bin.tar.gz | sudo tar -xz -C /opt
+        echo "/opt/apache-maven-3.9.16/bin" >> $GITHUB_PATH
+
+    - name: Print Maven version
+      run: mvn -v
+
     - name: Build with Maven
-      run: mvn -B package --file ${{ env.JAVA_SDK_LOCATION }}/pom.xml
-        
+      run: mvn -B clean package --file ${{ env.JAVA_SDK_LOCATION }}/pom.xml
+
     - name: Publish to Apache Maven Central
-      run: cd ${{ env.JAVA_SDK_LOCATION }} && mvn -Psign-artifacts verify deploy
+      run: cd ${{ env.JAVA_SDK_LOCATION }} && mvn -B -Psign-artifacts clean verify deploy
       env:
         MAVEN_PORTAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}

@@ -63,6 +63,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <protobuf-version>3.25.5</protobuf-version>
         <arrow.version>15.0.0</arrow.version>
+        <jackson-version>2.18.11</jackson-version>
     </properties>
 
     <profiles>
@@ -75,8 +76,8 @@
                         <artifactId>maven-compiler-plugin</artifactId>
                         <version>3.8.1</version>
                         <configuration>
-                            <source>1.7</source>
-                            <target>1.7</target>
+                            <source>1.8</source>
+                            <target>1.8</target>
                             <fork>true</fork>
                             <meminitial>128m</meminitial>
                             <maxmem>512m</maxmem>
@@ -133,14 +134,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <groupId>org.sonatype.central</groupId>
-                        <artifactId>central-publishing-maven-plugin</artifactId>
-                        <configuration>
-                            <publishingServerId>central</publishingServerId>
-                            <waitUntil>validated</waitUntil>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -165,11 +158,24 @@
                 <version>0.8.0</version>
                 <extensions>true</extensions>
                 <configuration>
+                    <publishingServerId>central</publishingServerId>
                     <deploymentName>${project.groupId}-${project.artifactId}-${project.version}</deploymentName>
+                    <waitUntil>validated</waitUntil>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Override transitive Guava pulled in by protobuf-java-util (CVE-2026-102554) -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>33.7.2-jre</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -181,6 +187,11 @@
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java-util</artifactId>
             <version>${protobuf-version}</version>
+        </dependency>
+        <!-- Direct declaration so consumers resolve the patched Guava instead of the transitive 32.0.1-jre from protobuf-java-util (CVE-2026-102554) -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
         <dependency>
             <groupId>com.factset.protobuf</groupId>
@@ -195,12 +206,12 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.13.5</version>
+            <version>${jackson-version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.13.5</version>
+            <version>${jackson-version}</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
