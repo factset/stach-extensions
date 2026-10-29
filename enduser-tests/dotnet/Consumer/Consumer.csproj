@@ -14,4 +14,11 @@
     <PackageReference Include="FactSet.Protobuf.Stach.Extensions" Version="$(StachExtensionsVersion)" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Test fixtures copied from the SDK test project, so the consumer reads them from its own output folder. -->
+    <None Include="..\..\..\dotnet\StachExtensions\FactSet.Protobuf.Stach.Extensions.Tests\Resources\V3JsonStachResponse.json" Link="Resources\V3JsonStachResponse.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\dotnet\StachExtensions\FactSet.Protobuf.Stach.Extensions.Tests\Resources\V3ArrowFileStachResponse.arrow" Link="Resources\V3ArrowFileStachResponse.arrow" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\dotnet\StachExtensions\FactSet.Protobuf.Stach.Extensions.Tests\Resources\V3ArrowStreamStachResponse.arrow" Link="Resources\V3ArrowStreamStachResponse.arrow" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

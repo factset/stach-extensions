@@ -54,7 +54,7 @@ try {
     Remove-Item -Recurse -Force obj, bin -ErrorAction SilentlyContinue
 
     # -p sets the version the PackageReference resolves to; sources come from NuGet.config above.
-    dotnet run --configuration Release -p:StachExtensionsVersion=$Version -- $ResourcesDir
+    dotnet run --configuration Release -p:StachExtensionsVersion=$Version
     if ($LASTEXITCODE -ne 0) { throw ".NET end-user test FAILED (exit $LASTEXITCODE)" }
 } finally {
     Pop-Location
