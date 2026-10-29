@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <!-- Version is supplied by the run script so it always matches the freshly packed artifact. -->
+    <StachExtensionsVersion Condition="'$(StachExtensionsVersion)' == ''">1.4.0</StachExtensionsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Consumed from the LOCAL NuGet feed, by package id+version, exactly like a real consumer. -->
+    <PackageReference Include="FactSet.Protobuf.Stach.Extensions" Version="$(StachExtensionsVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Test fixtures copied from the SDK test project, so the consumer reads them from its own output folder. -->
+    <None Include="..\..\..\dotnet\StachExtensions\FactSet.Protobuf.Stach.Extensions.Tests\Resources\V3JsonStachResponse.json" Link="Resources\V3JsonStachResponse.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\dotnet\StachExtensions\FactSet.Protobuf.Stach.Extensions.Tests\Resources\V3ArrowFileStachResponse.arrow" Link="Resources\V3ArrowFileStachResponse.arrow" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\dotnet\StachExtensions\FactSet.Protobuf.Stach.Extensions.Tests\Resources\V3ArrowStreamStachResponse.arrow" Link="Resources\V3ArrowStreamStachResponse.arrow" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

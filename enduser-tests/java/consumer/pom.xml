@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.factset.protobuf.enduser</groupId>
+    <artifactId>stachextensions-enduser-test</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Overridden by the run script to match the freshly installed artifact. -->
+        <stachextensions.version>1.7.0</stachextensions.version>
+    </properties>
+
+    <dependencies>
+        <!-- Consumed from the local ~/.m2 repo by GAV, exactly like a downstream user. -->
+        <dependency>
+            <groupId>com.factset.protobuf</groupId>
+            <artifactId>stachextensions</artifactId>
+            <version>${stachextensions.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>EndUserTest</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
