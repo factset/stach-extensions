@@ -1,0 +1,481 @@
+{
+    "columns": [
+        {
+            "contextualType": "int64",
+            "forbidNulls": true,
+            "name": "primary_key"
+        },
+        {
+            "contextualType": "string",
+            "customMetadata": {
+                "columnType": {
+                    "contextualType": "string",
+                    "value": "symbol"
+                },
+                "dataItemId": {
+                    "contextualType": "string",
+                    "value": "Ticker:FACTSET000"
+                },
+                "decimals": {
+                    "contextualType": "int32",
+                    "value": 0
+                },
+                "displayWidth": {
+                    "contextualType": "int32",
+                    "value": 9
+                },
+                "justification": {
+                    "contextualType": "string",
+                    "value": "Right"
+                },
+                "sourceId": {
+                    "contextualType": "string",
+                    "value": "Ticker:FACTSET000"
+                }
+            },
+            "name": "0"
+        },
+        {
+            "contextualType": "string",
+            "customMetadata": {
+                "columnType": {
+                    "contextualType": "string",
+                    "value": "name"
+                },
+                "dataItemId": {
+                    "contextualType": "string",
+                    "value": "CompanyName:FACTSET001"
+                },
+                "decimals": {
+                    "contextualType": "int32",
+                    "value": 0
+                },
+                "displayWidth": {
+                    "contextualType": "int32",
+                    "value": 34
+                },
+                "justification": {
+                    "contextualType": "string",
+                    "value": "Right"
+                },
+                "sourceId": {
+                    "contextualType": "string",
+                    "value": "CompanyName:FACTSET001"
+                }
+            },
+            "name": "1"
+        },
+        {
+            "contextualType": "real",
+            "customMetadata": {
+                "columnType": {
+                    "contextualType": "string",
+                    "value": "data"
+                },
+                "dataItemId": {
+                    "contextualType": "string",
+                    "value": "# of Securities:FACTSET942:12"
+                },
+                "decimals": {
+                    "contextualType": "int32",
+                    "value": 0
+                },
+                "displayWidth": {
+                    "contextualType": "int32",
+                    "value": 12
+                },
+                "justification": {
+                    "contextualType": "string",
+                    "value": "Right"
+                },
+                "sourceId": {
+                    "contextualType": "string",
+                    "value": "# of Securities:FACTSET942"
+                }
+            },
+            "name": "2"
+        },
+        {
+            "contextualType": "real",
+            "customMetadata": {
+                "columnType": {
+                    "contextualType": "string",
+                    "value": "data"
+                },
+                "dataItemId": {
+                    "contextualType": "string",
+                    "value": "EndingWeight:FACTSET099:13"
+                },
+                "decimals": {
+                    "contextualType": "int32",
+                    "value": 1
+                },
+                "displayWidth": {
+                    "contextualType": "int32",
+                    "value": 12
+                },
+                "justification": {
+                    "contextualType": "string",
+                    "value": "Right"
+                },
+                "sourceId": {
+                    "contextualType": "string",
+                    "value": "EndingWeight:FACTSET099"
+                }
+            },
+            "name": "3"
+        },
+        {
+            "contextualType": "real",
+            "customMetadata": {
+                "columnType": {
+                    "contextualType": "string",
+                    "value": "data"
+                },
+                "dataItemId": {
+                    "contextualType": "string",
+                    "value": "MarketCapitalization:FACTSET059:8"
+                },
+                "decimals": {
+                    "contextualType": "int32",
+                    "value": 1
+                },
+                "displayWidth": {
+                    "contextualType": "int32",
+                    "value": 12
+                },
+                "justification": {
+                    "contextualType": "string",
+                    "value": "Right"
+                },
+                "sourceId": {
+                    "contextualType": "string",
+                    "value": "MarketCapitalization:FACTSET059"
+                }
+            },
+            "name": "4"
+        },
+        {
+            "contextualType": "real",
+            "customMetadata": {
+                "columnType": {
+                    "contextualType": "string",
+                    "value": "data"
+                },
+                "dataItemId": {
+                    "contextualType": "string",
+                    "value": "# of Securities:FACTSET942:12"
+                },
+                "decimals": {
+                    "contextualType": "int32",
+                    "value": 0
+                },
+                "displayWidth": {
+                    "contextualType": "int32",
+                    "value": 12
+                },
+                "justification": {
+                    "contextualType": "string",
+                    "value": "Right"
+                },
+                "sourceId": {
+                    "contextualType": "string",
+                    "value": "# of Securities:FACTSET942"
+                }
+            },
+            "name": "5"
+        },
+        {
+            "contextualType": "real",
+            "customMetadata": {
+                "columnType": {
+                    "contextualType": "string",
+                    "value": "data"
+                },
+                "dataItemId": {
+                    "contextualType": "string",
+                    "value": "EndingWeight:FACTSET099:13"
+                },
+                "decimals": {
+                    "contextualType": "int32",
+                    "value": 1
+                },
+                "displayWidth": {
+                    "contextualType": "int32",
+                    "value": 12
+                },
+                "justification": {
+                    "contextualType": "string",
+                    "value": "Right"
+                },
+                "sourceId": {
+                    "contextualType": "string",
+                    "value": "EndingWeight:FACTSET099"
+                }
+            },
+            "name": "6"
+        },
+        {
+            "contextualType": "real",
+            "customMetadata": {
+                "columnType": {
+                    "contextualType": "string",
+                    "value": "data"
+                },
+                "dataItemId": {
+                    "contextualType": "string",
+                    "value": "MarketCapitalization:FACTSET059:8"
+                },
+                "decimals": {
+                    "contextualType": "int32",
+                    "value": 1
+                },
+                "displayWidth": {
+                    "contextualType": "int32",
+                    "value": 12
+                },
+                "justification": {
+                    "contextualType": "string",
+                    "value": "Right"
+                },
+                "sourceId": {
+                    "contextualType": "string",
+                    "value": "MarketCapitalization:FACTSET059"
+                }
+            },
+            "name": "7"
+        }
+    ],
+    "multiLevelHeadersTable": {
+        "columns": [
+            {
+                "contextualType": "string",
+                "forbidNulls": true,
+                "name": "header_table_primary_key"
+            },
+            {
+                "contextualType": "string",
+                "forbidNulls": true,
+                "name": "header_table_0"
+            }
+        ],
+        "name": "stachHeaderTable",
+        "rows": [
+            {
+                "header_table_0": "",
+                "header_table_primary_key": "0"
+            },
+            {
+                "header_table_0": "",
+                "header_table_primary_key": "1"
+            },
+            {
+                "header_table_0": "28-APR-2025",
+                "header_table_primary_key": "2"
+            },
+            {
+                "header_table_0": "28-APR-2025",
+                "header_table_primary_key": "3"
+            },
+            {
+                "header_table_0": "28-APR-2025",
+                "header_table_primary_key": "4"
+            },
+            {
+                "header_table_0": "29-APR-2025",
+                "header_table_primary_key": "5"
+            },
+            {
+                "header_table_0": "29-APR-2025",
+                "header_table_primary_key": "6"
+            },
+            {
+                "header_table_0": "29-APR-2025",
+                "header_table_primary_key": "7"
+            }
+        ],
+        "table": {
+            "primaryKeys": [
+                "header_table_primary_key"
+            ],
+            "totalNumRows": 8
+        },
+        "version": "3.0"
+    },
+    "name": "SECURITY",
+    "rows": [
+        {
+            "0": null,
+            "1": "Total",
+            "2": 4,
+            "3": 100,
+            "4": 373133.43856658,
+            "5": 4,
+            "6": 100,
+            "7": 376569.362284971,
+            "primary_key": 0
+        },
+        {
+            "0": "BA",
+            "1": "Boeing Company",
+            "2": 1,
+            "3": 18.048640046719,
+            "4": 137339.625,
+            "5": 1,
+            "6": 17.8846506260584,
+            "7": 137113.609375,
+            "primary_key": 1
+        },
+        {
+            "0": "IBM",
+            "1": "International Business Machines Corporation",
+            "2": 1,
+            "3": 14.028634668458,
+            "4": 219486.296875,
+            "5": 1,
+            "6": 14.1145269671608,
+            "7": 222488.25,
+            "primary_key": 2
+        },
+        {
+            "0": "SNOW",
+            "1": "Snowflake, Inc. Class A",
+            "2": 1,
+            "3": 28.3281474453517,
+            "4": 53071.1796875,
+            "5": 1,
+            "6": 28.3628940120837,
+            "7": 53535.25390625,
+            "primary_key": 3
+        },
+        {
+            "0": "WMT",
+            "1": "Walmart Inc.",
+            "2": 1,
+            "3": 39.5945778394712,
+            "4": 764045.25,
+            "5": 1,
+            "6": 39.6379283946972,
+            "7": 770624.9375,
+            "primary_key": 4
+        }
+    ],
+    "table": {
+        "customMetadata": {
+            "parc::calculated-document-json": {
+                "contextualType": "string",
+                "value": ""
+            },
+            "parc::frozen-bottom": {
+                "contextualType": "boolean",
+                "value": false
+            },
+            "parc::groupings": {
+                "contextualType": "string",
+                "value": ""
+            },
+            "parc::table-frozen-row-count": {
+                "contextualType": "int32",
+                "value": 1
+            }
+        },
+        "groupResult": {
+            "aggregateValues": {
+                "2": {
+                    "functions": [
+                        {
+                            "columnName": "2",
+                            "name": "Sum"
+                        }
+                    ]
+                },
+                "3": {
+                    "functions": [
+                        {
+                            "columnName": "3",
+                            "name": "Weight"
+                        }
+                    ]
+                },
+                "4": {
+                    "functions": [
+                        {
+                            "columnName": "4",
+                            "name": "Weighted Average"
+                        }
+                    ]
+                },
+                "5": {
+                    "functions": [
+                        {
+                            "columnName": "5",
+                            "name": "Sum"
+                        }
+                    ]
+                },
+                "6": {
+                    "functions": [
+                        {
+                            "columnName": "6",
+                            "name": "Weight"
+                        }
+                    ]
+                },
+                "7": {
+                    "functions": [
+                        {
+                            "columnName": "7",
+                            "name": "Weighted Average"
+                        }
+                    ]
+                }
+            }
+        },
+        "primaryKeys": [
+            "primary_key"
+        ],
+        "splitResult": {
+            "by": [
+                "header_table_0"
+            ],
+            "multiLevelHeadersTableReference": "header_table_primary_key",
+            "over": {
+                "2": "# of Securities:FACTSET942:12",
+                "3": "EndingWeight:FACTSET099:13",
+                "4": "MarketCapitalization:FACTSET059:8",
+                "5": "# of Securities:FACTSET942:12",
+                "6": "EndingWeight:FACTSET099:13",
+                "7": "MarketCapitalization:FACTSET059:8"
+            }
+        },
+        "totalNumRows": 5
+    },
+    "version": "3.0",
+    "views": [
+        {
+			"name": "view",
+            "table": {
+                "columns": [
+                    "0",
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                ],
+                "headers": {
+                    "0": "Ticker",
+                    "1": "Security Name",
+                    "2": "# of\nSecurities",
+                    "3": "Ending\nWeight",
+                    "4": "Market\nCapitalization",
+                    "5": "# of\nSecurities",
+                    "6": "Ending\nWeight",
+                    "7": "Market\nCapitalization"
+                }
+            }
+        }
+    ]
+}
