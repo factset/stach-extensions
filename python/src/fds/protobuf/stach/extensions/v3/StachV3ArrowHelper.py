@@ -22,7 +22,8 @@ except ImportError as e:
     Table_pb2 = None
     Views_pb2 = None
 
-def get_data_row(record_batch, row_index, data_table, column_headers_mapping):
+def get_data_row(record_batch, row_index, rows, column_headers_mapping):
+    """Build one row dict. `rows` holds the rows already built, so the previous row can be read from it."""
     data_row = {}
     security_column = next((k for k, v in column_headers_mapping.items() if security_name_column in v.lower()), None)
     security_name_column_data = record_batch.column(security_column) if security_column else None
@@ -47,7 +48,7 @@ def get_data_row(record_batch, row_index, data_table, column_headers_mapping):
             else:
                 if row_index > 0 and level_index > 0 and group_index < level_index:
                     if security_name_column_data is not None:
-                        data_row[column_name] = data_table.iloc[row_index - 1][column_name]
+                        data_row[column_name] = rows[-1].get(column_name)
                     else:
                         data_row[column_name] = ''
     return data_row
@@ -237,34 +238,51 @@ def _parse_multi_level_headers(schema_metadata, stach_table, view_headers):
 
     return concat_columns_list
 
+def _make_unique_header(header_name, used_headers):
+    """Return header_name, or header_name with a numeric suffix if it is already used."""
+    candidate = header_name
+    suffix = 1
+    while candidate in used_headers:
+        candidate = f"{header_name}.{suffix}"
+        suffix += 1
+    return candidate
+
 def _build_column_headers_mapping(schema, view_headers, concat_columns_list, column_headers_mapping):
-    """Build column headers mapping from schema field names."""
+    """Build column headers mapping from schema field names.
+
+    Display headers must be unique because the DataFrame is labelled by them. When two
+    fields resolve to the same header, the later one gets a suffix (name.1, name.2, ...).
+    """
+    used_headers = set(column_headers_mapping.values())
     for field in schema:
         header_name = field.name
         if concat_columns_list:
             header_name = concat_columns_list.get(field.name, field.name)
         else:
             header_name = view_headers.get(field.name, field.name)
+        header_name = _make_unique_header(header_name, used_headers)
+        used_headers.add(header_name)
         column_headers_mapping[field.name] = header_name
 
 def _populate_dataframe(reader, column_headers_mapping):
-    """Create and populate DataFrame from record batches."""
-    columns = [column_headers_mapping[k] for k in column_headers_mapping]
-    data_table = pd.DataFrame(columns=columns)
+    """Create and populate DataFrame from record batches.
+
+    Rows are collected in a list and the DataFrame is built once at the end.
+    """
+    columns = list(column_headers_mapping.values())
+    rows = []
 
     if hasattr(reader, "num_record_batches"):
         for idx in range(reader.num_record_batches):
             batch = reader.get_batch(idx)
             for row_index in range(batch.num_rows):
-                data_row = get_data_row(batch, row_index, data_table, column_headers_mapping)
-                data_table = pd.concat([data_table, pd.DataFrame([data_row])], ignore_index=True)
+                rows.append(get_data_row(batch, row_index, rows, column_headers_mapping))
     else:
         for record_batch in reader:
             for row_index in range(record_batch.num_rows):
-                data_row = get_data_row(record_batch, row_index, data_table, column_headers_mapping)
-                data_table = pd.concat([data_table, pd.DataFrame([data_row])], ignore_index=True)
+                rows.append(get_data_row(record_batch, row_index, rows, column_headers_mapping))
 
-    return data_table
+    return pd.DataFrame(rows, columns=columns)
 
 def _remove_ignored_columns(data_table, ignored_columns):
     """Remove ignored columns from DataFrame."""

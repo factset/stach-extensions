@@ -161,9 +161,9 @@ namespace FactSet.Protobuf.Stach.Extensions.V3
                         ? recordBatch.Column(securityColumnKey)
                         : null;
 
-                    // Cast directly to Int64Array — avoids GetColumnValue string round-trip on every level read
-                    Int64Array levelColumnAsInt64 = !string.IsNullOrEmpty(levelColumnKey) && IsColumnExist(recordBatch, levelColumnKey)
-                        ? recordBatch.Column(levelColumnKey) as Int64Array
+                    // Level column may be Int32 or Int64 depending on the engine; read via ReadLevelValue
+                    IArrowArray levelColumnData = !string.IsNullOrEmpty(levelColumnKey) && IsColumnExist(recordBatch, levelColumnKey)
+                        ? recordBatch.Column(levelColumnKey)
                         : null;
 
                     // Fill pre-allocated array in-place — no new list or LINQ per batch
@@ -174,8 +174,8 @@ namespace FactSet.Protobuf.Stach.Extensions.V3
                     {
                         var dataRow = ctx.DataTable.NewRow();
 
-                        int levelIndex = levelColumnAsInt64 != null
-                            ? (int)(levelColumnAsInt64.GetValue(rowIndex) ?? 0L)
+                        int levelIndex = levelColumnData != null
+                            ? (int)ReadLevelValue(levelColumnData, rowIndex)
                             : 0;
 
                         // fill data columns
@@ -335,12 +335,27 @@ namespace FactSet.Protobuf.Stach.Extensions.V3
                 int columnIndex = recordBatch.Schema.GetFieldIndex("level");
                 if (columnIndex >= 0)
                 {
-                    var columnX = (Int64Array)recordBatch.Column(columnIndex);
-                    for (int i = 0; i < columnX.Values.Length; i++)
-                        levels.Add(columnX.Values[i]);
+                    var levelColumn = recordBatch.Column(columnIndex);
+                    for (int i = 0; i < levelColumn.Length; i++)
+                        levels.Add(ReadLevelValue(levelColumn, i));
                 }
             }
             return levels.ToArray();
+        }
+
+        // Vault sends the level column as Int32 while other engines send Int64, so accept both.
+        public static long ReadLevelValue(IArrowArray levelColumn, int rowIndex)
+        {
+            switch (levelColumn)
+            {
+                case Int32Array int32Levels:
+                    return int32Levels.GetValue(rowIndex) ?? 0;
+                case Int64Array int64Levels:
+                    return int64Levels.GetValue(rowIndex) ?? 0L;
+                default:
+                    throw new InvalidOperationException(
+                        $"Unsupported type for '{StachV3Constants.LevelNameColumn}' column: {levelColumn.GetType().Name}");
+            }
         }
 
         public static bool IsArrowFile(Stream stream)
