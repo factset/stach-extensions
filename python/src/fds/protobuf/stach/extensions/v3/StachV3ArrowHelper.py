@@ -5,6 +5,7 @@ import pandas as pd
 import json
 from google.protobuf import json_format
 import io
+import logging
 
 from fds.protobuf.stach.extensions.v3.StachV3Constants import (
     ignored_columns,
@@ -14,12 +15,19 @@ from fds.protobuf.stach.extensions.v3.StachV3Constants import (
     column_separator
 )
 
+logger = logging.getLogger(__name__)
+
+# Each import is guarded separately so a missing module does not disable the others.
 try:
     from fds.protobuf.stach.table import Table_pb2
+except ImportError as e:
+    logger.warning("Table protobuf not available; table metadata will be skipped: %s", e)
+    Table_pb2 = None
+
+try:
     from fds.protobuf.stach.v3 import Views_pb2
 except ImportError as e:
-    # Handle case where protobuf messages are not available
-    Table_pb2 = None
+    logger.warning("Views protobuf not available; view headers will be skipped: %s", e)
     Views_pb2 = None
 
 def get_data_row(record_batch, row_index, rows, column_headers_mapping):
@@ -179,25 +187,114 @@ def _parse_table_metadata(metadata):
             pass
     return stach_table
 
+def _read_varint(buf, pos):
+    """Read a protobuf varint starting at pos. Returns (value, next_pos)."""
+    result = 0
+    shift = 0
+    while True:
+        byte = buf[pos]
+        pos += 1
+        result |= (byte & 0x7F) << shift
+        if not byte & 0x80:
+            return result, pos
+        shift += 7
+
+def _iter_proto_fields(buf):
+    """Yield (field_number, wire_type, value) for each field of a protobuf message.
+
+    Length-delimited values are returned as bytes; varints as int. Fixed-width fields are skipped.
+    """
+    pos = 0
+    end = len(buf)
+    while pos < end:
+        key, pos = _read_varint(buf, pos)
+        field_number, wire_type = key >> 3, key & 0x7
+        if wire_type == 0:
+            value, pos = _read_varint(buf, pos)
+        elif wire_type == 2:
+            length, pos = _read_varint(buf, pos)
+            value = buf[pos:pos + length]
+            pos += length
+        elif wire_type == 1:
+            value, pos = None, pos + 8
+        elif wire_type == 5:
+            value, pos = None, pos + 4
+        else:
+            raise ValueError(f"unsupported protobuf wire type {wire_type}")
+        yield field_number, wire_type, value
+
+def _parse_view_headers_from_bytes(views_bytes):
+    """Read the first view's table headers map from the raw Views message.
+
+    Views { repeated View views = 1 }, View { ... Table table = 3 },
+    Table { ... map<string, string> headers = 3 }, map entry { key = 1, value = 2 }.
+    """
+    view_bytes = next((v for f, w, v in _iter_proto_fields(views_bytes) if f == 1 and w == 2), None)
+    if view_bytes is None:
+        return {}
+    table_bytes = next((v for f, w, v in _iter_proto_fields(view_bytes) if f == 3 and w == 2), None)
+    if table_bytes is None:
+        return {}
+    headers = {}
+    for f, w, entry in _iter_proto_fields(table_bytes):
+        if f != 3 or w != 2:
+            continue
+        key, value = "", ""
+        for ef, ew, ev in _iter_proto_fields(entry):
+            if ew == 2 and ef == 1:
+                key = ev.decode("utf-8")
+            elif ew == 2 and ef == 2:
+                value = ev.decode("utf-8")
+        headers[key] = value
+    return headers
+
 def _parse_views_metadata(metadata):
-    """Parse and return view headers from metadata."""
+    """Parse and return view headers from metadata.
+
+    Uses the generated Views protobuf when it is installed; otherwise the headers are read
+    straight from the raw message, so view names are available without that package.
+    """
     view_headers = {}
-    if Views_pb2 is None:
-        return view_headers
     if "fds:stach:views" in metadata:
         try:
-            view_object = metadata["fds:stach:views"]
-            views_array_decoded = base64.b64decode(view_object)
-            views = Views_pb2.Views()
-            views.ParseFromString(views_array_decoded)
-            if views.views:
-                first_view = views.views[0]
-                if first_view.table.headers:
-                    view_headers = dict(first_view.table.headers)
+            views_array_decoded = base64.b64decode(metadata["fds:stach:views"])
+            if Views_pb2 is not None:
+                views = Views_pb2.Views()
+                views.ParseFromString(views_array_decoded)
+                if views.views:
+                    first_view = views.views[0]
+                    if first_view.table.headers:
+                        view_headers = dict(first_view.table.headers)
+            else:
+                view_headers = _parse_view_headers_from_bytes(views_array_decoded)
         except Exception as e:
             # Handle parsing errors gracefully - continue without view headers
-            pass
+            logger.warning("Could not parse views metadata; view headers skipped: %s", e)
     return view_headers
+
+def _get_multi_level_reference(schema_metadata, stach_table, multi_level_headers):
+    """Return the name of the multi-level headers table's primary-key column.
+
+    Uses the Table protobuf's splitResult reference when that message provides it. Otherwise
+    the reference is searched for in the raw table metadata, using the multi-level header
+    column names; the first matching column (the primary key column) is used.
+    """
+    split_result = getattr(stach_table, "split_result", None) if stach_table is not None else None
+    reference = getattr(split_result, "multi_level_headers_table_reference", "") if split_result is not None else ""
+    if reference:
+        return reference
+
+    table_object = schema_metadata.get(b"fds:stach:table")
+    if not table_object:
+        return ""
+    try:
+        raw_table = base64.b64decode(table_object)
+    except Exception:
+        return ""
+    for name in multi_level_headers.column_names:
+        if name.encode("utf-8") in raw_table:
+            return name
+    return ""
 
 def _parse_multi_level_headers(schema_metadata, stach_table, view_headers):
     """Parse multi-level headers table and return concatenated columns list."""
@@ -211,6 +308,7 @@ def _parse_multi_level_headers(schema_metadata, stach_table, view_headers):
                     multi_level_headers = generate_multi_level_headers(multi_level_headers_array_decoded)
 
                     if multi_level_headers:
+                        multi_level_ref = _get_multi_level_reference(schema_metadata, stach_table, multi_level_headers)
                         for row_index in range(multi_level_headers.num_rows):
                             concat_column_value = ''
                             primary_key_column = ''
@@ -220,7 +318,7 @@ def _parse_multi_level_headers(schema_metadata, stach_table, view_headers):
                                 column_name = multi_level_headers.column_names[col_index]
                                 header_column_value = get_column_value(column_object, row_index)
 
-                                if column_name == getattr(stach_table.split_result, "multi_level_headers_table_reference", ""):
+                                if column_name == multi_level_ref:
                                     primary_key_column = header_column_value
                                 if header_column_value:
                                     if view_headers and header_column_value in view_headers:

@@ -41,6 +41,9 @@
       <None Update="Resources\V3ArrowStreamStachResponse.arrow">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="Resources\V3MultiLevelHeaderArrowStreamResponse.arrow">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
