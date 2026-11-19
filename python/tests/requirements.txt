@@ -1,8 +1,8 @@
 astroid==4.0.4
 colorama==0.4.6
 dill==0.4.1
-fds.protobuf.stach==1.0.1
-fds.protobuf.stach.v2==1.0.4
+fds.protobuf.stach==1.0.2
+fds.protobuf.stach.v2==1.0.5
 isort==5.9.3
 mccabe==0.7.0
 platformdirs==4.14.5
